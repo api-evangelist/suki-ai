@@ -1,0 +1,151 @@
+aid: suki-ai
+url: https://raw.githubusercontent.com/api-evangelist/suki-ai/refs/heads/main/apis.yml
+name: Suki AI
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+description: Suki AI provides voice-enabled, ambient clinical intelligence used by clinicians to
+  generate clinical notes, dictate, and complete documentation tasks across more than 400 health
+  systems. Suki for Partners is a developer platform offering REST APIs and SDKs (Web SDK, Headless
+  Web SDK, Mobile SDK for iOS, and Dictation SDK) that let healthcare technology companies embed
+  ambient documentation, dictation, voice commands, and form filling into their applications.
+  Partner credentials and access are issued through Suki rather than self-service public sign-up.
+tags:
+  - Healthcare
+  - Ambient AI
+  - Clinical Documentation
+  - Voice AI
+  - Speech Recognition
+  - EHR Integration
+  - SDK
+  - Dictation
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.19'
+apis:
+  - aid: suki-ai:suki-platform-api
+    name: Suki Platform REST API
+    description: The Suki Platform REST API and SDKs let healthcare technology partners embed Suki's
+      ambient clinical documentation, dictation, voice command, and form-filling capabilities into
+      EHRs, telehealth platforms, care management systems, and revenue-cycle tools. Authentication is
+      partner-issued; the platform supports REST APIs, a Web SDK, a Headless Web SDK (React 18+
+      beta), a native iOS Mobile SDK (Android coming), and an embedded Dictation SDK (iframe beta).
+    humanURL: https://developer.suki.ai/documentation/overview
+    baseURL: https://developer.suki.ai
+    tags:
+      - Ambient Documentation
+      - Dictation
+      - Voice Commands
+      - Form Filling
+      - Clinical Notes
+      - SDK
+    properties:
+      - type: Documentation
+        url: https://developer.suki.ai/documentation/overview
+      - type: GettingStarted
+        url: https://developer.suki.ai/documentation/overview
+      - type: Authentication
+        url: https://developer.suki.ai/documentation/overview
+      - type: LLMsTxt
+        url: https://developer.suki.ai/llms.txt
+    contact:
+      - FN: Suki for Partners
+        url: https://www.suki.ai/suki-platform/
+common:
+  - type: Website
+    url: https://www.suki.ai/
+  - type: PartnersPlatform
+    url: https://www.suki.ai/suki-platform/
+  - type: DeveloperPortal
+    url: https://developer.suki.ai/
+  - type: Documentation
+    url: https://developer.suki.ai/documentation/overview
+  - type: Technology
+    url: https://www.suki.ai/technology/
+  - type: Blog
+    url: https://www.suki.ai/blog/
+  - type: Press
+    url: https://www.suki.ai/press-releases/
+  - type: News
+    url: https://www.suki.ai/news/
+  - type: Careers
+    url: https://www.suki.ai/careers/
+  - type: Contact
+    url: https://www.suki.ai/contact/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/suki-ai
+  - type: Twitter
+    url: https://twitter.com/sukiAI
+  - type: TermsOfService
+    url: https://www.suki.ai/terms-of-service/
+  - type: PrivacyPolicy
+    url: https://www.suki.ai/privacy-policy/
+  - type: Features
+    data:
+      - name: Ambient Documentation
+        description: Automatic clinical note generation from clinician-patient conversations across
+          100+ specialties.
+      - name: Medical Dictation
+        description: Medically tuned, high-accuracy speech recognition that understands clinical
+          language.
+      - name: Voice Commands
+        description: Natural-language voice interaction to complete tasks inside clinical
+          applications.
+      - name: Assisted Revenue Cycle
+        description: Coding and billing workflow support layered onto documentation.
+      - name: Multilingual Support
+        description: Documentation in multiple languages for diverse patient populations.
+      - name: Cross-Platform Apps
+        description: Available across iOS, Android, and desktop.
+      - name: Form Filling
+        description: Voice and text-driven form completion via the Suki Platform.
+  - type: UseCases
+    data:
+      - name: Ambient Note Generation
+        description: Clinical notes generated during patient visits without interrupting the
+          encounter.
+      - name: EHR Documentation
+        description: Sync of structured notes and orders into major EHRs.
+      - name: Telehealth Documentation
+        description: Embedded documentation for telehealth and virtual care providers.
+      - name: Revenue Cycle Workflows
+        description: Coding and billing support at the point of conversation.
+  - type: Integrations
+    data:
+      - name: Epic
+        description: Compatible with the Epic EHR.
+      - name: Oracle Health
+        description: Compatible with Oracle Health (formerly Cerner).
+      - name: athenahealth
+        description: Integrated into athenaOne via Suki Platform SDK and APIs.
+      - name: MEDITECH
+        description: Compatible with MEDITECH EHRs.
+      - name: MEDENT
+        description: Partner that has signed on to use Suki Platform to AI-enable its solution.
+      - name: Azalea Health
+        description: Partner that has signed on to use Suki Platform to AI-enable its solution.
+  - type: Authentication
+    data:
+      - name: Partner Credentials
+        description: API and SDK access is provisioned via Suki for Partners onboarding; partner
+          authentication is documented in the developer portal.
+      - name: No Self-Service Sign-Up
+        description: No fully self-service developer sign-up; partners engage Suki to obtain
+          credentials and sandbox access.
+  - type: Compliance
+    data:
+      - name: HIPAA
+        description: HIPAA-compliant handling of protected health information.
+      - name: SOC 2 Type 2
+        description: SOC 2 Type 2 certified for security, availability, and confidentiality.
+      - name: Enterprise Security
+        description: Enterprise-grade security controls suitable for large health systems.
+  - type: Adoption
+    data:
+      - name: 400+ Health Systems
+        description: Used by more than 400 healthcare systems and partner organizations.
+      - name: Documentation Time Reduction
+        description: Reported 41% reduction in documentation time and 81% increase in practice
+          satisfaction.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
