@@ -1,0 +1,355 @@
+openapi: 3.1.0
+info:
+  title: Suki Platform API
+  description: |
+    The Suki Platform REST API lets healthcare technology partners embed Suki's
+    ambient clinical documentation, dictation, form-filling, voice command, and
+    coding-assistance capabilities into EHRs, telehealth platforms, care
+    management systems, and revenue-cycle tools.
+
+    Partner credentials are issued directly by Suki and are not available through
+    public self-service signup. Authentication uses provider registration and
+    JWT-based session tokens; JWKS material is served by the platform.
+
+    All endpoints use the `/api/v1/` prefix.
+  version: "1.0.0"
+  contact:
+    name: Suki Partnerships
+    url: https://developer.suki.ai/documentation/overview
+  license:
+    name: Proprietary
+servers:
+  - url: https://developer.suki.ai/api/v1
+    description: Suki Platform API (partner environment)
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+  - name: Ambient Sessions
+  - name: Ambient Content
+  - name: Form Filling Sessions
+  - name: Form Filling Content
+  - name: User Preferences
+  - name: Feedback
+  - name: Notifications
+  - name: Info
+paths:
+  /auth/register:
+    post:
+      tags: [Authentication]
+      summary: Register a provider with the Suki platform
+      operationId: registerProvider
+      security: []
+      responses:
+        '200':
+          description: Provider registration confirmation
+  /auth/login:
+    post:
+      tags: [Authentication]
+      summary: Authenticate a provider and receive a JWT
+      operationId: loginProvider
+      security: []
+      responses:
+        '200':
+          description: JWT access token
+  /auth/jwks:
+    get:
+      tags: [Authentication]
+      summary: Retrieve JWKS material for verifying Suki-issued JWTs
+      operationId: getJwks
+      security: []
+      responses:
+        '200':
+          description: JSON Web Key Set
+  /ambient/sessions:
+    post:
+      tags: [Ambient Sessions]
+      summary: Create a new ambient documentation session
+      operationId: createAmbientSession
+      responses:
+        '200':
+          description: Ambient session created
+  /ambient/sessions/{id}/context:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Ambient Sessions]
+      summary: Seed context for an ambient session
+      operationId: seedAmbientContext
+      responses:
+        '200':
+          description: Context seeded
+    patch:
+      tags: [Ambient Sessions]
+      summary: Update context for an ambient session
+      operationId: updateAmbientContext
+      responses:
+        '200':
+          description: Context updated
+  /ambient/sessions/{id}/end:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Ambient Sessions]
+      summary: End an ambient session
+      operationId: endAmbientSession
+      responses:
+        '200':
+          description: Session ended
+  /ambient/sessions/{id}/status:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Sessions]
+      summary: Check the processing status of an ambient session
+      operationId: getAmbientSessionStatus
+      responses:
+        '200':
+          description: Current session status
+  /ambient/sessions/{id}/content:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve generated note content for an ambient session
+      operationId: getAmbientSessionContent
+      responses:
+        '200':
+          description: Note content
+  /ambient/sessions/{id}/transcript:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve the conversation transcript for an ambient session
+      operationId: getAmbientSessionTranscript
+      responses:
+        '200':
+          description: Transcript
+  /ambient/sessions/{id}/recording:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve presigned URLs for the session audio recording
+      operationId: getAmbientSessionRecording
+      responses:
+        '200':
+          description: Recording URLs
+  /ambient/sessions/{id}/structured-data:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve structured clinical data extracted from the session
+      operationId: getAmbientSessionStructuredData
+      responses:
+        '200':
+          description: Structured clinical data
+  /ambient/encounters/{id}/content:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve content for an encounter
+      operationId: getEncounterContent
+      responses:
+        '200':
+          description: Encounter content
+  /ambient/encounters/{id}/structured-data:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Ambient Content]
+      summary: Retrieve structured data for an encounter
+      operationId: getEncounterStructuredData
+      responses:
+        '200':
+          description: Structured encounter data
+  /form-filling/sessions:
+    post:
+      tags: [Form Filling Sessions]
+      summary: Create a new form-filling session
+      operationId: createFormFillingSession
+      responses:
+        '200':
+          description: Form-filling session created
+  /form-filling/sessions/{id}/context:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Form Filling Sessions]
+      summary: Seed form context
+      operationId: seedFormContext
+      responses:
+        '200':
+          description: Context seeded
+    patch:
+      tags: [Form Filling Sessions]
+      summary: Update form context
+      operationId: updateFormContext
+      responses:
+        '200':
+          description: Context updated
+  /form-filling/sessions/{id}/end:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Form Filling Sessions]
+      summary: End a form-filling session
+      operationId: endFormFillingSession
+      responses:
+        '200':
+          description: Session ended
+  /form-filling/sessions/{id}/status:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Form Filling Sessions]
+      summary: Get form-filling session status
+      operationId: getFormFillingSessionStatus
+      responses:
+        '200':
+          description: Form session status
+  /form-filling/sessions/{id}/structured-data:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Form Filling Content]
+      summary: Retrieve structured form data extracted from the session
+      operationId: getFormFillingStructuredData
+      responses:
+        '200':
+          description: Structured form data
+  /user-preferences:
+    get:
+      tags: [User Preferences]
+      summary: Read the current provider's preferences
+      operationId: getUserPreferences
+      responses:
+        '200':
+          description: Provider preferences
+    patch:
+      tags: [User Preferences]
+      summary: Update the current provider's preferences
+      operationId: updateUserPreferences
+      responses:
+        '200':
+          description: Updated preferences
+  /feedback:
+    post:
+      tags: [Feedback]
+      summary: Submit feedback for a session
+      operationId: submitFeedback
+      responses:
+        '200':
+          description: Feedback recorded
+  /webhooks/notifications:
+    post:
+      tags: [Notifications]
+      summary: Webhook endpoint for receiving asynchronous platform notifications
+      operationId: receiveNotifications
+      responses:
+        '200':
+          description: Notification accepted
+  /info/specialties:
+    get:
+      tags: [Info]
+      summary: List supported clinical specialties
+      operationId: listSpecialties
+      responses:
+        '200':
+          description: List of specialties
+  /info/diagnoses:
+    get:
+      tags: [Info]
+      summary: List supported diagnosis codes
+      operationId: listDiagnoses
+      responses:
+        '200':
+          description: List of diagnosis codes
+  /info/encounter-types:
+    get:
+      tags: [Info]
+      summary: List supported encounter types
+      operationId: listEncounterTypes
+      responses:
+        '200':
+          description: List of encounter types
+  /info/visit-types:
+    get:
+      tags: [Info]
+      summary: List supported visit types
+      operationId: listVisitTypes
+      responses:
+        '200':
+          description: List of visit types
+  /info/provider-roles:
+    get:
+      tags: [Info]
+      summary: List supported provider roles
+      operationId: listProviderRoles
+      responses:
+        '200':
+          description: List of provider roles
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT access token issued by Suki after partner registration and login.
+        Partner credentials are provisioned by Suki (no self-service signup).
