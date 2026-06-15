@@ -1,0 +1,512 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a provider with the Suki platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/auth/register"
+          },
+          "docs": "Register a provider with the Suki platform"
+        },
+        {
+          "info": {
+            "name": "Authenticate a provider and receive a JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/auth/login"
+          },
+          "docs": "Authenticate a provider and receive a JWT"
+        },
+        {
+          "info": {
+            "name": "Retrieve JWKS material for verifying Suki-issued JWTs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/auth/jwks"
+          },
+          "docs": "Retrieve JWKS material for verifying Suki-issued JWTs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ambient Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new ambient documentation session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions"
+          },
+          "docs": "Create a new ambient documentation session"
+        },
+        {
+          "info": {
+            "name": "Seed context for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Seed context for an ambient session"
+        },
+        {
+          "info": {
+            "name": "Update context for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update context for an ambient session"
+        },
+        {
+          "info": {
+            "name": "End an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/end",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End an ambient session"
+        },
+        {
+          "info": {
+            "name": "Check the processing status of an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the processing status of an ambient session"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ambient Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve generated note content for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/content",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve generated note content for an ambient session"
+        },
+        {
+          "info": {
+            "name": "Retrieve the conversation transcript for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/transcript",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the conversation transcript for an ambient session"
+        },
+        {
+          "info": {
+            "name": "Retrieve presigned URLs for the session audio recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/recording",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve presigned URLs for the session audio recording"
+        },
+        {
+          "info": {
+            "name": "Retrieve structured clinical data extracted from the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/structured-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve structured clinical data extracted from the session"
+        },
+        {
+          "info": {
+            "name": "Retrieve content for an encounter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/encounters/:id/content",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve content for an encounter"
+        },
+        {
+          "info": {
+            "name": "Retrieve structured data for an encounter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/encounters/:id/structured-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve structured data for an encounter"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Form Filling Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new form-filling session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions"
+          },
+          "docs": "Create a new form-filling session"
+        },
+        {
+          "info": {
+            "name": "Seed form context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Seed form context"
+        },
+        {
+          "info": {
+            "name": "Update form context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update form context"
+        },
+        {
+          "info": {
+            "name": "End a form-filling session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/end",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End a form-filling session"
+        },
+        {
+          "info": {
+            "name": "Get form-filling session status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get form-filling session status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Form Filling Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve structured form data extracted from the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/structured-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve structured form data extracted from the session"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read the current provider's preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/user-preferences"
+          },
+          "docs": "Read the current provider's preferences"
+        },
+        {
+          "info": {
+            "name": "Update the current provider's preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/user-preferences"
+          },
+          "docs": "Update the current provider's preferences"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit feedback for a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/feedback"
+          },
+          "docs": "Submit feedback for a session"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Webhook endpoint for receiving asynchronous platform notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/webhooks/notifications"
+          },
+          "docs": "Webhook endpoint for receiving asynchronous platform notifications"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported clinical specialties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/info/specialties"
+          },
+          "docs": "List supported clinical specialties"
+        },
+        {
+          "info": {
+            "name": "List supported diagnosis codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/info/diagnoses"
+          },
+          "docs": "List supported diagnosis codes"
+        },
+        {
+          "info": {
+            "name": "List supported encounter types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/info/encounter-types"
+          },
+          "docs": "List supported encounter types"
+        },
+        {
+          "info": {
+            "name": "List supported visit types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/info/visit-types"
+          },
+          "docs": "List supported visit types"
+        },
+        {
+          "info": {
+            "name": "List supported provider roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/info/provider-roles"
+          },
+          "docs": "List supported provider roles"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
