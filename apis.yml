@@ -2,7 +2,7 @@ aid: suki-ai
 url: https://raw.githubusercontent.com/api-evangelist/suki-ai/refs/heads/main/apis.yml
 name: Suki AI
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 description: Suki AI provides voice-enabled, ambient clinical intelligence used by clinicians to
   generate clinical notes, dictate, and complete documentation tasks across more than 400 health
   systems. Suki for Partners is a developer platform offering REST APIs and SDKs (Web SDK, Headless
