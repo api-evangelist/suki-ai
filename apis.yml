@@ -45,7 +45,7 @@ apis:
         url: https://developer.suki.ai/documentation/overview
       - type: Authentication
         url: https://developer.suki.ai/documentation/overview
-      - type: LLMsTxt
+      - type: LlmsText
         url: https://developer.suki.ai/llms.txt
     contact:
       - FN: Suki for Partners
