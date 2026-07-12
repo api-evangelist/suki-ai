@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/suki-ai-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: |-
+    JWT access token issued by Suki after partner registration and login.
+    Partner credentials are provisioned by Suki (no self-service signup).
+  sources:
+  - openapi/suki-ai-openapi.yml
