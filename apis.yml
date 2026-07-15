@@ -51,6 +51,8 @@ apis:
       - FN: Suki for Partners
         url: https://www.suki.ai/suki-platform/
 common:
+  - type: AgenticAccess
+    url: agentic-access/suki-ai-agentic-access.yml
   - type: DomainSecurity
     url: security/suki-ai-domain-security.yml
   - type: Authentication
