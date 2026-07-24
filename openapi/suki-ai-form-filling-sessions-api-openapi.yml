@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Suki Platform Ambient Content Form Filling Sessions API
+  description: 'The Suki Platform REST API lets healthcare technology partners embed Suki''s
+
+    ambient clinical documentation, dictation, form-filling, voice command, and
+
+    coding-assistance capabilities into EHRs, telehealth platforms, care
+
+    management systems, and revenue-cycle tools.
+
+
+    Partner credentials are issued directly by Suki and are not available through
+
+    public self-service signup. Authentication uses provider registration and
+
+    JWT-based session tokens; JWKS material is served by the platform.
+
+
+    All endpoints use the `/api/v1/` prefix.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki Partnerships
+    url: https://developer.suki.ai/documentation/overview
+  license:
+    name: Proprietary
+servers:
+- url: https://developer.suki.ai/api/v1
+  description: Suki Platform API (partner environment)
+security:
+- bearerAuth: []
+tags:
+- name: Form Filling Sessions
+paths:
+  /form-filling/sessions:
+    post:
+      tags:
+      - Form Filling Sessions
+      summary: Create a new form-filling session
+      operationId: createFormFillingSession
+      responses:
+        '200':
+          description: Form-filling session created
+  /form-filling/sessions/{id}/context:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Form Filling Sessions
+      summary: Seed form context
+      operationId: seedFormContext
+      responses:
+        '200':
+          description: Context seeded
+    patch:
+      tags:
+      - Form Filling Sessions
+      summary: Update form context
+      operationId: updateFormContext
+      responses:
+        '200':
+          description: Context updated
+  /form-filling/sessions/{id}/end:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Form Filling Sessions
+      summary: End a form-filling session
+      operationId: endFormFillingSession
+      responses:
+        '200':
+          description: Session ended
+  /form-filling/sessions/{id}/status:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Form Filling Sessions
+      summary: Get form-filling session status
+      operationId: getFormFillingSessionStatus
+      responses:
+        '200':
+          description: Form session status
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token issued by Suki after partner registration and login.
+
+        Partner credentials are provisioned by Suki (no self-service signup).
+
+        '

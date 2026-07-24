@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Suki Platform Ambient Content Ambient Sessions API
+  description: 'The Suki Platform REST API lets healthcare technology partners embed Suki''s
+
+    ambient clinical documentation, dictation, form-filling, voice command, and
+
+    coding-assistance capabilities into EHRs, telehealth platforms, care
+
+    management systems, and revenue-cycle tools.
+
+
+    Partner credentials are issued directly by Suki and are not available through
+
+    public self-service signup. Authentication uses provider registration and
+
+    JWT-based session tokens; JWKS material is served by the platform.
+
+
+    All endpoints use the `/api/v1/` prefix.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki Partnerships
+    url: https://developer.suki.ai/documentation/overview
+  license:
+    name: Proprietary
+servers:
+- url: https://developer.suki.ai/api/v1
+  description: Suki Platform API (partner environment)
+security:
+- bearerAuth: []
+tags:
+- name: Ambient Sessions
+paths:
+  /ambient/sessions:
+    post:
+      tags:
+      - Ambient Sessions
+      summary: Create a new ambient documentation session
+      operationId: createAmbientSession
+      responses:
+        '200':
+          description: Ambient session created
+  /ambient/sessions/{id}/context:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Ambient Sessions
+      summary: Seed context for an ambient session
+      operationId: seedAmbientContext
+      responses:
+        '200':
+          description: Context seeded
+    patch:
+      tags:
+      - Ambient Sessions
+      summary: Update context for an ambient session
+      operationId: updateAmbientContext
+      responses:
+        '200':
+          description: Context updated
+  /ambient/sessions/{id}/end:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Ambient Sessions
+      summary: End an ambient session
+      operationId: endAmbientSession
+      responses:
+        '200':
+          description: Session ended
+  /ambient/sessions/{id}/status:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Sessions
+      summary: Check the processing status of an ambient session
+      operationId: getAmbientSessionStatus
+      responses:
+        '200':
+          description: Current session status
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token issued by Suki after partner registration and login.
+
+        Partner credentials are provisioned by Suki (no self-service signup).
+
+        '

@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: Suki Platform Ambient Content Feedback API
+  description: 'The Suki Platform REST API lets healthcare technology partners embed Suki''s
+
+    ambient clinical documentation, dictation, form-filling, voice command, and
+
+    coding-assistance capabilities into EHRs, telehealth platforms, care
+
+    management systems, and revenue-cycle tools.
+
+
+    Partner credentials are issued directly by Suki and are not available through
+
+    public self-service signup. Authentication uses provider registration and
+
+    JWT-based session tokens; JWKS material is served by the platform.
+
+
+    All endpoints use the `/api/v1/` prefix.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki Partnerships
+    url: https://developer.suki.ai/documentation/overview
+  license:
+    name: Proprietary
+servers:
+- url: https://developer.suki.ai/api/v1
+  description: Suki Platform API (partner environment)
+security:
+- bearerAuth: []
+tags:
+- name: Feedback
+paths:
+  /feedback:
+    post:
+      tags:
+      - Feedback
+      summary: Submit feedback for a session
+      operationId: submitFeedback
+      responses:
+        '200':
+          description: Feedback recorded
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token issued by Suki after partner registration and login.
+
+        Partner credentials are provisioned by Suki (no self-service signup).
+
+        '

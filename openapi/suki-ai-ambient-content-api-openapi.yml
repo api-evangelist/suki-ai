@@ -1,0 +1,137 @@
+openapi: 3.1.0
+info:
+  title: Suki Platform Ambient Content API
+  description: 'The Suki Platform REST API lets healthcare technology partners embed Suki''s
+
+    ambient clinical documentation, dictation, form-filling, voice command, and
+
+    coding-assistance capabilities into EHRs, telehealth platforms, care
+
+    management systems, and revenue-cycle tools.
+
+
+    Partner credentials are issued directly by Suki and are not available through
+
+    public self-service signup. Authentication uses provider registration and
+
+    JWT-based session tokens; JWKS material is served by the platform.
+
+
+    All endpoints use the `/api/v1/` prefix.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki Partnerships
+    url: https://developer.suki.ai/documentation/overview
+  license:
+    name: Proprietary
+servers:
+- url: https://developer.suki.ai/api/v1
+  description: Suki Platform API (partner environment)
+security:
+- bearerAuth: []
+tags:
+- name: Ambient Content
+paths:
+  /ambient/sessions/{id}/content:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve generated note content for an ambient session
+      operationId: getAmbientSessionContent
+      responses:
+        '200':
+          description: Note content
+  /ambient/sessions/{id}/transcript:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve the conversation transcript for an ambient session
+      operationId: getAmbientSessionTranscript
+      responses:
+        '200':
+          description: Transcript
+  /ambient/sessions/{id}/recording:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve presigned URLs for the session audio recording
+      operationId: getAmbientSessionRecording
+      responses:
+        '200':
+          description: Recording URLs
+  /ambient/sessions/{id}/structured-data:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve structured clinical data extracted from the session
+      operationId: getAmbientSessionStructuredData
+      responses:
+        '200':
+          description: Structured clinical data
+  /ambient/encounters/{id}/content:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve content for an encounter
+      operationId: getEncounterContent
+      responses:
+        '200':
+          description: Encounter content
+  /ambient/encounters/{id}/structured-data:
+    parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Ambient Content
+      summary: Retrieve structured data for an encounter
+      operationId: getEncounterStructuredData
+      responses:
+        '200':
+          description: Structured encounter data
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 'JWT access token issued by Suki after partner registration and login.
+
+        Partner credentials are provisioned by Suki (no self-service signup).
+
+        '
