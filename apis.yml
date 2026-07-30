@@ -2,7 +2,20 @@ aid: suki-ai
 url: https://raw.githubusercontent.com/api-evangelist/suki-ai/refs/heads/main/apis.yml
 name: Suki AI
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/suki-ai.png
 description: Suki AI provides voice-enabled, ambient clinical intelligence used by clinicians to
   generate clinical notes, dictate, and complete documentation tasks across more than 400 health
   systems. Suki for Partners is a developer platform offering REST APIs and SDKs (Web SDK, Headless
@@ -22,34 +35,125 @@ created: '2026-05-23'
 modified: '2026-05-23'
 specificationVersion: '0.19'
 apis:
-  - aid: suki-ai:suki-platform-api
-    name: Suki Platform REST API
-    description: The Suki Platform REST API and SDKs let healthcare technology partners embed Suki's
-      ambient clinical documentation, dictation, voice command, and form-filling capabilities into
-      EHRs, telehealth platforms, care management systems, and revenue-cycle tools. Authentication is
-      partner-issued; the platform supports REST APIs, a Web SDK, a Headless Web SDK (React 18+
-      beta), a native iOS Mobile SDK (Android coming), and an embedded Dictation SDK (iframe beta).
-    humanURL: https://developer.suki.ai/documentation/overview
-    baseURL: https://developer.suki.ai
-    tags:
-      - Ambient Documentation
-      - Dictation
-      - Voice Commands
-      - Form Filling
-      - Clinical Notes
-      - SDK
-    properties:
-      - type: Documentation
-        url: https://developer.suki.ai/documentation/overview
-      - type: GettingStarted
-        url: https://developer.suki.ai/documentation/overview
-      - type: Authentication
-        url: https://developer.suki.ai/documentation/overview
-      - type: LlmsText
-        url: https://developer.suki.ai/llms.txt
-    contact:
-      - FN: Suki for Partners
-        url: https://www.suki.ai/suki-platform/
+- aid: suki-ai:suki-platform-api
+  name: Suki Platform REST API
+  description: >-
+    The Suki Platform REST API and SDKs let healthcare technology partners embed Suki's ambient clinical
+    documentation, dictation, voice command, and form-filling capabilities into EHRs, telehealth platforms,
+    care management systems, and revenue-cycle tools. Authentication is partner-issued; the platform supports
+    REST APIs, a Web SDK, a Headless Web SDK (React 18+ beta), a native iOS Mobile SDK (Android coming),
+    and an embedded Dictation SDK (iframe beta).
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Ambient Documentation
+  - Dictation
+  - Voice Commands
+  - Form Filling
+  - Clinical Notes
+  - SDK
+  properties:
+  - type: Documentation
+    url: https://developer.suki.ai/documentation/overview
+  - type: GettingStarted
+    url: https://developer.suki.ai/documentation/overview
+  - type: Authentication
+    url: https://developer.suki.ai/documentation/overview
+  - type: LlmsText
+    url: https://developer.suki.ai/llms.txt
+  contact:
+  - FN: Suki for Partners
+    url: https://www.suki.ai/suki-platform/
+- aid: suki-ai:suki-ai-ambient-content-api
+  name: Suki AI Ambient Content API
+  description: The Ambient Content API from Suki AI — 6 operation(s) for ambient content.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Ambient Content
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-ambient-content-api-openapi.yml
+- aid: suki-ai:suki-ai-ambient-sessions-api
+  name: Suki AI Ambient Sessions API
+  description: The Ambient Sessions API from Suki AI — 4 operation(s) for ambient sessions.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Ambient Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-ambient-sessions-api-openapi.yml
+- aid: suki-ai:suki-ai-authentication-api
+  name: Suki AI Authentication API
+  description: The Authentication API from Suki AI — 3 operation(s) for authentication.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-authentication-api-openapi.yml
+- aid: suki-ai:suki-ai-feedback-api
+  name: Suki AI Feedback API
+  description: The Feedback API from Suki AI — 1 operation(s) for feedback.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-feedback-api-openapi.yml
+- aid: suki-ai:suki-ai-form-filling-content-api
+  name: Suki AI Form Filling Content API
+  description: The Form Filling Content API from Suki AI — 1 operation(s) for form filling content.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Form Filling Content
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-form-filling-content-api-openapi.yml
+- aid: suki-ai:suki-ai-form-filling-sessions-api
+  name: Suki AI Form Filling Sessions API
+  description: The Form Filling Sessions API from Suki AI — 4 operation(s) for form filling sessions.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Form Filling Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-form-filling-sessions-api-openapi.yml
+- aid: suki-ai:suki-ai-info-api
+  name: Suki AI Info API
+  description: The Info API from Suki AI — 5 operation(s) for info.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Info
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-info-api-openapi.yml
+- aid: suki-ai:suki-ai-notifications-api
+  name: Suki AI Notifications API
+  description: The Notifications API from Suki AI — 1 operation(s) for notifications.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-notifications-api-openapi.yml
+- aid: suki-ai:suki-ai-user-preferences-api
+  name: Suki AI User Preferences API
+  description: The User Preferences API from Suki AI — 1 operation(s) for user preferences.
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - User Preferences
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-user-preferences-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/suki-ai-agentic-access.yml
