@@ -1,0 +1,30 @@
+{
+  "provider": "suki-ai",
+  "sources": [
+    "suki-ai-ambient-content-api-openapi.yml",
+    "suki-ai-ambient-sessions-api-openapi.yml",
+    "suki-ai-authentication-api-openapi.yml",
+    "suki-ai-feedback-api-openapi.yml",
+    "suki-ai-form-filling-content-api-openapi.yml",
+    "suki-ai-form-filling-sessions-api-openapi.yml",
+    "suki-ai-info-api-openapi.yml",
+    "suki-ai-notifications-api-openapi.yml",
+    "suki-ai-user-preferences-api-openapi.yml"
+  ],
+  "outputs": [
+    "suki-ai-ambient-content-api-openapi.yml",
+    "suki-ai-ambient-sessions-api-openapi.yml",
+    "suki-ai-authentication-api-openapi.yml",
+    "suki-ai-feedback-api-openapi.yml",
+    "suki-ai-form-filling-content-api-openapi.yml",
+    "suki-ai-form-filling-sessions-api-openapi.yml",
+    "suki-ai-info-api-openapi.yml",
+    "suki-ai-notifications-api-openapi.yml",
+    "suki-ai-user-preferences-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
