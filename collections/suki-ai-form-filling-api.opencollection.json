@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Form Filling API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Form Filling Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Form Filling Session"
+        },
+        {
+          "info": {
+            "name": "Seed Form Filling Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Seed Form Filling Context"
+        },
+        {
+          "info": {
+            "name": "Update Form Filling Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Form Filling Context"
+        },
+        {
+          "info": {
+            "name": "End Form Filling Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/end",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End Form Filling Session"
+        },
+        {
+          "info": {
+            "name": "Get Form Filling Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/status",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Filling Status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Form Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/structured-data",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Structured Data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Form Filling Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/feedback",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Form Filling Feedback"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/templates"
+          },
+          "docs": "List Form Templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

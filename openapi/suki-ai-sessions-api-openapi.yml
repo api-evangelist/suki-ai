@@ -1,0 +1,394 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient Auth Sessions API
+  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+
+    Partners create an ambient session, seed it with patient and encounter
+
+    context, stream audio over a separate WebSocket channel, end the session,
+
+    and then retrieve the generated clinical note, transcript, structured data,
+
+    and recording. Pair with the WebSocket audio endpoint
+
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+
+    webhook callback POSTed to the partner endpoint on session completion.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+- url: https://sdp.suki-stage.com/api/v1
+  description: Suki Speech Service staging environment
+security:
+- SdpSukiToken: []
+tags:
+- name: Sessions
+  description: Ambient Session Lifecycle
+paths:
+  /ambient/sessions:
+    post:
+      tags:
+      - Sessions
+      summary: Create Ambient Session
+      description: Create a new ambient documentation session for a provider and encounter.
+      operationId: createAmbientSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbientSessionCreate'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbientSession'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ambient/sessions/{sessionId}/context:
+    post:
+      tags:
+      - Sessions
+      summary: Seed Session Context
+      operationId: seedAmbientSessionContext
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionContext'
+      responses:
+        '200':
+          description: Context applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionContext'
+    patch:
+      tags:
+      - Sessions
+      summary: Update Session Context
+      operationId: updateAmbientSessionContext
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionContext'
+      responses:
+        '200':
+          description: Context updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionContext'
+  /ambient/sessions/{sessionId}/end:
+    post:
+      tags:
+      - Sessions
+      summary: End Ambient Session
+      operationId: endAmbientSession
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session ended; note generation queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbientSession'
+  /ambient/sessions/{sessionId}/status:
+    get:
+      tags:
+      - Sessions
+      summary: Get Ambient Session Status
+      operationId: getAmbientSessionStatus
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Current session and note generation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStatus'
+  /form-filling/sessions:
+    post:
+      tags:
+      - Sessions
+      summary: Create Form Filling Session
+      operationId: createFormFillingSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFillingSessionCreate'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFillingSession'
+  /form-filling/sessions/{sessionId}/context:
+    post:
+      tags:
+      - Sessions
+      summary: Seed Form Filling Context
+      operationId: seedFormFillingContext
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFillingContext'
+      responses:
+        '200':
+          description: Context applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFillingContext'
+    patch:
+      tags:
+      - Sessions
+      summary: Update Form Filling Context
+      operationId: updateFormFillingContext
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FormFillingContext'
+      responses:
+        '200':
+          description: Context updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFillingContext'
+  /form-filling/sessions/{sessionId}/end:
+    post:
+      tags:
+      - Sessions
+      summary: End Form Filling Session
+      operationId: endFormFillingSession
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session ended; structured data queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFillingSession'
+  /form-filling/sessions/{sessionId}/status:
+    get:
+      tags:
+      - Sessions
+      summary: Get Form Filling Status
+      operationId: getFormFillingStatus
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Processing status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormFillingStatus'
+components:
+  schemas:
+    FormFillingSessionCreate:
+      type: object
+      required:
+      - providerId
+      - templateId
+      properties:
+        providerId:
+          type: string
+        templateId:
+          type: string
+        languageCode:
+          type: string
+          example: en-US
+    FormFillingStatus:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+    FormFillingSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+        status:
+          type: string
+          enum:
+          - created
+          - recording
+          - ended
+          - processing
+          - complete
+        audioWebsocketUrl:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
+    SessionContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+            problems:
+              type: array
+              items:
+                type: string
+        priorNote:
+          type: string
+        loincSections:
+          type: array
+          items:
+            type: string
+    AmbientSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        providerId:
+          type: string
+        encounterId:
+          type: string
+        status:
+          type: string
+          enum:
+          - created
+          - recording
+          - ended
+          - processing
+          - complete
+          - failed
+        createdAt:
+          type: string
+          format: date-time
+        audioWebsocketUrl:
+          type: string
+          format: uri
+    FormFillingContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+        priorAnswers:
+          type: object
+          additionalProperties: true
+    AmbientSessionCreate:
+      type: object
+      required:
+      - providerId
+      - encounterId
+      properties:
+        providerId:
+          type: string
+        encounterId:
+          type: string
+        specialty:
+          type: string
+          example: family-medicine
+        encounterType:
+          type: string
+          example: office-visit
+        visitType:
+          type: string
+          example: new-patient
+        languageCode:
+          type: string
+          example: en-US
+        problemBasedCharting:
+          type: boolean
+          default: true
+    SessionStatus:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        eta:
+          type: integer
+          description: Estimated seconds until note is ready
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid sdp_suki_token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token

@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Info API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Specialties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/specialties"
+          },
+          "docs": "List Specialties"
+        },
+        {
+          "info": {
+            "name": "List Diagnoses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/diagnoses",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "system",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Diagnoses"
+        },
+        {
+          "info": {
+            "name": "List Encounter Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/encounter-types"
+          },
+          "docs": "List Encounter Types"
+        },
+        {
+          "info": {
+            "name": "List Visit Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/visit-types"
+          },
+          "docs": "List Visit Types"
+        },
+        {
+          "info": {
+            "name": "List LOINC Note Sections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/loincs"
+          },
+          "docs": "List LOINC Note Sections"
+        },
+        {
+          "info": {
+            "name": "List Provider Roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/provider-roles"
+          },
+          "docs": "List Provider Roles"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MedicationOrders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Medication Order Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/medication-orders"
+          },
+          "docs": "List Medication Order Metadata"
+        },
+        {
+          "info": {
+            "name": "List Order Coding Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/orders-coding-systems"
+          },
+          "docs": "List Order Coding Systems"
+        },
+        {
+          "info": {
+            "name": "List Dosage Units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/orders-dosage-units"
+          },
+          "docs": "List Dosage Units"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

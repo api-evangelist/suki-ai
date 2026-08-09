@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient Auth Content API
+  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+
+    Partners create an ambient session, seed it with patient and encounter
+
+    context, stream audio over a separate WebSocket channel, end the session,
+
+    and then retrieve the generated clinical note, transcript, structured data,
+
+    and recording. Pair with the WebSocket audio endpoint
+
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+
+    webhook callback POSTed to the partner endpoint on session completion.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+- url: https://sdp.suki-stage.com/api/v1
+  description: Suki Speech Service staging environment
+security:
+- SdpSukiToken: []
+tags:
+- name: Content
+  description: Generated Note And Transcript Retrieval
+paths:
+  /ambient/sessions/{sessionId}/content:
+    get:
+      tags:
+      - Content
+      summary: Get Generated Clinical Note
+      operationId: getAmbientSessionContent
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Generated clinical note
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicalNote'
+  /ambient/sessions/{sessionId}/transcript:
+    get:
+      tags:
+      - Content
+      summary: Get Session Transcript
+      operationId: getAmbientSessionTranscript
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Diarized conversation transcript
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+  /ambient/sessions/{sessionId}/recording:
+    get:
+      tags:
+      - Content
+      summary: Get Session Recording URL
+      operationId: getAmbientSessionRecording
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Presigned URL for the captured audio recording
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordingUrl'
+  /ambient/sessions/{sessionId}/structured-data:
+    get:
+      tags:
+      - Content
+      summary: Get Session Structured Data
+      operationId: getAmbientSessionStructuredData
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Structured clinical data extracted from the encounter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StructuredClinicalData'
+  /encounters/{encounterId}/content:
+    get:
+      tags:
+      - Content
+      summary: Get Encounter Generated Note
+      operationId: getEncounterContent
+      parameters:
+      - name: encounterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated note across all sessions for the encounter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicalNote'
+  /encounters/{encounterId}/structured-data:
+    get:
+      tags:
+      - Content
+      summary: Get Encounter Structured Data
+      operationId: getEncounterStructuredData
+      parameters:
+      - name: encounterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated structured data across all sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StructuredClinicalData'
+  /form-filling/sessions/{sessionId}/structured-data:
+    get:
+      tags:
+      - Content
+      summary: Get Form Structured Data
+      operationId: getFormFillingStructuredData
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Typed structured data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormStructuredData'
+components:
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Transcript:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        turns:
+          type: array
+          items:
+            type: object
+            properties:
+              speaker:
+                type: string
+                enum:
+                - clinician
+                - patient
+                - other
+              startMs:
+                type: integer
+              endMs:
+                type: integer
+              text:
+                type: string
+    StructuredClinicalData:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            type: string
+        medications:
+          type: array
+          items:
+            type: string
+        orders:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              system:
+                type: string
+              dosage:
+                type: string
+    NoteSection:
+      type: object
+      properties:
+        loinc:
+          type: string
+          example: 10164-2
+        title:
+          type: string
+          example: History of present illness
+        text:
+          type: string
+    ClinicalNote:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        encounterId:
+          type: string
+        specialty:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteSection'
+        generatedAt:
+          type: string
+          format: date-time
+    RecordingUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiresAt:
+          type: string
+          format: date-time
+        format:
+          type: string
+          example: audio/wav
+    FormStructuredData:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        templateId:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldId:
+                type: string
+              label:
+                type: string
+              type:
+                type: string
+                enum:
+                - string
+                - number
+                - boolean
+                - date
+                - choice
+                - multiselect
+              value: {}
+              confidence:
+                type: number
+                format: float
+                minimum: 0
+                maximum: 1
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token

@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Dictation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dictation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Dictation Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/dictation/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Dictation Session"
+        },
+        {
+          "info": {
+            "name": "End Dictation Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/dictation/sessions/:sessionId/end",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End Dictation Session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

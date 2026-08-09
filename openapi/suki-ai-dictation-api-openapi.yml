@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient Auth Dictation API
+  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+
+    Partners create an ambient session, seed it with patient and encounter
+
+    context, stream audio over a separate WebSocket channel, end the session,
+
+    and then retrieve the generated clinical note, transcript, structured data,
+
+    and recording. Pair with the WebSocket audio endpoint
+
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+
+    webhook callback POSTed to the partner endpoint on session completion.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+- url: https://sdp.suki-stage.com/api/v1
+  description: Suki Speech Service staging environment
+security:
+- SdpSukiToken: []
+tags:
+- name: Dictation
+  description: Dictation Session Lifecycle
+paths:
+  /dictation/sessions:
+    post:
+      tags:
+      - Dictation
+      summary: Create Dictation Session
+      operationId: createDictationSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DictationSessionCreate'
+      responses:
+        '201':
+          description: Dictation session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictationSession'
+  /dictation/sessions/{sessionId}/end:
+    post:
+      tags:
+      - Dictation
+      summary: End Dictation Session
+      operationId: endDictationSession
+      parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Session ended; final transcript returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DictationResult'
+components:
+  schemas:
+    DictationResult:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        transcript:
+          type: string
+        durationMs:
+          type: integer
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+    DictationSession:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        providerId:
+          type: string
+        mode:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - ended
+        audioWebsocketUrl:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
+    DictationSessionCreate:
+      type: object
+      required:
+      - providerId
+      properties:
+        providerId:
+          type: string
+        mode:
+          type: string
+          enum:
+          - in-field
+          - scratchpad
+          default: in-field
+        languageCode:
+          type: string
+          example: en-US
+        fieldHint:
+          type: string
+          description: Free-text hint describing the target EHR field
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token

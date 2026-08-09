@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/suki/main/json-schema/suki-ambient-session-schema.json",
+  "title": "Suki Ambient Session",
+  "description": "An ambient clinical documentation session on Suki Speech Service. Created by the partner, audio is streamed over the paired WebSocket, ended explicitly, then content can be retrieved.",
+  "type": "object",
+  "required": ["sessionId", "providerId", "encounterId", "status", "createdAt"],
+  "properties": {
+    "sessionId": { "type": "string", "format": "uuid" },
+    "providerId": { "type": "string" },
+    "encounterId": { "type": "string" },
+    "specialty": { "type": "string", "description": "Suki specialty code (one of 100+ supported specialties)." },
+    "encounterType": { "type": "string" },
+    "visitType": { "type": "string" },
+    "languageCode": { "type": "string", "description": "BCP-47 language tag for spoken audio." },
+    "problemBasedCharting": { "type": "boolean", "default": true },
+    "status": {
+      "type": "string",
+      "enum": ["created", "recording", "ended", "processing", "complete", "failed"]
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "endedAt": { "type": "string", "format": "date-time" },
+    "audioWebsocketUrl": { "type": "string", "format": "uri" }
+  },
+  "additionalProperties": false
+}

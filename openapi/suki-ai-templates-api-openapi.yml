@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient Auth Templates API
+  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+
+    Partners create an ambient session, seed it with patient and encounter
+
+    context, stream audio over a separate WebSocket channel, end the session,
+
+    and then retrieve the generated clinical note, transcript, structured data,
+
+    and recording. Pair with the WebSocket audio endpoint
+
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+
+    webhook callback POSTed to the partner endpoint on session completion.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+- url: https://sdp.suki-stage.com/api/v1
+  description: Suki Speech Service staging environment
+security:
+- SdpSukiToken: []
+tags:
+- name: Templates
+  description: Suki Hosted Form Templates
+paths:
+  /form-filling/templates:
+    get:
+      tags:
+      - Templates
+      summary: List Form Templates
+      operationId: listFormTemplates
+      responses:
+        '200':
+          description: Suki hosted form templates available to the partner
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormTemplate'
+components:
+  schemas:
+    FormTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              fieldId:
+                type: string
+              label:
+                type: string
+              type:
+                type: string
+              required:
+                type: boolean
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token

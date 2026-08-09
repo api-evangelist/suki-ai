@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions",
+    "headers": {
+      "sdp_suki_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "providerId": "prov_8f3a1c",
+      "encounterId": "enc_2026_05_24_001",
+      "specialty": "family-medicine",
+      "encounterType": "office-visit",
+      "visitType": "follow-up",
+      "languageCode": "en-US",
+      "problemBasedCharting": true
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "sessionId": "5b3a8d8e-1c10-4d4a-9b2e-7c2a55b48c11",
+      "providerId": "prov_8f3a1c",
+      "encounterId": "enc_2026_05_24_001",
+      "status": "created",
+      "createdAt": "2026-05-24T15:02:11Z",
+      "audioWebsocketUrl": "wss://sdp.suki-stage.com/api/v1/ambient/sessions/5b3a8d8e-1c10-4d4a-9b2e-7c2a55b48c11/audio"
+    }
+  }
+}

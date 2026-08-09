@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "snomed": "http://snomed.info/id/",
+    "loinc": "https://loinc.org/",
+    "rxnorm": "https://www.nlm.nih.gov/research/umls/rxnorm/",
+    "suki": "https://developer.suki.ai/vocab#",
+
+    "Provider": "schema:Physician",
+    "Patient": "schema:Patient",
+    "Encounter": "schema:MedicalProcedure",
+    "ClinicalNote": "suki:ClinicalNote",
+    "AmbientSession": "suki:AmbientSession",
+    "DictationSession": "suki:DictationSession",
+    "FormFillingSession": "suki:FormFillingSession",
+    "FormTemplate": "suki:FormTemplate",
+
+    "providerId": "suki:providerId",
+    "encounterId": "suki:encounterId",
+    "sessionId": "suki:sessionId",
+    "specialty": "schema:medicalSpecialty",
+    "encounterType": "suki:encounterType",
+    "visitType": "suki:visitType",
+    "languageCode": { "@id": "schema:inLanguage", "@type": "xsd:string" },
+
+    "sections": "suki:sections",
+    "loincCode": { "@id": "suki:loinc", "@type": "@id" },
+    "title": "schema:name",
+    "text": "schema:text",
+    "transcript": "suki:transcript",
+    "turn": "suki:transcriptTurn",
+    "speaker": "suki:speaker",
+
+    "structuredData": "suki:structuredData",
+    "problems": "suki:problems",
+    "medications": "schema:drug",
+    "orders": "suki:orders",
+    "code": "schema:code",
+    "system": "schema:codingSystem",
+
+    "createdAt": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "endedAt": { "@id": "suki:endedAt", "@type": "xsd:dateTime" },
+    "generatedAt": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+
+    "audioWebsocketUrl": { "@id": "suki:audioWebsocketUrl", "@type": "@id" },
+    "recordingUrl": { "@id": "suki:recordingUrl", "@type": "@id" }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Auth API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/auth/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register Provider"
+        },
+        {
+          "info": {
+            "name": "Login And Obtain Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/auth/login",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Login And Obtain Token"
+        },
+        {
+          "info": {
+            "name": "Get JWKS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/auth/jwks"
+          },
+          "docs": "Get JWKS"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

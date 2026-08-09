@@ -1,0 +1,395 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient API
+  description: |
+    REST endpoints for Suki Speech Service ambient clinical documentation.
+    Partners create an ambient session, seed it with patient and encounter
+    context, stream audio over a separate WebSocket channel, end the session,
+    and then retrieve the generated clinical note, transcript, structured data,
+    and recording. Pair with the WebSocket audio endpoint
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+    webhook callback POSTed to the partner endpoint on session completion.
+  version: '1.0.0'
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+  - url: https://sdp.suki-stage.com/api/v1
+    description: Suki Speech Service staging environment
+tags:
+  - name: Sessions
+    description: Ambient Session Lifecycle
+  - name: Content
+    description: Generated Note And Transcript Retrieval
+  - name: Preferences
+    description: Provider Personalization
+  - name: Feedback
+    description: Note And Section Feedback
+security:
+  - SdpSukiToken: []
+paths:
+  /ambient/sessions:
+    post:
+      tags: [Sessions]
+      summary: Create Ambient Session
+      description: Create a new ambient documentation session for a provider and encounter.
+      operationId: createAmbientSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbientSessionCreate'
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbientSession'
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /ambient/sessions/{sessionId}/context:
+    post:
+      tags: [Sessions]
+      summary: Seed Session Context
+      operationId: seedAmbientSessionContext
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionContext'
+      responses:
+        '200':
+          description: Context applied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionContext'
+    patch:
+      tags: [Sessions]
+      summary: Update Session Context
+      operationId: updateAmbientSessionContext
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionContext'
+      responses:
+        '200':
+          description: Context updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionContext'
+  /ambient/sessions/{sessionId}/end:
+    post:
+      tags: [Sessions]
+      summary: End Ambient Session
+      operationId: endAmbientSession
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Session ended; note generation queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AmbientSession'
+  /ambient/sessions/{sessionId}/status:
+    get:
+      tags: [Sessions]
+      summary: Get Ambient Session Status
+      operationId: getAmbientSessionStatus
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Current session and note generation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionStatus'
+  /ambient/sessions/{sessionId}/content:
+    get:
+      tags: [Content]
+      summary: Get Generated Clinical Note
+      operationId: getAmbientSessionContent
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Generated clinical note
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicalNote'
+  /ambient/sessions/{sessionId}/transcript:
+    get:
+      tags: [Content]
+      summary: Get Session Transcript
+      operationId: getAmbientSessionTranscript
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Diarized conversation transcript
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transcript'
+  /ambient/sessions/{sessionId}/recording:
+    get:
+      tags: [Content]
+      summary: Get Session Recording URL
+      operationId: getAmbientSessionRecording
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Presigned URL for the captured audio recording
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordingUrl'
+  /ambient/sessions/{sessionId}/structured-data:
+    get:
+      tags: [Content]
+      summary: Get Session Structured Data
+      operationId: getAmbientSessionStructuredData
+      parameters:
+        - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          description: Structured clinical data extracted from the encounter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StructuredClinicalData'
+  /encounters/{encounterId}/content:
+    get:
+      tags: [Content]
+      summary: Get Encounter Generated Note
+      operationId: getEncounterContent
+      parameters:
+        - name: encounterId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Aggregated note across all sessions for the encounter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClinicalNote'
+  /encounters/{encounterId}/structured-data:
+    get:
+      tags: [Content]
+      summary: Get Encounter Structured Data
+      operationId: getEncounterStructuredData
+      parameters:
+        - name: encounterId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: Aggregated structured data across all sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StructuredClinicalData'
+  /user-preferences:
+    get:
+      tags: [Preferences]
+      summary: Get User Preferences
+      operationId: getUserPreferences
+      responses:
+        '200':
+          description: Current provider preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPreferences'
+    patch:
+      tags: [Preferences]
+      summary: Update User Preferences
+      operationId: updateUserPreferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreferences'
+      responses:
+        '200':
+          description: Updated provider preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPreferences'
+  /feedback/ambient:
+    post:
+      tags: [Feedback]
+      summary: Submit Ambient Feedback
+      operationId: submitAmbientFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmbientFeedback'
+      responses:
+        '202':
+          description: Feedback accepted
+components:
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+  responses:
+    Unauthorized:
+      description: Missing or invalid sdp_suki_token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    AmbientSessionCreate:
+      type: object
+      required: [providerId, encounterId]
+      properties:
+        providerId: { type: string }
+        encounterId: { type: string }
+        specialty: { type: string, example: family-medicine }
+        encounterType: { type: string, example: office-visit }
+        visitType: { type: string, example: new-patient }
+        languageCode: { type: string, example: en-US }
+        problemBasedCharting: { type: boolean, default: true }
+    AmbientSession:
+      type: object
+      properties:
+        sessionId: { type: string, format: uuid }
+        providerId: { type: string }
+        encounterId: { type: string }
+        status: { type: string, enum: [created, recording, ended, processing, complete, failed] }
+        createdAt: { type: string, format: date-time }
+        audioWebsocketUrl: { type: string, format: uri }
+    SessionContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn: { type: string }
+            sex: { type: string }
+            birthDate: { type: string, format: date }
+            problems:
+              type: array
+              items: { type: string }
+        priorNote: { type: string }
+        loincSections:
+          type: array
+          items: { type: string }
+    SessionStatus:
+      type: object
+      properties:
+        sessionId: { type: string, format: uuid }
+        status: { type: string }
+        progress: { type: integer, minimum: 0, maximum: 100 }
+        eta: { type: integer, description: Estimated seconds until note is ready }
+    ClinicalNote:
+      type: object
+      properties:
+        sessionId: { type: string, format: uuid }
+        encounterId: { type: string }
+        specialty: { type: string }
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteSection'
+        generatedAt: { type: string, format: date-time }
+    NoteSection:
+      type: object
+      properties:
+        loinc: { type: string, example: 10164-2 }
+        title: { type: string, example: History of present illness }
+        text: { type: string }
+    Transcript:
+      type: object
+      properties:
+        sessionId: { type: string, format: uuid }
+        turns:
+          type: array
+          items:
+            type: object
+            properties:
+              speaker: { type: string, enum: [clinician, patient, other] }
+              startMs: { type: integer }
+              endMs: { type: integer }
+              text: { type: string }
+    RecordingUrl:
+      type: object
+      properties:
+        url: { type: string, format: uri }
+        expiresAt: { type: string, format: date-time }
+        format: { type: string, example: audio/wav }
+    StructuredClinicalData:
+      type: object
+      properties:
+        problems:
+          type: array
+          items: { type: string }
+        medications:
+          type: array
+          items: { type: string }
+        orders:
+          type: array
+          items:
+            type: object
+            properties:
+              code: { type: string }
+              system: { type: string }
+              dosage: { type: string }
+    UserPreferences:
+      type: object
+      properties:
+        defaultSpecialty: { type: string }
+        defaultVisitType: { type: string }
+        noteFormat: { type: string, enum: [soap, problem-based, narrative] }
+        loincSections:
+          type: array
+          items: { type: string }
+    AmbientFeedback:
+      type: object
+      required: [sessionId, rating]
+      properties:
+        sessionId: { type: string, format: uuid }
+        rating: { type: integer, minimum: 1, maximum: 5 }
+        comments: { type: string }
+        sectionFeedback:
+          type: array
+          items:
+            type: object
+            properties:
+              loinc: { type: string }
+              accurate: { type: boolean }
+              edits: { type: string }
+    Error:
+      type: object
+      properties:
+        code: { type: string }
+        message: { type: string }

@@ -1,0 +1,244 @@
+{
+  "item": [
+    {
+      "id": "92ff6c72-0329-43c7-8030-599de7be3d24",
+      "name": "Dictation",
+      "description": {
+        "content": "Dictation Session Lifecycle",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "897efa86-fb11-491d-857d-bbaa4a9ad41c",
+          "name": "Create Dictation Session",
+          "request": {
+            "name": "Create Dictation Session",
+            "description": {},
+            "url": {
+              "path": [
+                "dictation",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providerId\": \"<string>\",\n  \"mode\": \"in-field\",\n  \"languageCode\": \"<string>\",\n  \"fieldHint\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02410e63-4888-479f-a727-26cb6fe76895",
+              "name": "Dictation session created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dictation",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providerId\": \"<string>\",\n  \"mode\": \"in-field\",\n  \"languageCode\": \"en-US\",\n  \"fieldHint\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"1c1e1ad6-fb6d-d1e5-2513-7725676e2489\",\n  \"providerId\": \"string\",\n  \"mode\": \"string\",\n  \"status\": \"ended\",\n  \"audioWebsocketUrl\": \"http://cuJvloaSqAUKyYwyAxkNwipiw.qurbgBjQ.I6iyRbm1MM4Kyts5.s6yawav\",\n  \"createdAt\": \"2014-04-02T01:33:36.632Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf012d88-7741-4018-905a-a4235aa3d67b",
+          "name": "End Dictation Session",
+          "request": {
+            "name": "End Dictation Session",
+            "description": {},
+            "url": {
+              "path": [
+                "dictation",
+                "sessions",
+                ":sessionId",
+                "end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0bb4f20-51d5-4e1b-b285-de7a2b479209",
+              "name": "Session ended; final transcript returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dictation",
+                    "sessions",
+                    ":sessionId",
+                    "end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"0f47134c-fd93-8b7c-d701-3d0bdd05bae8\",\n  \"transcript\": \"string\",\n  \"durationMs\": 4029,\n  \"confidence\": 0.3594724470322934\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sdp.suki-stage.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "sdp_suki_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80458d19-5ec0-46b1-9f78-19bcf7f82cfd",
+    "name": "Suki Dictation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST control plane for clinical dictation sessions on Suki Speech\nService. Partners open a dictation session, stream audio over the\npaired WebSocket endpoint (`wss://sdp.suki-stage.com/api/v1/dictation/sessions/{sessionId}/audio`),\nand receive real-time transcription. Supports both in-field\ndictation (single EHR field) and scratchpad mode.\n\n\nContact Support:\n Name: Suki for Partners",
+      "type": "text/plain"
+    }
+  }
+}

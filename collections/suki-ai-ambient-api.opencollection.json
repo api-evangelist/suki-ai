@@ -1,0 +1,294 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Ambient Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new ambient documentation session for a provider and encounter."
+        },
+        {
+          "info": {
+            "name": "Seed Session Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Seed Session Context"
+        },
+        {
+          "info": {
+            "name": "Update Session Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Session Context"
+        },
+        {
+          "info": {
+            "name": "End Ambient Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/end",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End Ambient Session"
+        },
+        {
+          "info": {
+            "name": "Get Ambient Session Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/status",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Ambient Session Status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Generated Clinical Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/content",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Generated Clinical Note"
+        },
+        {
+          "info": {
+            "name": "Get Session Transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/transcript",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Transcript"
+        },
+        {
+          "info": {
+            "name": "Get Session Recording URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/recording",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Recording URL"
+        },
+        {
+          "info": {
+            "name": "Get Session Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/structured-data",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Structured Data"
+        },
+        {
+          "info": {
+            "name": "Get Encounter Generated Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/encounters/:encounterId/content",
+            "params": [
+              {
+                "name": "encounterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Encounter Generated Note"
+        },
+        {
+          "info": {
+            "name": "Get Encounter Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/encounters/:encounterId/structured-data",
+            "params": [
+              {
+                "name": "encounterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Encounter Structured Data"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/user-preferences"
+          },
+          "docs": "Get User Preferences"
+        },
+        {
+          "info": {
+            "name": "Update User Preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/user-preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update User Preferences"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Ambient Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/feedback/ambient",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit Ambient Feedback"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

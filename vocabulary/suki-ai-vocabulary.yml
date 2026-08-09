@@ -1,0 +1,107 @@
+specification: API Evangelist Vocabulary
+specificationVersion: '0.1'
+provider: Suki AI
+providerId: suki
+created: '2026-05-24'
+modified: '2026-05-24'
+description: >-
+  Domain vocabulary and taxonomy for Suki AI — ambient clinical
+  intelligence, dictation, and voice-driven form filling exposed via the
+  Suki Speech Service developer platform.
+tags:
+  - Healthcare
+  - Clinical Documentation
+  - Ambient AI
+  - Voice AI
+  - EHR Integration
+concepts:
+  - term: Ambient Clinical Intelligence
+    definition: >-
+      Continuous, in-room AI that listens to a patient-clinician
+      conversation and generates a clinical note without disrupting the
+      visit.
+  - term: Clinical Documentation
+    definition: >-
+      The structured written record of a patient encounter — history,
+      exam, assessment, plan, orders, and patient instructions.
+  - term: Suki Assistant
+    definition: >-
+      Suki's clinician-facing iOS, Android, and desktop application for
+      ambient note generation, dictation, voice commands, and EHR
+      navigation.
+  - term: Suki Platform
+    definition: >-
+      Suki's developer / partner program (also marketed as Suki for
+      Partners) providing REST APIs, WebSocket audio streams, webhooks,
+      and SDKs that expose the Suki Speech Service to third-party
+      healthcare applications.
+  - term: Suki Speech Service
+    definition: >-
+      The underlying voice AI platform delivering ambient documentation,
+      dictation, and form-filling capabilities behind the Suki Platform
+      APIs and SDKs.
+  - term: Problem-Based Charting
+    definition: >-
+      A note organization style in which clinical content is structured
+      by patient problem rather than by SOAP section.
+  - term: Speaker Diarization
+    definition: >-
+      Distinguishing and labeling individual speakers (clinician,
+      patient, other) in a multi-party audio recording.
+  - term: LOINC Note Section
+    definition: >-
+      A note subsection identified by a Logical Observation Identifiers
+      Names and Codes (LOINC) code such as 10164-2 (History of present
+      illness).
+services:
+  - id: ambient
+    name: Suki Ambient API
+    summary: Ambient session lifecycle plus generated note, transcript, recording, structured data, preferences, and feedback.
+  - id: dictation
+    name: Suki Dictation API
+    summary: Real-time clinical dictation sessions for in-field and scratchpad capture.
+  - id: form-filling
+    name: Suki Form Filling API
+    summary: Voice-driven population of structured medical forms against Suki-hosted templates.
+  - id: auth
+    name: Suki Auth API
+    summary: Partner login, provider registration, and JWKS for verifying sdp_suki_token JWTs.
+  - id: info
+    name: Suki Info API
+    summary: Read-only catalogs of specialties, diagnoses, encounter types, LOINC sections, medication orders, and dosage units.
+tools:
+  - Suki Web SDK
+  - Suki Headless Web SDK (Beta)
+  - Suki Mobile SDK (iOS)
+  - Suki Mobile SDK (Android, Coming Soon)
+  - Suki Dictation SDK (Beta)
+integrations:
+  ehr:
+    - Epic
+    - Oracle Health (Cerner)
+    - athenahealth
+    - MEDITECH
+  partners:
+    - Amwell
+    - Zoom
+    - HealthEdge
+    - WellSky
+    - MEDENT
+    - Bond Vet
+standards:
+  - LOINC
+  - SNOMED CT
+  - ICD-10
+  - RxNorm
+  - HIPAA
+  - SOC 2 Type 2
+sources:
+  - https://www.suki.ai/
+  - https://www.suki.ai/platform/
+  - https://www.suki.ai/partners/
+  - https://www.suki.ai/ehr-integrations/
+  - https://developer.suki.ai/
+  - https://developer.suki.ai/documentation/overview
+  - https://developer.suki.ai/api-reference/overview
+  - https://developer.suki.ai/form-filling-api-reference/overview
+  - https://developer.suki.ai/llms.txt

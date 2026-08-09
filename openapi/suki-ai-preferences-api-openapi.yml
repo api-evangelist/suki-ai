@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Suki Ambient Auth Preferences API
+  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+
+    Partners create an ambient session, seed it with patient and encounter
+
+    context, stream audio over a separate WebSocket channel, end the session,
+
+    and then retrieve the generated clinical note, transcript, structured data,
+
+    and recording. Pair with the WebSocket audio endpoint
+
+    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+
+    webhook callback POSTed to the partner endpoint on session completion.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+servers:
+- url: https://sdp.suki-stage.com/api/v1
+  description: Suki Speech Service staging environment
+security:
+- SdpSukiToken: []
+tags:
+- name: Preferences
+  description: Provider Personalization
+paths:
+  /user-preferences:
+    get:
+      tags:
+      - Preferences
+      summary: Get User Preferences
+      operationId: getUserPreferences
+      responses:
+        '200':
+          description: Current provider preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPreferences'
+    patch:
+      tags:
+      - Preferences
+      summary: Update User Preferences
+      operationId: updateUserPreferences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPreferences'
+      responses:
+        '200':
+          description: Updated provider preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPreferences'
+components:
+  schemas:
+    UserPreferences:
+      type: object
+      properties:
+        defaultSpecialty:
+          type: string
+        defaultVisitType:
+          type: string
+        noteFormat:
+          type: string
+          enum:
+          - soap
+          - problem-based
+          - narrative
+        loincSections:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    SdpSukiToken:
+      type: apiKey
+      in: header
+      name: sdp_suki_token

@@ -1,0 +1,281 @@
+{
+  "item": [
+    {
+      "id": "4135e0d5-af1c-49ef-b614-3ab322909a3b",
+      "name": "Auth",
+      "description": {
+        "content": "Provider Registration And Token Issuance",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f80fdde-1a68-45a0-bceb-c82952888b47",
+          "name": "Register Provider",
+          "request": {
+            "name": "Register Provider",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partnerProviderId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"npi\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0274ca31-1946-4159-a6c6-c8b753c919f9",
+              "name": "Provider registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partnerProviderId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"npi\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providerId\": \"string\",\n  \"partnerProviderId\": \"string\",\n  \"name\": \"string\",\n  \"specialty\": \"string\",\n  \"createdAt\": \"2011-06-23T23:40:49.189Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ccd0283-4b48-4244-89c8-c50f275786a3",
+          "name": "Login And Obtain Token",
+          "request": {
+            "name": "Login And Obtain Token",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"partnerId\": \"<string>\",\n  \"partnerSecret\": \"<string>\",\n  \"providerId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "510d7d4a-45ea-4ad1-8680-475193189113",
+              "name": "Access token issued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"partnerId\": \"<string>\",\n  \"partnerSecret\": \"<string>\",\n  \"providerId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sdpSukiToken\": \"string\",\n  \"tokenType\": \"Bearer\",\n  \"expiresIn\": 8624\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8f7ced5-9a0c-4f98-a056-704fbcacfda1",
+          "name": "Get JWKS",
+          "request": {
+            "name": "Get JWKS",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "jwks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbce8d2c-9184-4093-9549-62cf5a7b98b3",
+              "name": "JSON Web Key Set used to verify Suki-issued JWTs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "jwks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"string\",\n      \"kid\": \"string\",\n      \"use\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    },\n    {\n      \"kty\": \"string\",\n      \"kid\": \"string\",\n      \"use\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sdp.suki-stage.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "837bb4ff-a6c3-42e8-adbe-ed1892e6a73a",
+    "name": "Suki Auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Partner authentication and token-issuance endpoints used to obtain\n`sdp_suki_token` access tokens for calling Suki Speech Service\nAmbient, Dictation, Form Filling, and Info APIs. Tokens are JWTs;\nthe JWKS endpoint exposes verification keys.\n\n\nContact Support:\n Name: Suki for Partners",
+      "type": "text/plain"
+    }
+  }
+}

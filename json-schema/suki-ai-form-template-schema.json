@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/suki/main/json-schema/suki-form-template-schema.json",
+  "title": "Suki Form Template",
+  "description": "A Suki-hosted form template used by the Form Filling API. Defines the field shape into which voice input is mapped.",
+  "type": "object",
+  "required": ["id", "name", "version", "fields"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "version": { "type": "string" },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fieldId", "label", "type"],
+        "properties": {
+          "fieldId": { "type": "string" },
+          "label": { "type": "string" },
+          "type": { "type": "string", "enum": ["string", "number", "boolean", "date", "choice", "multiselect"] },
+          "required": { "type": "boolean", "default": false },
+          "choices": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,286 @@
+asyncapi: '2.6.0'
+info:
+  title: Suki Speech Service Streaming API
+  version: '1.0.0'
+  description: >-
+    AsyncAPI description for the three WebSocket audio-streaming channels
+    exposed by the Suki Speech Service (Suki for Partners). Each REST
+    session-create call (Ambient, Dictation, Form Filling) returns an
+    `audioWebsocketUrl` over which clinical audio is streamed as
+    Base64-encoded PCM inside JSON frames. The same connection delivers
+    control events (start/end of stream). Asynchronous results (clinical
+    note, transcript, structured form data) are delivered out-of-band via
+    REST polling or partner-hosted webhooks documented in the companion
+    OpenAPI specifications.
+
+    Sources: in-repo OpenAPI specs (openapi/suki-ambient-api-openapi.yml,
+    openapi/suki-dictation-api-openapi.yml,
+    openapi/suki-form-filling-api-openapi.yml) and live developer docs at
+    https://developer.suki.ai/llms.txt and
+    https://developer.suki.ai/documentation/audio-stream.
+  contact:
+    name: Suki for Partners
+    url: https://developer.suki.ai
+  license:
+    name: Suki Partner Agreement
+    url: https://www.suki.ai/
+
+defaultContentType: application/json
+
+servers:
+  staging:
+    url: sdp.suki-stage.com
+    protocol: wss
+    description: Suki Speech Service staging WebSocket host
+    security:
+      - sukiPartnerToken: []
+
+channels:
+  /api/v1/ambient/sessions/{sessionId}/audio:
+    description: >-
+      Ambient session audio channel. Streams microphone audio from the
+      provider-patient encounter into Suki for ambient clinical note
+      generation. Returned by `POST /ambient/sessions` as
+      `audioWebsocketUrl`. Clients first publish a START_TIME control
+      frame, then publish AUDIO frames with Base64-encoded PCM in the
+      `data` field, and finally publish an AUDIO frame whose `data` is
+      `"RU9G"` (Base64 "EOF") to terminate the stream.
+    parameters:
+      sessionId:
+        description: Ambient session UUID returned by the REST create call.
+        schema:
+          type: string
+          format: uuid
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+        headers:
+          type: object
+          properties:
+            sdp_suki_token:
+              type: string
+              description: Partner JWT, required for non-browser clients.
+            ambient_session_id:
+              type: string
+              format: uuid
+              description: Session UUID, required for non-browser clients.
+        query:
+          type: object
+          description: >-
+            Browser clients carry credentials via `Sec-WebSocket-Protocol`
+            of the form
+            `SukiAmbientAuth,<ambient_session_id>,<sdp_suki_token>`.
+    publish:
+      operationId: publishAmbientAudio
+      summary: Stream encounter audio and control frames to Suki.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/AmbientStartTime'
+          - $ref: '#/components/messages/AmbientAudioFrame'
+    subscribe:
+      operationId: receiveAmbientStatus
+      summary: Receive server-side acknowledgements and stream status events.
+      message:
+        $ref: '#/components/messages/StreamStatusEvent'
+
+  /api/v1/dictation/sessions/{sessionId}/audio:
+    description: >-
+      Dictation session audio channel. Streams clinician speech to Suki
+      and receives partial and final transcriptions in real time.
+      Returned by `POST /dictation/sessions` as `audioWebsocketUrl`. The
+      socket opens only while the session is in READY or IDLE state.
+    parameters:
+      sessionId:
+        description: Dictation/transcription session UUID.
+        schema:
+          type: string
+          format: uuid
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+        headers:
+          type: object
+          properties:
+            sdp_suki_token:
+              type: string
+            transcription_session_id:
+              type: string
+              format: uuid
+        query:
+          type: object
+          description: >-
+            Browser clients carry credentials via `Sec-WebSocket-Protocol`
+            of the form
+            `SukiAmbientAuth,<sdp_suki_token>,<transcription_session_id>`.
+    publish:
+      operationId: publishDictationAudio
+      summary: Stream PCM_S16LE audio and the AUDIO_END terminator to Suki.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DictationAudioFrame'
+          - $ref: '#/components/messages/DictationAudioEnd'
+    subscribe:
+      operationId: receiveDictationTranscripts
+      summary: Receive partial and final dictation transcripts.
+      message:
+        $ref: '#/components/messages/TranscriptionStreamResponse'
+
+  /api/v1/form-filling/sessions/{sessionId}/audio:
+    description: >-
+      Form-filling session audio channel. Streams voice input that Suki
+      maps into the structured fields of the form template attached to
+      the session. Returned by `POST /form-filling/sessions` as
+      `audioWebsocketUrl`. Uses the same Base64 PCM JSON framing as the
+      ambient channel.
+    parameters:
+      sessionId:
+        description: Form-filling session UUID.
+        schema:
+          type: string
+          format: uuid
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+        headers:
+          type: object
+          properties:
+            sdp_suki_token:
+              type: string
+            ambient_session_id:
+              type: string
+              format: uuid
+    publish:
+      operationId: publishFormFillingAudio
+      summary: Stream form-filling voice input to Suki.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/AmbientStartTime'
+          - $ref: '#/components/messages/AmbientAudioFrame'
+    subscribe:
+      operationId: receiveFormFillingStatus
+      summary: Receive stream-level status frames; structured data is delivered via REST/webhook.
+      message:
+        $ref: '#/components/messages/StreamStatusEvent'
+
+components:
+  securitySchemes:
+    sukiPartnerToken:
+      type: httpApiKey
+      in: header
+      name: sdp_suki_token
+      description: >-
+        Partner JWT issued by the Suki Auth API. Required for non-browser
+        WebSocket clients. Browser clients pass credentials through the
+        `Sec-WebSocket-Protocol` subprotocol string.
+
+  messages:
+    AmbientStartTime:
+      name: AmbientStartTime
+      title: Start-of-stream control frame
+      summary: First frame sent on an ambient or form-filling session.
+      contentType: application/json
+      payload:
+        type: object
+        required: [type, startTime]
+        properties:
+          type:
+            type: string
+            const: START_TIME
+          startTime:
+            type: string
+            format: date-time
+            description: ISO-8601 timestamp marking the start of capture.
+
+    AmbientAudioFrame:
+      name: AmbientAudioFrame
+      title: Ambient audio frame
+      summary: >-
+        Base64-encoded PCM audio chunk. To terminate the stream, send a
+        frame whose `data` is `RU9G` (Base64 for the ASCII bytes "EOF").
+      contentType: application/json
+      payload:
+        type: object
+        required: [type, data]
+        properties:
+          type:
+            type: string
+            const: AUDIO
+          data:
+            type: string
+            contentEncoding: base64
+            description: PCM audio bytes encoded as Base64. `RU9G` signals EOF.
+
+    DictationAudioFrame:
+      name: DictationAudioFrame
+      title: Dictation audio frame
+      summary: Base64-encoded PCM_S16LE audio chunk.
+      contentType: application/json
+      payload:
+        type: object
+        required: [type, audioData]
+        properties:
+          type:
+            type: string
+            const: AUDIO
+          audioData:
+            type: string
+            contentEncoding: base64
+            description: PCM_S16LE audio bytes encoded as Base64.
+
+    DictationAudioEnd:
+      name: DictationAudioEnd
+      title: Dictation end-of-stream control frame
+      summary: Terminates a dictation audio stream.
+      contentType: application/json
+      payload:
+        type: object
+        required: [type, event]
+        properties:
+          type:
+            type: string
+            const: EVENT
+          event:
+            type: string
+            const: AUDIO_END
+
+    TranscriptionStreamResponse:
+      name: TranscriptionStreamResponse
+      title: Dictation transcript event
+      summary: Partial or final transcription delivered while audio is streaming.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [PARTIAL, FINAL, EOF]
+          transcript:
+            type: string
+            description: Transcribed clinician speech.
+          isFinal:
+            type: boolean
+          sessionId:
+            type: string
+            format: uuid
+
+    StreamStatusEvent:
+      name: StreamStatusEvent
+      title: Stream status event
+      summary: >-
+        Server-emitted status updates (e.g. acknowledgements, errors,
+        stream lifecycle). Final clinical content for ambient and
+        form-filling sessions is fetched via REST or delivered via
+        partner-hosted webhooks documented in the companion OpenAPI
+        specs.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [STATUS, ERROR, READY, ENDED]
+          message:
+            type: string
+          sessionId:
+            type: string
+            format: uuid
