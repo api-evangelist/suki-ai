@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "55506726-a2db-4b78-a283-46d0cbd65569",
+      "name": "User Preferences",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "264adc1c-f82a-4ded-804a-a63af25f5f4b",
+          "name": "Read the current provider's preferences",
+          "request": {
+            "name": "Read the current provider's preferences",
+            "description": {},
+            "url": {
+              "path": [
+                "user-preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b396c7dc-59b4-44e7-8ebf-4fba1b0703c5",
+              "name": "Provider preferences",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64907c53-d0b7-48de-8960-97db026bd535",
+          "name": "Update the current provider's preferences",
+          "request": {
+            "name": "Update the current provider's preferences",
+            "description": {},
+            "url": {
+              "path": [
+                "user-preferences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "535313bd-9f60-404b-8317-a093c71e0401",
+              "name": "Updated preferences",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user-preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://developer.suki.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d1eaee6-c0f7-4303-bf79-965646d0c3b1",
+    "name": "Suki Platform Ambient Content User Preferences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",
+      "type": "text/plain"
+    }
+  }
+}

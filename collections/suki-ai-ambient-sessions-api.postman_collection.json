@@ -1,23 +1,23 @@
 {
   "item": [
     {
-      "id": "2138e1f9-255c-4afc-a55b-227e3232fd81",
-      "name": "Info",
+      "id": "15176b01-62c4-4dbb-8795-1bfeb3b88deb",
+      "name": "Ambient Sessions",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c4ddfab7-e1e7-4c44-a568-d39b5dfe0279",
-          "name": "List supported clinical specialties",
+          "id": "8dd0b8d3-481c-4b0a-aa6e-5cc7426db756",
+          "name": "Create a new ambient documentation session",
           "request": {
-            "name": "List supported clinical specialties",
+            "name": "Create a new ambient documentation session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "specialties"
+                "ambient",
+                "sessions"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -25,18 +25,18 @@
               "query": [],
               "variable": []
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "fef2bd91-a21a-4bce-8597-697ae6af2579",
-              "name": "List of specialties",
+              "id": "1dd52324-a7e8-40cb-a8d7-2cd770d054c5",
+              "name": "Ambient session created",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "specialties"
+                    "ambient",
+                    "sessions"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -54,7 +54,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -76,40 +76,60 @@
           }
         },
         {
-          "id": "5b898b81-2d72-4d81-935b-02aca2a80ddc",
-          "name": "List supported diagnosis codes",
+          "id": "3d936759-fede-4b66-aebc-baeabfe42196",
+          "name": "Seed context for an ambient session",
           "request": {
-            "name": "List supported diagnosis codes",
+            "name": "Seed context for an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "diagnoses"
+                "ambient",
+                "sessions",
+                ":id",
+                "context"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "45897857-be7a-43da-b81e-53040adb5ec6",
-              "name": "List of diagnosis codes",
+              "id": "dfd87633-a153-49b7-b397-c26bb41cf1a8",
+              "name": "Context seeded",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "diagnoses"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "context"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -121,7 +141,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -143,40 +163,60 @@
           }
         },
         {
-          "id": "0ffb73e4-d846-44ac-a643-486a109a8e7e",
-          "name": "List supported encounter types",
+          "id": "30e3b58b-6fe1-499d-8afe-92c81dd15161",
+          "name": "Update context for an ambient session",
           "request": {
-            "name": "List supported encounter types",
+            "name": "Update context for an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "encounter-types"
+                "ambient",
+                "sessions",
+                ":id",
+                "context"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "PATCH",
             "auth": null
           },
           "response": [
             {
-              "id": "ca53db7f-5bf4-4bc5-8ab6-47be1d25faf7",
-              "name": "List of encounter types",
+              "id": "9f242413-5a11-4953-87bd-5e67650c783a",
+              "name": "Context updated",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "encounter-types"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "context"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -188,7 +228,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "PATCH",
                 "body": {}
               },
               "status": "OK",
@@ -210,40 +250,60 @@
           }
         },
         {
-          "id": "5d8524ce-1a9e-4495-998e-addf3e04f312",
-          "name": "List supported visit types",
+          "id": "f17ddb74-1ef7-4166-99cb-d68d95e5004d",
+          "name": "End an ambient session",
           "request": {
-            "name": "List supported visit types",
+            "name": "End an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "visit-types"
+                "ambient",
+                "sessions",
+                ":id",
+                "end"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "a1a2eb1d-a6a8-48cc-b327-63789b73b6cb",
-              "name": "List of visit types",
+              "id": "4ccdcb83-12c8-4d47-ac8d-b33809bc4441",
+              "name": "Session ended",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "visit-types"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "end"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -255,7 +315,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -277,40 +337,60 @@
           }
         },
         {
-          "id": "a874ec3d-f94f-45a1-939e-d661a110b222",
-          "name": "List supported provider roles",
+          "id": "a5a11623-34d2-4215-a605-741456fc7f99",
+          "name": "Check the processing status of an ambient session",
           "request": {
-            "name": "List supported provider roles",
+            "name": "Check the processing status of an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "provider-roles"
+                "ambient",
+                "sessions",
+                ":id",
+                "status"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "b6cdab45-cf10-4147-b4f9-413db496141c",
-              "name": "List of provider roles",
+              "id": "6adb51cc-e4af-46cd-9519-2c4cfd1b7161",
+              "name": "Current session status",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "provider-roles"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "status"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -365,8 +445,8 @@
     ]
   },
   "info": {
-    "_postman_id": "46e00a77-48dd-417b-bcd1-60b8feffa68c",
-    "name": "Suki Platform Ambient Content Info API",
+    "_postman_id": "1a0e5178-b9fd-4f2d-8ffc-3497c07862b5",
+    "name": "Suki Platform Ambient Content Ambient Sessions API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",

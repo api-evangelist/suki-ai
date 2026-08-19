@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient Auth MedicationOrders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MedicationOrders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Medication Order Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/medication-orders"
+          },
+          "docs": "List Medication Order Metadata"
+        },
+        {
+          "info": {
+            "name": "List Order Coding Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/orders-coding-systems"
+          },
+          "docs": "List Order Coding Systems"
+        },
+        {
+          "info": {
+            "name": "List Dosage Units",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/info/orders-dosage-units"
+          },
+          "docs": "List Dosage Units"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

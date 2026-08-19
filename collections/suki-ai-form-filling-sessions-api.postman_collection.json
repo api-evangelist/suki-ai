@@ -1,23 +1,23 @@
 {
   "item": [
     {
-      "id": "2138e1f9-255c-4afc-a55b-227e3232fd81",
-      "name": "Info",
+      "id": "1bd3bcc4-f119-467c-b3ef-968dc17901e4",
+      "name": "Form Filling Sessions",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c4ddfab7-e1e7-4c44-a568-d39b5dfe0279",
-          "name": "List supported clinical specialties",
+          "id": "5504e6cf-bb79-4dbc-bc94-dd62c51b774c",
+          "name": "Create a new form-filling session",
           "request": {
-            "name": "List supported clinical specialties",
+            "name": "Create a new form-filling session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "specialties"
+                "form-filling",
+                "sessions"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -25,18 +25,18 @@
               "query": [],
               "variable": []
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "fef2bd91-a21a-4bce-8597-697ae6af2579",
-              "name": "List of specialties",
+              "id": "eaf37da3-843d-4387-867e-35f0f7d22bf8",
+              "name": "Form-filling session created",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "specialties"
+                    "form-filling",
+                    "sessions"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -54,7 +54,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -76,40 +76,60 @@
           }
         },
         {
-          "id": "5b898b81-2d72-4d81-935b-02aca2a80ddc",
-          "name": "List supported diagnosis codes",
+          "id": "32530972-2772-4a84-91da-5a8a07e10175",
+          "name": "Seed form context",
           "request": {
-            "name": "List supported diagnosis codes",
+            "name": "Seed form context",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "diagnoses"
+                "form-filling",
+                "sessions",
+                ":id",
+                "context"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "45897857-be7a-43da-b81e-53040adb5ec6",
-              "name": "List of diagnosis codes",
+              "id": "21c91223-63bf-447e-988f-1f5a7e5dedce",
+              "name": "Context seeded",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "diagnoses"
+                    "form-filling",
+                    "sessions",
+                    ":id",
+                    "context"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -121,7 +141,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -143,40 +163,60 @@
           }
         },
         {
-          "id": "0ffb73e4-d846-44ac-a643-486a109a8e7e",
-          "name": "List supported encounter types",
+          "id": "758f1bff-a4cb-41bc-8676-e8d8f52ef472",
+          "name": "Update form context",
           "request": {
-            "name": "List supported encounter types",
+            "name": "Update form context",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "encounter-types"
+                "form-filling",
+                "sessions",
+                ":id",
+                "context"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "PATCH",
             "auth": null
           },
           "response": [
             {
-              "id": "ca53db7f-5bf4-4bc5-8ab6-47be1d25faf7",
-              "name": "List of encounter types",
+              "id": "8a949754-c102-4c6d-81f2-cdcb353864c8",
+              "name": "Context updated",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "encounter-types"
+                    "form-filling",
+                    "sessions",
+                    ":id",
+                    "context"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -188,7 +228,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "PATCH",
                 "body": {}
               },
               "status": "OK",
@@ -210,40 +250,60 @@
           }
         },
         {
-          "id": "5d8524ce-1a9e-4495-998e-addf3e04f312",
-          "name": "List supported visit types",
+          "id": "83ab9cc4-b2a1-4cfa-bcee-d585252fd0c1",
+          "name": "End a form-filling session",
           "request": {
-            "name": "List supported visit types",
+            "name": "End a form-filling session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "visit-types"
+                "form-filling",
+                "sessions",
+                ":id",
+                "end"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "a1a2eb1d-a6a8-48cc-b327-63789b73b6cb",
-              "name": "List of visit types",
+              "id": "62bdc8ce-8dd7-4c41-a77d-1de32b5ca12b",
+              "name": "Session ended",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "visit-types"
+                    "form-filling",
+                    "sessions",
+                    ":id",
+                    "end"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -255,7 +315,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -277,40 +337,60 @@
           }
         },
         {
-          "id": "a874ec3d-f94f-45a1-939e-d661a110b222",
-          "name": "List supported provider roles",
+          "id": "73bb8db5-48a2-44e0-b764-580fbcf15822",
+          "name": "Get form-filling session status",
           "request": {
-            "name": "List supported provider roles",
+            "name": "Get form-filling session status",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "provider-roles"
+                "form-filling",
+                "sessions",
+                ":id",
+                "status"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "b6cdab45-cf10-4147-b4f9-413db496141c",
-              "name": "List of provider roles",
+              "id": "702390c6-b109-4688-88b7-b341c978253f",
+              "name": "Form session status",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "provider-roles"
+                    "form-filling",
+                    "sessions",
+                    ":id",
+                    "status"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -365,8 +445,8 @@
     ]
   },
   "info": {
-    "_postman_id": "46e00a77-48dd-417b-bcd1-60b8feffa68c",
-    "name": "Suki Platform Ambient Content Info API",
+    "_postman_id": "c7ebde5d-94b7-4358-b14a-bcd5ee8660fc",
+    "name": "Suki Platform Ambient Content Form Filling Sessions API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",

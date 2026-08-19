@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Authentication API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a provider with the Suki platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/auth/register"
+          },
+          "docs": "Register a provider with the Suki platform"
+        },
+        {
+          "info": {
+            "name": "Authenticate a provider and receive a JWT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/auth/login"
+          },
+          "docs": "Authenticate a provider and receive a JWT"
+        },
+        {
+          "info": {
+            "name": "Retrieve JWKS material for verifying Suki-issued JWTs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/auth/jwks"
+          },
+          "docs": "Retrieve JWKS material for verifying Suki-issued JWTs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

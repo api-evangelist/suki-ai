@@ -1,8 +1,16 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Suki Auth API",
+    "name": "Suki Ambient Auth API",
     "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
   },
   "items": [
     {

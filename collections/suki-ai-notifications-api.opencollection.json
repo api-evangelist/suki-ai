@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Notifications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Webhook endpoint for receiving asynchronous platform notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/webhooks/notifications"
+          },
+          "docs": "Webhook endpoint for receiving asynchronous platform notifications"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

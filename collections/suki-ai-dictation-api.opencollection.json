@@ -1,7 +1,7 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Suki Dictation API",
+    "name": "Suki Ambient Auth Dictation API",
     "version": "1.0.0"
   },
   "request": {

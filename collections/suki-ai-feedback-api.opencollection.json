@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Feedback API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit feedback for a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/feedback"
+          },
+          "docs": "Submit feedback for a session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

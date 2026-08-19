@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient Auth Content API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Generated Clinical Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/content",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Generated Clinical Note"
+        },
+        {
+          "info": {
+            "name": "Get Session Transcript",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/transcript",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Transcript"
+        },
+        {
+          "info": {
+            "name": "Get Session Recording URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/recording",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Recording URL"
+        },
+        {
+          "info": {
+            "name": "Get Session Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/structured-data",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Session Structured Data"
+        },
+        {
+          "info": {
+            "name": "Get Encounter Generated Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/encounters/:encounterId/content",
+            "params": [
+              {
+                "name": "encounterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Encounter Generated Note"
+        },
+        {
+          "info": {
+            "name": "Get Encounter Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/encounters/:encounterId/structured-data",
+            "params": [
+              {
+                "name": "encounterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Encounter Structured Data"
+        },
+        {
+          "info": {
+            "name": "Get Form Structured Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/structured-data",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Structured Data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

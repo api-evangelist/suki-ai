@@ -1,23 +1,23 @@
 {
   "item": [
     {
-      "id": "2138e1f9-255c-4afc-a55b-227e3232fd81",
-      "name": "Info",
+      "id": "fe8425eb-c470-4db3-9eaf-435c039dfdfc",
+      "name": "Authentication",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c4ddfab7-e1e7-4c44-a568-d39b5dfe0279",
-          "name": "List supported clinical specialties",
+          "id": "bbb533fe-20f9-40b5-a501-6137e6626e46",
+          "name": "Register a provider with the Suki platform",
           "request": {
-            "name": "List supported clinical specialties",
+            "name": "Register a provider with the Suki platform",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "specialties"
+                "auth",
+                "register"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -25,18 +25,18 @@
               "query": [],
               "variable": []
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "fef2bd91-a21a-4bce-8597-697ae6af2579",
-              "name": "List of specialties",
+              "id": "b3f25198-3a9f-48ce-aef1-9ab38ce4e7c5",
+              "name": "Provider registration confirmation",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "specialties"
+                    "auth",
+                    "register"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -54,7 +54,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -76,15 +76,15 @@
           }
         },
         {
-          "id": "5b898b81-2d72-4d81-935b-02aca2a80ddc",
-          "name": "List supported diagnosis codes",
+          "id": "bc1c654e-6aba-49e1-9e47-93195309b960",
+          "name": "Authenticate a provider and receive a JWT",
           "request": {
-            "name": "List supported diagnosis codes",
+            "name": "Authenticate a provider and receive a JWT",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "diagnoses"
+                "auth",
+                "login"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -92,18 +92,18 @@
               "query": [],
               "variable": []
             },
-            "method": "GET",
+            "method": "POST",
             "auth": null
           },
           "response": [
             {
-              "id": "45897857-be7a-43da-b81e-53040adb5ec6",
-              "name": "List of diagnosis codes",
+              "id": "6a01f3b0-ce70-41a9-a222-5f40fe26245d",
+              "name": "JWT access token",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "diagnoses"
+                    "auth",
+                    "login"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -121,7 +121,7 @@
                     "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
+                "method": "POST",
                 "body": {}
               },
               "status": "OK",
@@ -143,15 +143,15 @@
           }
         },
         {
-          "id": "0ffb73e4-d846-44ac-a643-486a109a8e7e",
-          "name": "List supported encounter types",
+          "id": "dddbe4af-50d9-40c4-89b8-fb945f061a79",
+          "name": "Retrieve JWKS material for verifying Suki-issued JWTs",
           "request": {
-            "name": "List supported encounter types",
+            "name": "Retrieve JWKS material for verifying Suki-issued JWTs",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "encounter-types"
+                "auth",
+                "jwks"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -164,147 +164,13 @@
           },
           "response": [
             {
-              "id": "ca53db7f-5bf4-4bc5-8ab6-47be1d25faf7",
-              "name": "List of encounter types",
+              "id": "2ad862f8-0587-4857-b13f-533d0ca5e271",
+              "name": "JSON Web Key Set",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "encounter-types"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5d8524ce-1a9e-4495-998e-addf3e04f312",
-          "name": "List supported visit types",
-          "request": {
-            "name": "List supported visit types",
-            "description": {},
-            "url": {
-              "path": [
-                "info",
-                "visit-types"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "a1a2eb1d-a6a8-48cc-b327-63789b73b6cb",
-              "name": "List of visit types",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "info",
-                    "visit-types"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a874ec3d-f94f-45a1-939e-d661a110b222",
-          "name": "List supported provider roles",
-          "request": {
-            "name": "List supported provider roles",
-            "description": {},
-            "url": {
-              "path": [
-                "info",
-                "provider-roles"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b6cdab45-cf10-4147-b4f9-413db496141c",
-              "name": "List of provider roles",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "info",
-                    "provider-roles"
+                    "auth",
+                    "jwks"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -365,8 +231,8 @@
     ]
   },
   "info": {
-    "_postman_id": "46e00a77-48dd-417b-bcd1-60b8feffa68c",
-    "name": "Suki Platform Ambient Content Info API",
+    "_postman_id": "d9826c13-7bf9-46dc-bf3b-656173626dd8",
+    "name": "Suki Platform Ambient Content Authentication API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",

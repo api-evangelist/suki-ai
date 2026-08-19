@@ -1,0 +1,386 @@
+# Suki
+
+> Official developer documentation for Suki for Partners: APIs and SDKs that embed Ambient clinical documentation, Form filling, Dictation, and Patient Summary into healthcare applications.
+
+Prefer product skills and the documentation MCP for integration work. Do not invent endpoints, SDK methods, types, parameters, or WebSocket message formats. Keep Ambient, Form filling, Dictation, and Patient Summary distinct.
+
+Important streaming boundary:
+- Ambient and Form filling use `GET /ws/stream`.
+- Dictation uses `GET /ws/transcribe`.
+- These sockets use different message shapes and must not be mixed.
+- Credentials come from partner onboarding.
+
+Fetch Markdown for any documentation page by appending `.md` to its URL.
+
+## Agent resources
+
+- [Agent Skills Index](https://developer.suki.ai/.well-known/agent-skills/index.json): Discover installable product skills for Ambient, Form filling, Dictation, Patient Summary, audio streaming, and webhooks
+- [Suki Platform Skill](https://developer.suki.ai/.well-known/agent-skills/suki-platform/SKILL.md): Platform-level routing and integration guidance
+- [Documentation MCP](https://developer.suki.ai/mcp): Search Suki developer documentation from an AI coding agent
+- [AI Coding Tools](https://developer.suki.ai/documentation/references/ai-coding-tools.md): Choose an Ambient, Form filling, Dictation, Patient Summary, streaming, or webhook integration, then point your coding agent at the matching skill and documentation MCP
+- [AI-Optimized Documentation](https://developer.suki.ai/documentation/references/ai-optimized-documentation.md): Use the contextual menu on any Suki developer documentation page to copy content, open pages in AI tools, connect the documentation MCP server, or load product skills
+- [Documentation MCP Integration](https://developer.suki.ai/documentation/references/mcp.md): Connect Suki developer documentation as an MCP server in your AI code editor to search guides, API reference, and SDK docs while you integrate
+
+## Getting started
+
+- [Welcome to Suki for Partners](https://developer.suki.ai/documentation/get-started/overview.md): Suki for Partners is Suki's developer platform for embedding Ambient Clinical Intelligence into healthcare applications with production-ready APIs and SDKs
+- [Quickstart](https://developer.suki.ai/documentation/get-started/quick-start.md): Step-by-step guide to integrate Suki's Ambient APIs and SDKs into your healthcare application
+- [Partner Use Cases](https://developer.suki.ai/documentation/get-started/use-case.md): Partner scenarios for EHRs, telehealth, care management, revenue cycle, and related applications: Ambient, Dictation, Form filling, and Patient Summary. Search, filter, open a card, then use View
+- [Partner Onboarding](https://developer.suki.ai/documentation/get-started/partner-onboarding.md): Complete one-time onboarding to get a Partner ID, register auth and webhook settings, then start integrating Suki APIs and SDKs
+- [Authentication Mechanisms for Suki Partners](https://developer.suki.ai/documentation/how-to/partner-authentication.md): Compare Suki partner authentication mechanisms, including Partner Token exchange, JWKS, and provider registration, to choose the right approach for your APIs and SDKs
+- [Partner Authentication Flow](https://developer.suki.ai/documentation/how-to/partner-authentication-flow.md): Learn how the flow works for Partner authentication. Includes a step-by-step token exchange flow: partner JWT, JWKS validation, Suki token, and authorized SDK requests
+- [Integration Paths Overview](https://developer.suki.ai/documentation/get-started/integration-overview.md): Suki for Partners offers Ambient, Dictation, Form filling, and Patient Summary workflows. Learn more about each workflow and how to choose the right APIs or SDKs for your use case
+- [Available Workflows](https://developer.suki.ai/documentation/concepts/core-workflows.md): Available core workflows for the Suki for Partners platform like Ambient, Dictation, and Form filling
+- [Ambient & Dictation - Integration Decision Guide](https://developer.suki.ai/documentation/get-started/integration-decision-guide.md): Compare Direct APIs, Web SDK, Headless Web SDK, and Mobile SDK to select the right integration method for your healthcare application
+- [Form Filling - Integration Decision Guide](https://developer.suki.ai/documentation/get-started/form-filling-integration-decision-guide.md): Compare Form filling APIs and Form filling SDK to select the right integration method for Form filling workflows in your healthcare application
+- [Patient Summary - Integration Decision Guide](https://developer.suki.ai/documentation/get-started/patient-summary-integration-decision-guide.md): Decide how to integrate Patient Summary APIs for pre-visit workflows in your healthcare application
+- [Developer Learning Path](https://developer.suki.ai/documentation/tutorials/learning-path.md): Step-by-step guided journey to integrate Suki using Ambient, Form filling, or Patient Summary workflows with the Web SDK, Headless Web SDK, Mobile SDK, Form filling SDK, or REST APIs
+- [Suki SDKs Overview](https://developer.suki.ai/sdk-overview/overview.md): Compare Suki SDKs for Ambient, Form filling, and Dictation workflows, then jump to quickstarts, changelogs, and integration guides
+
+## Ambient clinical notes
+
+- [Ambient Clinical Documentation](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/ambient-documentation.md): Learn how Suki generates structured clinical notes from patient-provider conversations. Align on workflow decisions, choose capture and note strategy, pick an Ambient product, then design review and
+- [Ambient Interoperability](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/ambient-interoperability.md): Share one clinical note across Ambient APIs, Mobile SDK, Headless Web SDK, and Web SDK using `emr_encounter_id`, `encounter_id`, and `note_id`
+- [Interoperable Identifiers](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/interoperable-identifiers.md): Understand EMR Encounter ID, Encounter ID, Composition ID, and naming conventions for Ambient interoperability
+- [Use Interoperable Ambient Notes Across Modalities](https://developer.suki.ai/documentation/how-to/ambient-clinical-notes/use-ambient-across-modalities.md): Create interoperable ambient sessions with `emr_encounter_id`, continue or re-ambient across products, seed patient context, and retrieve shared note content
+- [Interoperability - Best Practices & FAQs](https://developer.suki.ai/documentation/how-to/ambient-clinical-notes/ambient-interoperability-faqs.md): Learn best practices, conflict handling, offline behavior, and FAQs for Ambient interoperability
+- [Note Sections (LOINC Codes)](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/note-sections.md): LOINC standardized clinical note sections supported by Suki for EHR integration
+- [Personalization](https://developer.suki.ai/api-reference/capabilities/personalization.md): Customize clinical note generation based on provider preferences and specialty
+- [Supported Medical Specialties](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/specialties.md): Complete list of 100+ medical specialties supported by the Suki Platform
+- [Multilingual Support](https://developer.suki.ai/api-reference/capabilities/multilingual.md): Multi-language support for Ambient sessions and clinical documentation
+- [Problem-Based Charting](https://developer.suki.ai/api-reference/capabilities/problem-based-charting.md): Problem-based clinical documentation approach with diagnosis context integration
+- [Medication Orders](https://developer.suki.ai/documentation/concepts/ambient-clinical-notes/medication-orders.md): Identify medication instructions from provider-patient conversations and return structured medication order data for your application
+
+## Form filling
+
+- [Form Filling Overview](https://developer.suki.ai/documentation/concepts/form-filling/form-filling-overview.md): Start here for Form filling: when to use structured medical forms, Form filling APIs vs the Form filling SDK, templates, and integration paths
+- [Form Filling](https://developer.suki.ai/documentation/concepts/form-filling/form-filling.md): Turn visit conversation into structured form output with Suki Form filling templates: session workflow, API, Web SDK, and Form filling SDK paths, and EHR handoff
+- [Form Filling Templates](https://developer.suki.ai/documentation/concepts/form-filling/form-filling-templates.md): Learn what Suki Medical form templates are, the supported assessment types, and how Form filling APIs and the Form filling SDK use them in your integration
+- [Form Filling Basic Usage](https://developer.suki.ai/documentation/how-to/form-filling/form-filling-basic-usage.md): Create a Form filling session, seed context, stream audio, end the session, and retrieve structured form data with Form filling APIs
+
+## Dictation
+
+- [Audio Dictation Overview](https://developer.suki.ai/documentation/concepts/dictation/dictation-overview.md): Decide when Audio Dictation fits versus Aambient clinical notes, and compare Dictation APIs, Web SDK, and Dictation SDK integration paths
+- [Audio Dictation](https://developer.suki.ai/documentation/concepts/dictation/dictation.md): Learn how Audio Dictation turns spoken speech into real-time text. Align on workflow decisions, choose Dictation APIs, Web SDK, or Dictation SDK, then design where transcript text lands in your app
+- [Dictation Basic Usage](https://developer.suki.ai/documentation/how-to/dictation/dictation-basic-usage.md): Create a Dictation transcription session, stream audio over WebSocket, receive transcript frames, and end the session when capture finishes
+- [Stream Dictation Audio](https://developer.suki.ai/documentation/how-to/audio-streaming/dictation-streaming.md): Overview: Stream Dictation audio over WebSocket on GET /ws/transcribe for real-time transcript text
+- [Read Dictation Transcript Frames](https://developer.suki.ai/documentation/how-to/audio-streaming/dictation-streaming-transcripts.md): Reference for Dictation /ws/transcribe inbound transcript frames: partial, final, EOF, words, and UI handling
+
+## Patient Summary
+
+- [Patient Summary Overview](https://developer.suki.ai/documentation/concepts/patient-summary/overview.md): Start here for Patient Summary: what it is, why to use it, key capabilities, how it fits your application, and where to go next
+- [Patient Summary Architecture](https://developer.suki.ai/documentation/concepts/patient-summary/architecture.md): Learn how Patient Summary architecture, lifecycle, data flow, and summary generation fit together
+- [Integrate CKG](https://developer.suki.ai/documentation/concepts/patient-summary/integrate-ckg.md): Learn why the Clinical Knowledge Graph is required for Patient Summary, what FHIR data to ingest, and how to monitor ingestion
+- [Generate Patient Summaries](https://developer.suki.ai/documentation/how-to/patient-summary/generate-patient-summaries.md): Learn the available Patient Summary generation workflows, when to use each one, and how asynchronous jobs fit your application
+- [Retrieve Patient Summaries](https://developer.suki.ai/documentation/how-to/patient-summary/retrieve-patient-summaries.md): Learn when a Patient Summary is available, how to retrieve full and pre-visit summaries, and how to handle empty clinical states in your UI
+- [Patient Summary Basic Usage](https://developer.suki.ai/documentation/how-to/patient-summary/basic-usage.md): Upload FHIR data to CKG, authenticate, generate a Patient Summary, poll job status, and retrieve summary content with Patient Summary APIs
+- [Patient Summary Best Practices](https://developer.suki.ai/documentation/how-to/patient-summary/best-practices.md): Production guidance for authenticating, polling, retrying, logging, monitoring, and securing Patient Summary integrations
+
+## Audio streaming
+
+- [Stream Ambient Audio - Overview](https://developer.suki.ai/documentation/how-to/audio-streaming/ambient-audio-streaming.md): Stream Ambient or Form filling visit audio on `GET /ws/stream` after session creation: PCM chunking, JSON control frames, REST completion, and result retrieval
+- [Ambient vs Dictation Streaming Comparison](https://developer.suki.ai/documentation/how-to/audio-streaming/audio-stream.md): Compare Ambient /ws/stream and Dictation /ws/transcribe: purpose, auth, messages, and when to use each
+- [Streaming Architecture](https://developer.suki.ai/documentation/how-to/audio-streaming/streaming-architecture.md): Learn how Ambient /ws/stream, Form filling /ws/stream, and Dictation /ws/transcribe fit together: REST sessions, WebSocket JSON frames, connection rules, and where results come from
+- [Download Ambient Session Audio](https://developer.suki.ai/documentation/how-to/audio-streaming/audio-streaming-download.md): Fetch temporary recording URLs from ambient sessions for in-app playback, note verification, multi-chunk assembly, and compliance archiving
+- [Streaming Wire Format Overview](https://developer.suki.ai/documentation/how-to/audio-streaming/websocket-streaming-wire-format.md): Choose the correct WebSocket wire format for Ambient, Form filling (`GET /ws/stream`), or Dictation (`GET /ws/transcribe`) JSON text frames
+- [Ambient Streaming Wire Format](https://developer.suki.ai/documentation/how-to/audio-streaming/websocket-streaming-wire-format-ambient.md): Format and send Base64 audio chunks as JSON text frames on GET /ws/stream for Ambient and Form filling sessions, including message types, order, and PCM chunking
+- [Dictation Streaming Wire Format](https://developer.suki.ai/documentation/how-to/audio-streaming/websocket-streaming-wire-format-dictation.md): Format and send Base64 audio chunks as JSON text frames on GET /ws/transcribe for Dictation sessions, including message types, order, and PCM chunking
+- [Complete Streaming Session](https://developer.suki.ai/documentation/how-to/audio-streaming/websocket-streaming-complete-session.md): Close the WebSocket, end the session with REST, retrieve results, and troubleshoot for Ambient /ws/stream and Dictation /ws/transcribe
+- [Audio Capture Best Practices](https://developer.suki.ai/documentation/how-to/audio-streaming/audio-capture-best-practices.md): Capture guidance for Ambient and Dictation streaming: mono PCM, sample rate, chunking, network readiness, and what to avoid before you open the WebSocket
+
+## Webhooks
+
+- [Notification Webhook Overview](https://developer.suki.ai/documentation/webhook/overview.md): Learn how Suki pushes notifications to your application via Notification Webhook and how push compares to pull
+- [Webhook Quickstart](https://developer.suki.ai/documentation/webhook/quickstart.md): Step-by-step guide to configure, implement, and test a Suki notification Webhook endpoint
+- [Webhook Configuration](https://developer.suki.ai/documentation/webhook/configuration.md): Register your Webhook callback URL during partner onboarding and meet endpoint requirements for receiving Suki notifications
+- [Webhook Signature Verification](https://developer.suki.ai/documentation/webhook/signature-verification.md): Verify Webhook request signatures with HMAC, X-API-Key, and generated-at headers before processing callback payloads
+- [Webhook Event Types](https://developer.suki.ai/documentation/webhook/event-types.md): Event types your Webhook endpoint receives when Ambient sessions complete, fail, time out, or are cancelled
+- [Webhook Payload & Response](https://developer.suki.ai/documentation/webhook/payload-and-response.md): Parse Webhook POST request headers, JSON payload fields, _links, and expected callback response formats for session notifications
+- [Asynchronous Notifications](https://developer.suki.ai/api-reference/asynchronous/webhook.md): Webhook endpoint for receiving asynchronous notifications from Suki platform
+- [Form Filling Asynchronous Notifications](https://developer.suki.ai/form-filling-api-reference/asynchronous/webhook.md): Webhook endpoint for receiving asynchronous notifications when Form filling session processing completes
+
+## Tutorials
+
+- [Tutorials](https://developer.suki.ai/documentation/tutorials/overview.md): Follow step-by-step tutorials for Ambient, Form filling, Dictation, and SDK integrations, from authentication through production-ready workflows
+- [Build Ambient Session Streaming Client](https://developer.suki.ai/documentation/tutorials/ambient-websocket-code-example.md): Tutorial: Build an end-to-end Ambient session streaming client from login to session results
+- [Build Form Filling Session Streaming Client](https://developer.suki.ai/documentation/tutorials/form-filling-websocket-code-example.md): Tutorial: Build an end-to-end Form filling session client from login to structured form data
+- [Build Dictation Session Streaming Client](https://developer.suki.ai/documentation/tutorials/dictation-websocket-code-example.md): Tutorial: Build an end-to-end Dictation session streaming client from login to final transcript
+- [Build a Web SDK Ambient Session](https://developer.suki.ai/documentation/tutorials/web-sdk-ambient-react.md): Use-case tutorial: Authenticate with SukiAuthManager, initialize the Web SDK in React, and mount SukiAssistant for an Ambient encounter
+- [Build Problem-Based Charting Using Web SDK](https://developer.suki.ai/documentation/tutorials/web-sdk-pbc-ambient.md): Use-case tutorial: Mount Web SDK Ambient with a PBN section, seed EMR diagnoses, and handle note submit for problem-based charting
+- [Build Headless Ambient Recorder](https://developer.suki.ai/documentation/tutorials/headless-ambient-hooks.md): Use-case tutorial: Use Headless Web SDK hooks to authenticate, create an Ambient session, and control recording in React
+- [Build Dictation into a Chart Field](https://developer.suki.ai/documentation/tutorials/dictation-sdk-chart-field.md): Use-case tutorial: Mount Dictation SDK in-field mode on a chart textarea in React with one shared DictationClient
+- [Build a Form Filling Session with EHR Handoff](https://developer.suki.ai/documentation/tutorials/form-filling-sdk-ehr-handoff.md): Use-case tutorial: Open a Form filling SDK session in React and map structured_data to your EHR with correlation_id
+- [Build Webhook Notification Receiver](https://developer.suki.ai/documentation/tutorials/webhook-notification-receiver.md): Use-case tutorial: Build a partner webhook receiver that verifies HMAC signatures and handles success and failure notifications
+
+## SDKs
+
+### Web SDK
+
+- [Suki Web SDK](https://developer.suki.ai/web-sdk/index.md): Embed Suki's ambient intelligence capabilities in your web app with pre-built UI components
+- [Web SDK Introduction](https://developer.suki.ai/web-sdk/overview.md): A collection of JavaScript & React libraries to build web applications on top of Suki Ambient intelligence capabilities with pre-built UI components
+- [Web SDK Quickstart](https://developer.suki.ai/web-sdk/quickstart.md): Install the Web SDK, create SukiAuthManager, and mount SukiAssistant with encounter data in JavaScript or React
+- [Web SDK Prerequisites](https://developer.suki.ai/web-sdk/prerequisites.md): Requirements and setup needed before integrating the Suki Web SDK
+- [Web SDK Installation](https://developer.suki.ai/web-sdk/installation.md): Install Suki.js Web SDK in your JavaScript or React application
+- [Web SDK Authentication](https://developer.suki.ai/web-sdk/authentication.md): Authenticate the Suki Web SDK with SukiAuthManager in JavaScript or React
+- [Ambient Session Overview](https://developer.suki.ai/web-sdk/guides/ambient.md): Run ambient sessions in the Web SDK: start recording, track session status, retrieve generated notes, and handle errors
+- [Create Session](https://developer.suki.ai/web-sdk/guides/ambient-implementation.md): Learn to create a session and implement controlled session management with the Suki Web SDK
+- [Web SDK Ambient Interoperability](https://developer.suki.ai/web-sdk/guides/ambient-interoperability.md): Learn how the Web SDK interoperates with other Suki products that support Ambient workflows
+- [Session Status & Events](https://developer.suki.ai/web-sdk/guides/ambient-session-status.md): Track Ambient session status and lifecycle events (start, pause, resume, cancel, submit) with the Web SDK
+- [Problem-Based Charting In Web SDK](https://developer.suki.ai/web-sdk/guides/ambient-problem-based-charting.md): Enable PBC, set a PBN section, and pass existing patient diagnoses so notes merge with EMR problems
+- [Re-Ambient & Session Recovery](https://developer.suki.ai/web-sdk/guides/ambient-session-recovery.md): Continue an existing note with re-ambient and recover abandoned Ambient sessions with the Web SDK
+- [Web SDK For Audio Dictation Overview](https://developer.suki.ai/web-sdk/dictation-overview.md): Add Dictation to JavaScript or React apps with `SukiAuthManager`, `DictationClient`, and Web SDK Dictation components in Web SDK
+- [Dictation Implementation In Web SDK For JavaScript](https://developer.suki.ai/web-sdk/guides/dictation-javascript.md): Integrate Dictation in vanilla JavaScript with SukiAuthManager, DictationClient, and imperative show() calls in Web SDK
+- [Dictation Implementation in Web SDK for React](https://developer.suki.ai/web-sdk/guides/dictation-react.md): Integrate Dictation in React with SukiAuthManager, DictationProvider, and the Dictation component in Web SDK
+- [Web SDK For Form Filling Overview](https://developer.suki.ai/web-sdk/form-filling-overview.md): Add Form filling to JavaScript or React apps with the Web SDK Form filling client and components, without a separate SDK install in Web SDK
+- [Form Filling Implementation In Web SDK For JavaScript](https://developer.suki.ai/web-sdk/guides/form-filling-javascript.md): Start Form filling sessions in JavaScript with SukiAuthManager, FormFillingClient, and start() callbacks in Web SDK
+- [Form Filling Implementation In Web SDK For React](https://developer.suki.ai/web-sdk/guides/form-filling-react.md): Start Form filling sessions in React with SukiAuthManager, FormFillingProvider, and the FormFilling component in Web SDK
+- [Note Management](https://developer.suki.ai/web-sdk/guides/note-management.md): Retrieve generated clinical note content after session submission and manage note lifecycle events in the Web SDK
+- [Token Refresh](https://developer.suki.ai/web-sdk/guides/token-refresh.md): Rely on automatic access token refresh in SukiAuthManager, or wire custom refresh logic before tokens expire
+- [Medication Orders Overview](https://developer.suki.ai/web-sdk/medication-orders/overview.md): Learn how Medication orders work in the Headed Web SDK, key benefits, use cases, and how to enable this capability
+- [Medication Orders Payload Structure](https://developer.suki.ai/web-sdk/medication-orders/payload-structure.md): Parse the Medication orders JSON payload returned on Web SDK note submission and map fields to your EHR
+- [Medication Orders Error Codes](https://developer.suki.ai/web-sdk/medication-orders/error-codes.md): Handle and learn about error codes from Web SDK error events when Medication orders generation fails or fields are missing
+- [Medication Orders Interoperability](https://developer.suki.ai/web-sdk/medication-orders/interoperability.md): Learn how Web SDK Medication orders align with Ambient API structured data for shared ingestion and EHR mapping
+- [Web SDK Types Reference](https://developer.suki.ai/web-sdk/api-reference/types.md): Web SDK TypeScript type definitions, interfaces, and enums
+- [Functions Reference](https://developer.suki.ai/web-sdk/api-reference/functions.md): Web SDK utility functions, initialization methods, and helper functions
+- [Hooks Reference](https://developer.suki.ai/web-sdk/api-reference/hooks.md): Use `useSuki` to initialize the Web SDK, manage ambient sessions, handle events, and drive UI state in React
+- [Components Reference](https://developer.suki.ai/web-sdk/api-reference/components.md): Web SDK React components, props, and usage examples
+- [Classes Reference](https://developer.suki.ai/web-sdk/api-reference/classes.md): Web SDK class definitions, constructors, and methods reference
+- [Error Handling In Web SDK](https://developer.suki.ai/web-sdk/guides/error-handling.md): Catch and respond to Web SDK error codes for initialization, patient creation, note submission, and session failures
+- [Basic Usage](https://developer.suki.ai/web-sdk/examples/basic-usage.md): Set up SukiProvider, SukiAssistant, auth, encounter props, theming, and event handlers in a React Web SDK integration
+- [Advanced Configuration](https://developer.suki.ai/web-sdk/examples/advanced-configuration.md): Customize the Web SDK with `SukiProvider`, dynamic props, UI options, and event handlers in JavaScript and React
+- [Migrating To Web SDK v2](https://developer.suki.ai/web-sdk/product-updates/migration-to-v2.md): Complete guide to migrate from Suki.js v1 to v2 with enhanced provider onboarding, LOINC standardization, and improved UI customization
+- [Migrating To Web SDK v3](https://developer.suki.ai/web-sdk/product-updates/migration-to-v3.md): Migrate Web SDK v2 integrations to v3 with SukiAuthManager from @suki-sdk/core and updated init patterns
+
+### Mobile SDK
+
+- [Suki Mobile SDK](https://developer.suki.ai/mobile-sdk/index.md): Add Ambient documentation to native iOS apps with a headless Mobile SDK for sessions, recording, and note generation
+- [Mobile SDK Introduction](https://developer.suki.ai/mobile-sdk/overview.md): A collection of iOS libraries to build native iOS applications on top of Suki Ambient intelligence capabilities
+- [Mobile SDK Capabilities](https://developer.suki.ai/mobile-sdk/features.md): Core features and capabilities of the Suki Mobile SDK for iOS healthcare applications
+- [Mobile SDK Prerequisites](https://developer.suki.ai/mobile-sdk/prerequisites.md): Requirements and setup needed before integrating the Suki Mobile SDK
+- [Mobile SDK Installation](https://developer.suki.ai/mobile-sdk/installation.md): Download `SukiAmbientCore.framework`, add it to your Xcode project, and configure embed and sign settings for the Mobile SDK
+- [Mobile SDK Configuration](https://developer.suki.ai/mobile-sdk/configuration.md): How to configure the Suki Mobile SDK
+- [Create Session](https://developer.suki.ai/mobile-sdk/ambient-guides/create-session.md): Create an ambient session with `createSession(with:onCompletion:)`, pass EMR encounter IDs for Ambient API interoperability, and store `sessionId` and `compositionId`
+- [Mobile SDK Interoperability](https://developer.suki.ai/mobile-sdk/ambient-guides/ambient-interoperability.md): Share one clinical note across Mobile SDK, Web SDK, and Ambient APIs with emrEncounterId, conflict handling, and note read APIs
+- [Session Events & Delegates](https://developer.suki.ai/mobile-sdk/ambient-guides/events-and-delegates.md): Implement `SukiAmbientSessionDelegate` and handle session lifecycle events such as started, paused, and suggestions generated
+- [Clearing Sessions](https://developer.suki.ai/mobile-sdk/ambient-guides/clearing-sessions.md): Remove all locally stored Suki sessions from the device with `clear()` when users sign out of your app
+- [Provide Additional Clinical Context](https://developer.suki.ai/mobile-sdk/ambient-guides/provide-clinical-context.md): Attach clinical context, medication orders, and encounter details to an ambient session with `setSessionContext(with:)` in the iOS SDK
+- [Recording Controls](https://developer.suki.ai/mobile-sdk/ambient-guides/recording.md): Start, pause, resume, end, and cancel session recordings with Mobile SDK recording control methods and state management
+- [Session Status & Retrieve Content](https://developer.suki.ai/mobile-sdk/ambient-guides/session-status-and-content-retrieval.md): Check processing status, retrieve clinical notes and transcripts, and read shared notes across Suki products after an ambient session ends
+- [Offline Mode](https://developer.suki.ai/mobile-sdk/ambient-guides/offline-mode.md): Learn how the Mobile SDK handles network interruptions and enters offline mode in the mobile SDK
+- [Mobile SDK Error Messages](https://developer.suki.ai/mobile-sdk/error-messages.md): Match and handle `SukiAmbientCoreError` cases for initialization, authentication, session lifecycle, and recording failures in the Mobile SDK
+
+### Headless Web SDK
+
+- [Suki Headless Web SDK](https://developer.suki.ai/headless-web-sdk/index.md): Add Ambient documentation to your React app with hooks for authentication, sessions, and recording, using your own UI
+- [Headless Web SDK Introduction](https://developer.suki.ai/headless-web-sdk/introduction.md): A collection of React hooks and core functionality to build web applications on top of Suki ambient intelligence capabilities without pre-built UI components
+- [Headless Web SDK Quickstart](https://developer.suki.ai/headless-web-sdk/quickstart.md): Install `@suki-sdk/platform-react`, authenticate with `useAuth`, and run your first ambient recording in a React app
+- [Headless Web SDK Prerequisites](https://developer.suki.ai/headless-web-sdk/prerequisites.md): Requirements and setup needed before integrating the Suki Headless Web SDK
+- [Headless Web SDK Installation](https://developer.suki.ai/headless-web-sdk/installation.md): Install Suki Headless Web SDK in your React application
+- [Headless Web SDK Authentication](https://developer.suki.ai/headless-web-sdk/authentication.md): Configure Partner ID, Partner Token, and provider credentials to authenticate Headless Web SDK requests with Suki services
+- [Ambient Session Workflow Overview](https://developer.suki.ai/headless-web-sdk/guides/hooks/hooks-overview.md): Use `useAuth`, `useAmbient`, and `useAmbientSession` to authenticate users, create ambient sessions, and manage recording in the Headless Web SDK
+- [Authentication Hook](https://developer.suki.ai/headless-web-sdk/guides/hooks/auth-hook.md): Sign users in, register accounts, and manage tokens with `useAuth` in the Headless Web SDK
+- [Create Ambient Session](https://developer.suki.ai/headless-web-sdk/guides/hooks/ambient-hook.md): Create an ambient session with `useAmbient`, pass an `encounterId`, and obtain an `ambientSessionId` for recording in the Headless Web SDK
+- [Manage Ambient Session](https://developer.suki.ai/headless-web-sdk/guides/hooks/ambient-session-hook.md): Control session recording with `useAmbientSession`: start, pause, resume, cancel, submit audio, and track online or offline session status
+- [Error Handling](https://developer.suki.ai/headless-web-sdk/guides/error-handling.md): Handle authentication, session lifecycle, and other Headless Web SDK errors using error codes, names, and optional reason fields
+- [Headless Web SDK Integration Patterns](https://developer.suki.ai/headless-web-sdk/guides/integration-patterns.md): Learn the best practices to implement recommended pause and submit patterns for useAmbientSession, and avoid mistakes that can discard audio or conflict with the Headless Web SDK
+- [Offline Mode](https://developer.suki.ai/headless-web-sdk/guides/offline-mode.md): Track offline ambient sessions, handle retries, and sync status with `useOfflineSessions()` in the Headless Web SDK
+- [Network Transitions](https://developer.suki.ai/headless-web-sdk/guides/online-offline-behavior.md): Understand how the Headless Web SDK handles network connectivity and transitions between online and offline states
+- [Platform Client & Provider](https://developer.suki.ai/headless-web-sdk/api-reference/platform-client.md): Headless Web SDK Client and Provider reference
+- [Headless Web SDK Types Reference](https://developer.suki.ai/headless-web-sdk/api-reference/types.md): React type definitions and interfaces for the Suki Headless Web SDK
+
+### Dictation SDK
+
+- [Suki Dictation SDK](https://developer.suki.ai/dictation-sdk/index.md): Add In-field or Scratchpad Dictation to your web app with Suki's hosted iframe UI for JavaScript and React
+- [Dictation SDK Introduction](https://developer.suki.ai/dictation-sdk/introduction.md): Add browser Dictation with Suki's hosted iframe via JavaScript or React packages, in-field and scratchpad modes, and `SukiAuthManager` authentication
+- [Dictation SDK Quickstart](https://developer.suki.ai/dictation-sdk/quickstart.md): Install Dictation SDK packages, create a reusable `SukiAuthManager` and `DictationClient`, and mount your first in-field or scratchpad session
+- [Dictation SDK Prerequisites](https://developer.suki.ai/dictation-sdk/prerequisites.md): Browser, layout, authentication, and partner setup required before you integrate the Suki Dictation SDK
+- [Dictation SDK Installation](https://developer.suki.ai/dictation-sdk/installation.md): Install Suki Dictation SDK in your JavaScript or React application
+- [Dictation SDK Authentication](https://developer.suki.ai/dictation-sdk/guides/authentication.md): Sign in to Suki before Dictation opens: use SukiAuthManager with the Partner ID and Partner Token Suki gives you
+- [Dictation SDK JavaScript Integration](https://developer.suki.ai/dictation-sdk/javaScript-integration/javaScript.md): Integrate `@suki-sdk/dictation` in vanilla JavaScript: install packages, create `SukiAuthManager` and `DictationClient`, and open in-field or scratchpad sessions
+- [Dictation SDK React Integration](https://developer.suki.ai/dictation-sdk/react-integration/react.md): Integrate `@suki-sdk/dictation-react` with `DictationProvider` and `<Dictation>`: auth setup, client lifecycle, and in-field or scratchpad sessions
+- [Dictation SDK Architecture](https://developer.suki.ai/dictation-sdk/guides/architecture.md): Learn how your application, the Dictation SDK, sign-in, and Suki-hosted Dictation fit together
+- [Callbacks](https://developer.suki.ai/dictation-sdk/guides/callbacks.md): Wire `onSubmit`, `onCancel`, and `onDraft` callbacks in JavaScript or React, including payload shape, `fieldId` routing, and when each handler fires
+- [In-field Mode](https://developer.suki.ai/dictation-sdk/guides/in-field-mode.md): Embed Dictation on a specific text field with in-field mode: launch controls, `rootElement` sizing, `fieldId`, callbacks, and Suki's hosted iframe overlay
+- [Scratchpad Mode](https://developer.suki.ai/dictation-sdk/guides/scratchpad-mode.md): Run Dictation in a floating scratchpad panel instead of a single field: when to choose it, `mode` setup, layout, and callback handling
+- [Configure AuthConfig & ShowOptions](https://developer.suki.ai/dictation-sdk/guides/configuration.md): Set `AuthConfig` for `SukiAuthManager` and `ShowOptions` for each Dictation session: mode, field IDs, `rootElement`, seed text, and callbacks
+- [Dictation SDK Error Handling](https://developer.suki.ai/dictation-sdk/guides/error-handling.md): Learn to fix common Dictation SDK issues: auth, CSP, layout, missing callbacks, and client-only runtime requirements
+
+### Form Filling SDK
+
+- [Suki Form Filling SDK](https://developer.suki.ai/form-filling-sdk/index.md): Capture structured medical form data by voice with Suki's hosted iframe UI for JavaScript and React
+- [Form Filling SDK Introduction](https://developer.suki.ai/form-filling-sdk/introduction.md): Integrate the Form filling SDK to run voice-driven medical forms in a hosted iframe, with sessions, templates, and structured EHR-ready output
+- [Form Filling SDK Quickstart](https://developer.suki.ai/form-filling-sdk/quickstart.md): Install Form filling SDK packages, configure SukiAuthManager and FormFillingClient, and start your first Form filling session with form_template_ids
+- [Form Filling SDK Prerequisites](https://developer.suki.ai/form-filling-sdk/prerequisites.md): Browser, webhook, authentication, and template setup required before you integrate the Suki Form filling SDK
+- [Form Filling SDK Installation](https://developer.suki.ai/form-filling-sdk/installation.md): Install the Suki Form filling SDK in your JavaScript or React application
+- [Form Filling SDK Authentication](https://developer.suki.ai/form-filling-sdk/guides/authentication.md): Sign in to Suki before Form filling opens: use SukiAuthManager with the Partner ID and Partner Token Suki gives you
+- [Form Filling SDK JavaScript Integration](https://developer.suki.ai/form-filling-sdk/javaScript-integration/javaScript.md): Integrate the Form filling SDK in a JavaScript application using FormFillingClient
+- [Form Filling SDK React Integration](https://developer.suki.ai/form-filling-sdk/react-integration/react.md): Integrate the Form filling SDK in a React application using FormFillingProvider and FormFilling
+- [Form Filling SDK Configuration](https://developer.suki.ai/form-filling-sdk/guides/configuration.md): Configure FormFillingClient, form template IDs, correlation_id, and session callbacks
+- [Form Filling SDK Callbacks](https://developer.suki.ai/form-filling-sdk/guides/callbacks.md): Register onSubmit, onCancel, and event handlers for Form filling SDK sessions
+- [Form Filling SDK Session Workflow](https://developer.suki.ai/form-filling-sdk/guides/integration-patterns.md): How Form filling sessions start, run, and deliver structured data to your application
+- [Form Filling SDK Error Handling](https://developer.suki.ai/form-filling-sdk/guides/error-handling.md): Fix common Form filling SDK issues with template IDs, auth, layout, and error codes
+- [FormFillingClient](https://developer.suki.ai/form-filling-sdk/api-reference/form-filling-client.md): FormFillingClient constructor, start options, methods, and React bindings for the Form filling SDK
+- [Events](https://developer.suki.ai/form-filling-sdk/api-reference/events.md): Form filling SDK lifecycle events and when each one fires
+- [Map Form Filling Results to EHR](https://developer.suki.ai/form-filling-sdk/examples/ehr-handoff.md): Map FormFillingResult structured_data fields to your EHR or downstream systems by form_template_id, ambient_session_id, and correlation_id
+- [Form Filling Webhook Handler](https://developer.suki.ai/form-filling-sdk/examples/webhook-handler.md): Build a server-side Webhook handler that verifies Form filling notifications, fetches structured data, and saves results to your EHR
+
+## Partner APIs
+
+### API-wide guidance
+
+- [Suki APIs Overview](https://developer.suki.ai/api-overview/overview.md): Pick the right Suki APIs for your product: REST, WebSocket, and webhook entry points for Ambient APIs, Form filling APIs, Dictation, and shared auth and security guides
+- [Security & Best Practices](https://developer.suki.ai/api-reference/security-best-practices.md): Secure Suki integrations with HTTPS, token storage, JWT validation, webhook HMAC verification, HIPAA-aware data handling, and safe error logging
+- [HTTPS Guidelines](https://developer.suki.ai/api-reference/https-guidelines.md): Map Suki HTTP status codes (2xx, 4xx, 5xx) to request outcomes, including auth failures, validation errors, and server errors
+- [API Reference Guidelines](https://developer.suki.ai/api-reference/api-guidelines.md): Decode API reference tags ([NEW], [DEPRECATED], [EARLY ACCESS]), parameter markers, example conventions, and versioning before you implement endpoints
+- [Ambient & Dictation Error Messages](https://developer.suki.ai/api-reference/error-messages.md): Look up Ambient and Dictation API error ids, HTTP mappings, and category filters to debug failed REST calls in your integration
+
+### Ambient and Dictation APIs
+
+- [Provider Authentication](https://developer.suki.ai/api-reference/provider-authentication.md): Run Register and Login to obtain Suki access token, choose Standard, Single Auth Token, or Bearer partner authentication models, and refresh tokens for Ambient API calls
+- [Single Auth Token Authentication](https://developer.suki.ai/api-reference/single-auth-token-authentication.md): Learn how Single Auth Token authentication works, when to send provider_id and sdp_provider_id, and how to call Login, Register, and Partner APIs
+- [Bearer Partner Type Authentication](https://developer.suki.ai/api-reference/bearer-partner-authentication.md): Learn how Bearer partner authentication works, when to pass provider_id, and how to integrate with REST APIs
+- [Authentication](https://developer.suki.ai/api-reference/faqs/authentication.md): Authentication and authorization questions for API access
+- [Audio Capture & Streaming](https://developer.suki.ai/api-reference/faqs/audio-capture-streaming.md): Questions about audio capture, streaming, and WebSocket implementation
+- [Diagnosis codes](https://developer.suki.ai/api-reference/faqs/diagnosis-codes.md): FAQ on diagnosis code types in Ambient API structured data, including ICD-10 and HCC
+- [Technical Constraints & Risks](https://developer.suki.ai/api-reference/faqs/technical-constraints-risks.md): Technical limitations, constraints, and risk considerations for API integration
+- [Patient Summary](https://developer.suki.ai/api-reference/faqs/patient-summary.md): FAQs about the Patient Summary APIs
+- [Miscellaneous](https://developer.suki.ai/api-reference/faqs/miscellaneous.md): General API questions and miscellaneous topics
+- [Ambient & Dictation APIs Overview](https://developer.suki.ai/api-reference/overview.md): Plan an Ambient or Dictation integration with REST session APIs, Partner WebSocket audio, webhooks, and endpoints for notes, preferences, feedback, and structured clinical output
+- [Ambient API Quickstart](https://developer.suki.ai/api-reference/quickstart.md): Authenticate, create an Ambient session, stream audio, end the session, and retrieve the clinical note on staging
+- [Authentication APIs](https://developer.suki.ai/api-reference/authentication.md): Register providers, exchange Partner Tokens for Suki Tokens, and fetch JWKS keys for Register, Login, and token verification on the Suki platform
+- [Register](https://developer.suki.ai/api-reference/authentication/register.md): Register new healthcare provider or link existing provider to partner organization
+- [Login](https://developer.suki.ai/api-reference/authentication/login.md): Authenticate healthcare provider and obtain access token for API usage
+- [JWKS URL](https://developer.suki.ai/api-reference/authentication/jwks.md): Public key endpoint for JWT token verification and signature validation
+- [Ambient Session Management APIs](https://developer.suki.ai/api-reference/ambient-session-management.md): Create and manage Ambient sessions, stream audio, attach metadata, and end sessions
+- [Create Ambient Session](https://developer.suki.ai/api-reference/ambient-sessions/create.md): Initialize a new Ambient session for patient encounter documentation
+- [Seed Ambient Session Context](https://developer.suki.ai/api-reference/ambient-sessions/context.md): Provide clinical context and patient information for Ambient session
+- [Update Ambient Session Context](https://developer.suki.ai/api-reference/ambient-sessions/update-context.md): Update existing session context with new clinical information
+- [Ambient Session Metadata](https://developer.suki.ai/api-reference/ambient-sessions/metadata.md): Add metadata to Ambient session (deprecated; use context endpoint instead)
+- [Audio Streaming](https://developer.suki.ai/api-reference/ambient-sessions/audio-stream.md): WebSocket endpoint for real-time audio streaming during Ambient sessions
+- [End Ambient Session](https://developer.suki.ai/api-reference/ambient-sessions/end.md): Complete Ambient session and trigger clinical note generation
+- [Dictation APIs](https://developer.suki.ai/api-reference/ambient-dictation.md): Create Dictation sessions, stream audio for transcription, and end sessions
+- [Create Dictation Session](https://developer.suki.ai/api-reference/audio-transcription/create-session.md): Create a Dictation session to transcribe spoken audio into text in real time
+- [Dictation Session Streaming](https://developer.suki.ai/api-reference/audio-transcription/stream-transcription.md): Stream audio to an active Dictation session for real-time transcription
+- [End Dictation Session](https://developer.suki.ai/api-reference/audio-transcription/end-session.md): End a Dictation session and retrieve the final transcription results
+- [Ambient Content Retrieval APIs](https://developer.suki.ai/api-reference/ambient-content-retrieval.md): Poll session status and retrieve transcripts, recordings, note content, and structured clinical data
+- [Get Ambient Session Status](https://developer.suki.ai/api-reference/ambient-content/status.md): Check current status and processing state of Ambient session
+- [Get Session Transcript](https://developer.suki.ai/api-reference/ambient-content/transcript.md): Retrieve conversation transcript from completed Ambient session
+- [Get Ambient Session Recording](https://developer.suki.ai/api-reference/ambient-content/recording.md): Get presigned URLs for Ambient session recordings for streaming or download
+- [Get Ambient Session Content](https://developer.suki.ai/api-reference/ambient-content/content.md): Retrieve generated clinical content from completed Ambient session
+- [Get Ambient Encounter Content](https://developer.suki.ai/api-reference/ambient-content/encounter-content.md): Retrieve generated clinical content from completed encounter
+- [Get Ambient Session Structured Data](https://developer.suki.ai/api-reference/ambient-content/structured-data.md): Retrieve structured clinical data from completed Ambient session
+- [Get Ambient Encounter Structured Data](https://developer.suki.ai/api-reference/ambient-content/encounter-structured-data.md): Retrieve structured clinical data from completed encounter
+- [List Encounter Notes](https://developer.suki.ai/api-reference/ambient-content/list-encounter-notes.md): List Ambient notes linked to an EMR encounter for cross-modality workflows
+- [Get Note Content](https://developer.suki.ai/api-reference/ambient-content/note-content.md): Retrieve accumulated Ambient note section content, including the latest edits
+- [Get Note Context](https://developer.suki.ai/api-reference/ambient-content/note-context.md): Retrieve Ambient note context aggregated across Ambient sessions
+- [Get Note Structured Data](https://developer.suki.ai/api-reference/ambient-content/note-structured-data.md): Retrieve accumulated diagnoses and orders across Ambient sessions in a note
+- [User Preferences API](https://developer.suki.ai/api-reference/user-preferences.md): Read and update end-user preferences for the Suki platform
+- [User Preferences](https://developer.suki.ai/api-reference/user-preferences/preferences.md): Update user personalization preferences for clinical note generation
+- [User Feedback API](https://developer.suki.ai/api-reference/user-feedback.md): Submit feedback on Ambient session entities such as transcripts or generated content
+- [Ambient Session User Feedback](https://developer.suki.ai/api-reference/feedback/feedback.md): Submit user feedback on generated clinical content for continuous improvement
+- [Send Notifications API](https://developer.suki.ai/api-reference/send-notifications.md): Receive asynchronous notifications from Suki using your notification endpoint
+- [Info APIs](https://developer.suki.ai/api-reference/info.md): Reference data for specialties, diagnoses, encounter types, visit types, LOINC codes, and provider roles
+- [System Information](https://developer.suki.ai/api-reference/info/information.md): Get system information and supported configuration values
+- [Supported LOINCs](https://developer.suki.ai/api-reference/info/loincs.md): Get list of supported LOINC codes for clinical note sections
+- [Supported Diagnosis Codes](https://developer.suki.ai/api-reference/info/diagnosis.md): Get list of supported diagnosis codes and medical conditions
+- [Supported Medical Specialties](https://developer.suki.ai/api-reference/info/specialties.md): Get list of supported medical specialties and their identifiers
+- [Encounter Types](https://developer.suki.ai/api-reference/info/encounter-types.md): Get list of supported clinical encounter types
+- [Visit Types](https://developer.suki.ai/api-reference/info/visit-types.md): Get list of supported clinical visit types
+- [Provider Roles](https://developer.suki.ai/api-reference/info/provider-roles.md): Get list of supported healthcare provider roles
+- [Medication Orders Info APIs](https://developer.suki.ai/api-reference/medication-orders-info.md): Get supported medication order metadata in one response
+- [Medication Order Metadata](https://developer.suki.ai/api-reference/info/orders.md): Get all supported medication order metadata in one response
+- [Medication Coding Systems](https://developer.suki.ai/api-reference/info/orders-coding-systems.md): Get supported medication coding systems
+- [Medication Dosage Units](https://developer.suki.ai/api-reference/info/orders-dosage-units.md): Get supported medication dosage units
+- [Order Encounter Relations](https://developer.suki.ai/api-reference/info/orders-encounter-relations.md): Get supported order encounter relations
+- [Medication Frequency Types](https://developer.suki.ai/api-reference/info/orders-frequencies.md): Get supported medication frequency types
+- [Medication Timings](https://developer.suki.ai/api-reference/info/orders-medication-timings.md): Get supported medication timings
+- [Order Origins](https://developer.suki.ai/api-reference/info/orders-origins.md): Get supported order origins
+- [Medication Order Statuses](https://developer.suki.ai/api-reference/info/orders-statuses.md): Get supported medication order statuses
+
+### Form Filling APIs
+
+- [Form Filling APIs Overview](https://developer.suki.ai/form-filling-api-reference/overview.md): Use Form filling REST endpoints, shared Partner WebSocket audio, webhooks, sessions, and structured form output in your integration
+- [Form Filling API Quickstart](https://developer.suki.ai/form-filling-api-reference/quickstart.md): Authenticate, create a Form filling session, stream audio, end the session, and retrieve structured form output on staging
+- [Form Filling API Error Messages](https://developer.suki.ai/form-filling-api-reference/error-messages-form-filling.md): Look up JSON error codes and messages returned by Form filling API endpoints, with causes and recommended fixes
+- [Authentication APIs](https://developer.suki.ai/form-filling-api-reference/authentication.md): Register providers, exchange Partner Tokens for Suki Tokens, and retrieve JWKS public keys for Form filling API authentication
+- [Register](https://developer.suki.ai/form-filling-api-reference/authentication/register.md): Register new healthcare provider or link existing provider to partner organization
+- [Login](https://developer.suki.ai/form-filling-api-reference/authentication/login.md): Authenticate healthcare provider and obtain access token for API usage
+- [JWKS URL](https://developer.suki.ai/form-filling-api-reference/authentication/jwks.md): Public key endpoint for JWT token verification and signature validation
+- [Form Filling Session Management APIs](https://developer.suki.ai/form-filling-api-reference/form-filling-session-management.md): Create and manage Form filling sessions: context, audio streaming, and end session
+- [Create Form Filling Session](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/create.md): Create a Form filling session and obtain an Ambient session identifier for subsequent calls
+- [Seed Form Filling Session Context](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/context.md): Seed Form filling session context for a Form filling session using the Form filling URL binding
+- [Update Form Filling Session Context](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/update-context.md): Partially update Form filling session context using the Form filling URL binding
+- [Form Filling Audio Streaming](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/audio-stream.md): WebSocket endpoint for streaming visit audio during Form filling sessions
+- [End Form Filling Session](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/end.md): End a Form filling session
+- [Form Filling Content Retrieval APIs](https://developer.suki.ai/form-filling-api-reference/form-filling-content-retrieval.md): Retrieve status, structured data, and recordings from a Form filling session
+- [Get Form Filling Session Status](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/status.md): Poll processing status for a Form filling session
+- [Get Form Filling Structured Data](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/structured-data.md): Retrieve structured medical form data for a Form filling session
+- [Get Form Filling Session Recording](https://developer.suki.ai/form-filling-api-reference/form-filling-content/recording.md): Get presigned URLs for Form filling session recordings for streaming or download
+- [Form Filling Feedback API](https://developer.suki.ai/form-filling-api-reference/form-filling-feedback.md): Submit feedback for a Form filling session
+- [Form Filling Session Feedback](https://developer.suki.ai/form-filling-api-reference/form-filling-sessions/feedback.md): Submit feedback for a Form filling session entity
+- [Form Filling Notifications API](https://developer.suki.ai/form-filling-api-reference/form-filling-notifications.md): Receive asynchronous webhook notifications when Form filling session processing completes
+- [Form Filling Info APIs](https://developer.suki.ai/form-filling-api-reference/form-filling-info.md): Get Medical form template information for Form filling sessions
+- [Suki Medical Form Templates IDs](https://developer.suki.ai/form-filling-api-reference/info/suki-medical-form-templates.md): List Suki-defined Medical form template IDs available for Form filling sessions
+
+### Patient Summary APIs
+
+- [Patient Summary APIs Overview](https://developer.suki.ai/patient-summary-api-reference/overview.md): Upload FHIR data, generate CKG-powered patient summaries asynchronously, and retrieve structured clinical sections with the Patient Summary APIs
+- [Patient Summary API Quickstart](https://developer.suki.ai/patient-summary-api-reference/quickstart.md): Upload FHIR data, trigger summary generation, and retrieve Patient Summaries on staging
+- [Patient Summary Error Messages](https://developer.suki.ai/patient-summary-api-reference/error-messages-patient-summary.md): Identify and handle Patient Summary API errors using stable error IDs, gRPC codes, and HTTP status mappings
+- [Authentication APIs](https://developer.suki.ai/patient-summary-api-reference/authentication.md): Register providers, exchange Partner Tokens for Suki Tokens, and retrieve JWKS keys to authorize Patient Summary API requests
+- [Register](https://developer.suki.ai/patient-summary-api-reference/authentication/register.md): Register new healthcare provider or link existing provider to partner organization
+- [Login](https://developer.suki.ai/patient-summary-api-reference/authentication/login.md): Authenticate healthcare provider and obtain access token for API usage
+- [JWKS URL](https://developer.suki.ai/patient-summary-api-reference/authentication/jwks.md): Public key endpoint for JWT token verification and signature validation
+- [CKG Data Ingestion APIs](https://developer.suki.ai/patient-summary-api-reference/ckg-data-ingestion.md): Upload FHIR bundles into Suki's Clinical Knowledge Graph (CKG) and poll ingestion status
+- [Request FHIR Bundle Upload URL](https://developer.suki.ai/patient-summary-api-reference/ckg-data-ingestion/upload.md): Request a pre-signed upload URL for uploading FHIR bundles to Suki's Clinical Knowledge Graph (CKG)
+- [Upload FHIR Bundle](https://developer.suki.ai/patient-summary-api-reference/ckg-data-ingestion/fhir-data.md): Upload your FHIR bundle JSON to the pre-signed URL after requesting it via the Upload FHIR Push Upload URL API
+- [Get FHIR Push Transaction Status](https://developer.suki.ai/patient-summary-api-reference/ckg-data-ingestion/ingestion-status.md): Poll the ingestion status for a FHIR bundle upload transaction (Step 3)
+- [Summary Generation APIs](https://developer.suki.ai/patient-summary-api-reference/summary-generation.md): Trigger asynchronous Patient summary generation for an encounter or a provider's scheduled appointments
+- [Generate Patient Summary For Specific Encounter](https://developer.suki.ai/patient-summary-api-reference/summary-generation/encounter-summary.md): Trigger asynchronous generation of summaries for a specific encounter and practitioner from CKG data
+- [Generate Patient Summaries For Scheduled Appointments](https://developer.suki.ai/patient-summary-api-reference/summary-generation/scheduled-appointment-summary.md): Trigger bulk asynchronous generation of Patient Summaries for all scheduled appointments on a provider's schedule
+- [Patient Summaries APIs](https://developer.suki.ai/patient-summary-api-reference/summaries.md): Retrieve full Patient Summaries and pre-visit sections after generation completes
+- [Get Patient Summary Using Partner Identifiers](https://developer.suki.ai/patient-summary-api-reference/summaries/encounter-practitioner.md): Retrieve the comprehensive Patient Summary object using your internal FHIR identifiers
+- [Get Patient Summary Using Patient Summary ID](https://developer.suki.ai/patient-summary-api-reference/summaries/patient-summary.md): Retrieve full details of a previously generated Patient Summary using its unique Patient Summary ID
+- [Get Pre-Visit Summary Using Partner Identifiers](https://developer.suki.ai/patient-summary-api-reference/summaries/encounter-pre-visit.md): Retrieve the pre-visit section of a Patient Summary using your internal encounter and practitioner identifiers
+- [Get Pre-Visit Summary by ID](https://developer.suki.ai/patient-summary-api-reference/summaries/pre-visit-summary.md): Retrieve the pre-visit section of a Patient Summary using the Patient Summary ID
+- [Summary Jobs APIs](https://developer.suki.ai/patient-summary-api-reference/summary-jobs.md): Poll Patient summary generation status until jobs reach a terminal state
+- [Get Summary Generation Status Using Encounter & Practitioner IDs](https://developer.suki.ai/patient-summary-api-reference/summary-jobs/encounter-status.md): Returns the generation status for a summary generation job using the encounter and practitioner IDs you provided
+- [Get Summary Generation Status Using Patient Summary ID](https://developer.suki.ai/patient-summary-api-reference/summary-jobs/job-status.md): Returns the generation status for a Patient Summary using its unique ID
+
+## Cookbooks
+
+- [Cookbooks](https://developer.suki.ai/documentation/cookbooks/overview.md): Short recipes for common Suki integration problems. Each cookbook solves one task with copy-paste code
+- [Share One Note Across Products](https://developer.suki.ai/documentation/cookbooks/pass-emr-encounter-id.md): Pass emr_encounter_id for interoperability and reuse encounter_id for re-ambient sessions when provided
+- [Clear a Remote Session Conflict](https://developer.suki.ai/documentation/cookbooks/resolve-session-conflict.md): End the blocking ambient session for an EMR encounter, then retry create
+- [Fetch Note Content with composition_id](https://developer.suki.ai/documentation/cookbooks/get-note-content-by-composition-id.md): Use composition_id from create as note_id when calling get note content
+- [Poll Session Status Before Fetching Content](https://developer.suki.ai/documentation/cookbooks/wait-for-status-before-retrieve.md): Poll ambient session status until completed before calling content APIs
+- [Seed Patient Context for the Web SDK](https://developer.suki.ai/documentation/cookbooks/seed-patient-context-for-web-sdk.md): Seed patient profile fields before opening an interoperable note in the Web SDK
+- [End Ambient After Streaming](https://developer.suki.ai/documentation/cookbooks/end-ambient-after-streaming.md): Send the RU9G end marker, close the WebSocket, then end the ambient session with REST
+- [Authenticate Browser WebSocket Handshake](https://developer.suki.ai/documentation/cookbooks/browser-websocket-auth.md): Pass SukiAmbientAuth token and session ID in Sec-WebSocket-Protocol for browser clients
+- [Add provider_id to Bearer Login](https://developer.suki.ai/documentation/cookbooks/bearer-provider-id-on-login.md): Include provider_id on login and register when you use a shared Bearer partner token
+- [Register Provider Then Login](https://developer.suki.ai/documentation/cookbooks/register-then-login.md): Handle provider_not_registered by registering once, then calling login again for suki_token
+- [Write Dictation Text to an EHR Field](https://developer.suki.ai/documentation/cookbooks/dictation-onsubmit-chart-field.md): Use DictationClient onSubmit to write final dictation text into an EHR chart field
+- [End Dictation with AUDIO_END](https://developer.suki.ai/documentation/cookbooks/end-dictation-with-audio-end.md): End Dictation WebSocket audio with EVENT AUDIO_END, wait for EOF, then end the Dictation session with REST
+- [Verify Webhook HMAC Signature](https://developer.suki.ai/documentation/cookbooks/verify-webhook-hmac-signature.md): Verify Suki webhook requests with HMAC-SHA-256 on the raw body before you parse JSON
+- [Upload FHIR to CKG and Poll Ingestion](https://developer.suki.ai/documentation/cookbooks/upload-fhir-to-ckg-and-poll.md): Request a pre-signed upload URL, PUT a FHIR bundle, then poll ingestion until COMPLETED
+- [Generate a Patient Summary for One Encounter](https://developer.suki.ai/documentation/cookbooks/generate-patient-summary-for-encounter.md): Trigger encounter Patient Summary generation and store the returned patient_summary_id
+- [Poll Patient Summary Status Before Retrieve](https://developer.suki.ai/documentation/cookbooks/poll-patient-summary-status-before-retrieve.md): Poll Patient Summary job status until COMPLETED before calling retrieve APIs
+
+## FAQs
+
+- [Platform FAQs Hub](https://developer.suki.ai/documentation/references/faqs/index.md): Browse Partner FAQs by topic: general platform questions, authentication, security and privacy, Ambient APIs, Form filling, Dictation, SDKs, and webhooks
+- [General](https://developer.suki.ai/documentation/references/faqs/general.md): Frequently asked questions about the Suki Developer Platform and integration benefits
+- [Authentication FAQs](https://developer.suki.ai/documentation/references/faqs/authentication.md): Authentication mechanisms and security questions for Suki platform integration
+- [Security & Compliance](https://developer.suki.ai/documentation/references/faqs/security.md): Security, compliance, and data retention policies for the Suki Developer Platform
+
+## Optional
+
+- [OpenAPI Specification](https://developer.suki.ai/api-reference/openapi.json): Machine-readable Ambient and Dictation Partner API schema and source of truth for request and response shapes
+- [llms-full.txt](https://developer.suki.ai/llms-full.txt): Full-site dump for broad cross-product questions
+- [Suki for Partners Executive Summary](https://developer.suki.ai/documentation/references/executive-summary.md): Evaluate Ambient Clinical Intelligence (ACI) for your product: Ambient documentation, Form filling, Dictation, Patient Summary, build vs buy, integration options, and next steps
+- [Suki SDKs & APIs Technical Execution](https://developer.suki.ai/documentation/references/technical-execution.md): Technical execution: how integration works, what partners need, critical technical requirements for Web SDK, Mobile SDK, Headless Web SDK, Dictation SDK, Form filling SDK, Suki REST APIs, Form
+- [Partner Support](https://developer.suki.ai/documentation/references/support.md): Find self-help FAQs, then contact Suki Partner Support for API, SDK, and documentation integration issues
+- [Suki Developer Platform Glossary](https://developer.suki.ai/Glossary/glossary.md): Browse glossary terms by category, letter, and search. Use the category and letter filters to narrow the list
+- [Release Notes](https://developer.suki.ai/updates/release-notes.md): Release notes by workflow (Ambient, Form filling, Dictation, Patient Summary) and product, with links to product changelogs
+- [Deprecations Overview](https://developer.suki.ai/updates/deprecations-overview.md): How Suki evolves APIs and SDKs, what counts as a breaking change, and how partners learn about deprecations and migrations
+- [Deprecation List](https://developer.suki.ai/updates/deprecations.md): List of deprecated and removed APIs, parameters, WebSocket events, and SDK properties across the Suki platform

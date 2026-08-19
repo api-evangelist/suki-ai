@@ -1,0 +1,106 @@
+{
+  "item": [
+    {
+      "id": "1b0a39b4-17fc-44f6-99a8-d1c77973b94c",
+      "name": "Feedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6111e26f-0163-4385-b47a-0997890e2496",
+          "name": "Submit feedback for a session",
+          "request": {
+            "name": "Submit feedback for a session",
+            "description": {},
+            "url": {
+              "path": [
+                "feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "627a9d84-ca26-408b-9130-a5ef76af8498",
+              "name": "Feedback recorded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://developer.suki.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0601b254-cbf6-462c-b96b-fc2d10e25cc5",
+    "name": "Suki Platform Ambient Content Feedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "6566d69a-cb53-44ca-9125-245c924eedf2",
+      "name": "Templates",
+      "description": {
+        "content": "Suki Hosted Form Templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "205faa2d-5da8-4de3-9fb4-76a8f01b704b",
+          "name": "List Form Templates",
+          "request": {
+            "name": "List Form Templates",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d0d461e-7841-4939-8ecd-9155072d8b35",
+              "name": "Suki hosted form templates available to the partner",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"fields\": [\n      {\n        \"fieldId\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"required\": false\n      },\n      {\n        \"fieldId\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"required\": true\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"fields\": [\n      {\n        \"fieldId\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"required\": false\n      },\n      {\n        \"fieldId\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"required\": false\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sdp.suki-stage.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "sdp_suki_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e5cb5737-b230-414b-8b6a-4f93d85290c2",
+    "name": "Suki Ambient Auth Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST endpoints for Suki Speech Service ambient clinical documentation.\nPartners create an ambient session, seed it with patient and encounter\ncontext, stream audio over a separate WebSocket channel, end the session,\nand then retrieve the generated clinical note, transcript, structured data,\nand recording. Pair with the WebSocket audio endpoint\n`wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the\nwebhook callback POSTed to the partner endpoint on session completion.\n\n\nContact Support:\n Name: Suki for Partners",
+      "type": "text/plain"
+    }
+  }
+}

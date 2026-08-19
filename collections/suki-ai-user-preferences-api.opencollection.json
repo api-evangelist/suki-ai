@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content User Preferences API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read the current provider's preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/user-preferences"
+          },
+          "docs": "Read the current provider's preferences"
+        },
+        {
+          "info": {
+            "name": "Update the current provider's preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/user-preferences"
+          },
+          "docs": "Update the current provider's preferences"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

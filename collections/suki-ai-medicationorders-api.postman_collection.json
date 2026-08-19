@@ -1,219 +1,23 @@
 {
   "item": [
     {
-      "id": "1424838e-8fb1-4060-b32b-a5edb59eb5fb",
-      "name": "Auth",
+      "id": "6c96ac9f-f513-4afe-83d8-9bdd0b36c0fa",
+      "name": "MedicationOrders",
       "description": {
-        "content": "Provider Registration And Token Issuance",
+        "content": "Medication Ordering Metadata",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "4e902fe9-3743-4d4a-8c21-826fa5e75345",
-          "name": "Register Provider",
+          "id": "a5e4ab5e-12c0-4fba-9834-59548088cfbc",
+          "name": "List Medication Order Metadata",
           "request": {
-            "name": "Register Provider",
+            "name": "List Medication Order Metadata",
             "description": {},
             "url": {
               "path": [
-                "auth",
-                "register"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"partnerProviderId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"npi\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b5b15118-59d7-415d-8077-4edae0a24052",
-              "name": "Provider registered",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "auth",
-                    "register"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "sdp_suki_token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"partnerProviderId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"npi\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"email\": \"<email>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"providerId\": \"string\",\n  \"partnerProviderId\": \"string\",\n  \"name\": \"string\",\n  \"specialty\": \"string\",\n  \"createdAt\": \"1958-01-18T16:40:07.292Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0f72d948-0ca3-4546-8fbc-9a36bf72369c",
-          "name": "Login And Obtain Token",
-          "request": {
-            "name": "Login And Obtain Token",
-            "description": {},
-            "url": {
-              "path": [
-                "auth",
-                "login"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"partnerId\": \"<string>\",\n  \"partnerSecret\": \"<string>\",\n  \"providerId\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c810fe67-e4af-4671-8fee-f6be798c7f16",
-              "name": "Access token issued",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "auth",
-                    "login"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "sdp_suki_token",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"partnerId\": \"<string>\",\n  \"partnerSecret\": \"<string>\",\n  \"providerId\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"sdpSukiToken\": \"string\",\n  \"tokenType\": \"Bearer\",\n  \"expiresIn\": 5243\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d7f4e452-d1df-44ce-a47c-a7d44656eab7",
-          "name": "Get JWKS",
-          "request": {
-            "name": "Get JWKS",
-            "description": {},
-            "url": {
-              "path": [
-                "auth",
-                "jwks"
+                "info",
+                "medication-orders"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -232,13 +36,13 @@
           },
           "response": [
             {
-              "id": "79af9a8f-6ad5-4278-aff0-1ae0877b4f13",
-              "name": "JSON Web Key Set used to verify Suki-issued JWTs",
+              "id": "ed6d7bdb-a15b-44fc-ac1c-0e9a3fcaa950",
+              "name": "Medication order metadata",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "auth",
-                    "jwks"
+                    "info",
+                    "medication-orders"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -271,7 +75,161 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"string\",\n      \"kid\": \"string\",\n      \"use\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    },\n    {\n      \"kty\": \"string\",\n      \"kid\": \"string\",\n      \"use\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\"\n    }\n  ]\n}",
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"rxnorm\": \"string\",\n    \"route\": \"string\",\n    \"defaultDosageUnit\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"rxnorm\": \"string\",\n    \"route\": \"string\",\n    \"defaultDosageUnit\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "870c9b6a-6948-44b6-8820-22ecb58b2c2b",
+          "name": "List Order Coding Systems",
+          "request": {
+            "name": "List Order Coding Systems",
+            "description": {},
+            "url": {
+              "path": [
+                "info",
+                "orders-coding-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7ef7227-b31c-4d1c-aa89-90eb27a4c562",
+              "name": "Supported coding systems for medication orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "info",
+                    "orders-coding-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"system\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"system\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b326dbb-f777-4794-b523-4759585cdf56",
+          "name": "List Dosage Units",
+          "request": {
+            "name": "List Dosage Units",
+            "description": {},
+            "url": {
+              "path": [
+                "info",
+                "orders-dosage-units"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09cf5fa4-9a5c-4323-bed2-df5638201e38",
+              "name": "Supported dosage units for orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "info",
+                    "orders-dosage-units"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"system\": \"string\"\n  },\n  {\n    \"code\": \"string\",\n    \"label\": \"string\",\n    \"system\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -311,8 +269,8 @@
     ]
   },
   "info": {
-    "_postman_id": "27b33096-2c2a-4ff9-82d6-d538d3bf3fd3",
-    "name": "Suki Ambient Auth API",
+    "_postman_id": "90092194-50c1-4a0a-9e37-3899fb06692f",
+    "name": "Suki Ambient Auth MedicationOrders API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "REST endpoints for Suki Speech Service ambient clinical documentation.\nPartners create an ambient session, seed it with patient and encounter\ncontext, stream audio over a separate WebSocket channel, end the session,\nand then retrieve the generated clinical note, transcript, structured data,\nand recording. Pair with the WebSocket audio endpoint\n`wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the\nwebhook callback POSTed to the partner endpoint on session completion.\n\n\nContact Support:\n Name: Suki for Partners",

@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient Auth Sessions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Ambient Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new ambient documentation session for a provider and encounter."
+        },
+        {
+          "info": {
+            "name": "Seed Session Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Seed Session Context"
+        },
+        {
+          "info": {
+            "name": "Update Session Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Session Context"
+        },
+        {
+          "info": {
+            "name": "End Ambient Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/end",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End Ambient Session"
+        },
+        {
+          "info": {
+            "name": "Get Ambient Session Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/ambient/sessions/:sessionId/status",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Ambient Session Status"
+        },
+        {
+          "info": {
+            "name": "Create Form Filling Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Form Filling Session"
+        },
+        {
+          "info": {
+            "name": "Seed Form Filling Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Seed Form Filling Context"
+        },
+        {
+          "info": {
+            "name": "Update Form Filling Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/context",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Form Filling Context"
+        },
+        {
+          "info": {
+            "name": "End Form Filling Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/end",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End Form Filling Session"
+        },
+        {
+          "info": {
+            "name": "Get Form Filling Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/sessions/:sessionId/status",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Form Filling Status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

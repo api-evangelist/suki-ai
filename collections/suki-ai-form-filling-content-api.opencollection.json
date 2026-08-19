@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Form Filling Content API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Filling Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve structured form data extracted from the session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/structured-data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve structured form data extracted from the session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

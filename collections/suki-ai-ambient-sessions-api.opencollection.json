@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Ambient Sessions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ambient Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new ambient documentation session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions"
+          },
+          "docs": "Create a new ambient documentation session"
+        },
+        {
+          "info": {
+            "name": "Seed context for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Seed context for an ambient session"
+        },
+        {
+          "info": {
+            "name": "Update context for an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update context for an ambient session"
+        },
+        {
+          "info": {
+            "name": "End an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/end",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End an ambient session"
+        },
+        {
+          "info": {
+            "name": "Check the processing status of an ambient session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/ambient/sessions/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check the processing status of an ambient session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

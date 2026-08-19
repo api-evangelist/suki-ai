@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Platform Ambient Content Form Filling Sessions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Form Filling Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new form-filling session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions"
+          },
+          "docs": "Create a new form-filling session"
+        },
+        {
+          "info": {
+            "name": "Seed form context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Seed form context"
+        },
+        {
+          "info": {
+            "name": "Update form context",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/context",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update form context"
+        },
+        {
+          "info": {
+            "name": "End a form-filling session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/end",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "End a form-filling session"
+        },
+        {
+          "info": {
+            "name": "Get form-filling session status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://developer.suki.ai/api/v1/form-filling/sessions/:id/status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get form-filling session status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

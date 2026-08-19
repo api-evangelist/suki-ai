@@ -1,15 +1,13 @@
 {
   "opencollection": "1.0.0",
   "info": {
-    "name": "Suki Info API",
+    "name": "Suki Platform Ambient Content Info API",
     "version": "1.0.0"
   },
   "request": {
     "auth": {
-      "type": "apikey",
-      "key": "sdp_suki_token",
-      "value": "{{sdp_suki_token}}",
-      "placement": "header"
+      "type": "bearer",
+      "token": "{{bearerToken}}"
     }
   },
   "items": [
@@ -21,122 +19,58 @@
       "items": [
         {
           "info": {
-            "name": "List Specialties",
+            "name": "List supported clinical specialties",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/specialties"
+            "url": "https://developer.suki.ai/api/v1/info/specialties"
           },
-          "docs": "List Specialties"
+          "docs": "List supported clinical specialties"
         },
         {
           "info": {
-            "name": "List Diagnoses",
+            "name": "List supported diagnosis codes",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/diagnoses",
-            "params": [
-              {
-                "name": "q",
-                "value": "",
-                "type": "query"
-              },
-              {
-                "name": "system",
-                "value": "",
-                "type": "query"
-              }
-            ]
+            "url": "https://developer.suki.ai/api/v1/info/diagnoses"
           },
-          "docs": "List Diagnoses"
+          "docs": "List supported diagnosis codes"
         },
         {
           "info": {
-            "name": "List Encounter Types",
+            "name": "List supported encounter types",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/encounter-types"
+            "url": "https://developer.suki.ai/api/v1/info/encounter-types"
           },
-          "docs": "List Encounter Types"
+          "docs": "List supported encounter types"
         },
         {
           "info": {
-            "name": "List Visit Types",
+            "name": "List supported visit types",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/visit-types"
+            "url": "https://developer.suki.ai/api/v1/info/visit-types"
           },
-          "docs": "List Visit Types"
+          "docs": "List supported visit types"
         },
         {
           "info": {
-            "name": "List LOINC Note Sections",
+            "name": "List supported provider roles",
             "type": "http"
           },
           "http": {
             "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/loincs"
+            "url": "https://developer.suki.ai/api/v1/info/provider-roles"
           },
-          "docs": "List LOINC Note Sections"
-        },
-        {
-          "info": {
-            "name": "List Provider Roles",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/provider-roles"
-          },
-          "docs": "List Provider Roles"
-        }
-      ]
-    },
-    {
-      "info": {
-        "name": "MedicationOrders",
-        "type": "folder"
-      },
-      "items": [
-        {
-          "info": {
-            "name": "List Medication Order Metadata",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/medication-orders"
-          },
-          "docs": "List Medication Order Metadata"
-        },
-        {
-          "info": {
-            "name": "List Order Coding Systems",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/orders-coding-systems"
-          },
-          "docs": "List Order Coding Systems"
-        },
-        {
-          "info": {
-            "name": "List Dosage Units",
-            "type": "http"
-          },
-          "http": {
-            "method": "GET",
-            "url": "https://sdp.suki-stage.com/api/v1/info/orders-dosage-units"
-          },
-          "docs": "List Dosage Units"
+          "docs": "List supported provider roles"
         }
       ]
     }

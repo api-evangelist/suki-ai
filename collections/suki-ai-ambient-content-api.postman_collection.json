@@ -1,48 +1,68 @@
 {
   "item": [
     {
-      "id": "2138e1f9-255c-4afc-a55b-227e3232fd81",
-      "name": "Info",
+      "id": "e24a9091-7080-4ed8-a24f-a880834888ab",
+      "name": "Ambient Content",
       "description": {
         "content": "",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c4ddfab7-e1e7-4c44-a568-d39b5dfe0279",
-          "name": "List supported clinical specialties",
+          "id": "4663d714-2764-43b3-9d6f-57510d3724b0",
+          "name": "Retrieve generated note content for an ambient session",
           "request": {
-            "name": "List supported clinical specialties",
+            "name": "Retrieve generated note content for an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "specialties"
+                "ambient",
+                "sessions",
+                ":id",
+                "content"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "fef2bd91-a21a-4bce-8597-697ae6af2579",
-              "name": "List of specialties",
+              "id": "801d540b-cfeb-47d1-8420-64a248470cc3",
+              "name": "Note content",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "specialties"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "content"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -76,40 +96,60 @@
           }
         },
         {
-          "id": "5b898b81-2d72-4d81-935b-02aca2a80ddc",
-          "name": "List supported diagnosis codes",
+          "id": "9d6111d4-0907-4058-b5c4-1598145a68e8",
+          "name": "Retrieve the conversation transcript for an ambient session",
           "request": {
-            "name": "List supported diagnosis codes",
+            "name": "Retrieve the conversation transcript for an ambient session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "diagnoses"
+                "ambient",
+                "sessions",
+                ":id",
+                "transcript"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "45897857-be7a-43da-b81e-53040adb5ec6",
-              "name": "List of diagnosis codes",
+              "id": "cfd3b39d-2689-4342-b025-336dd58353af",
+              "name": "Transcript",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "diagnoses"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "transcript"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -143,40 +183,60 @@
           }
         },
         {
-          "id": "0ffb73e4-d846-44ac-a643-486a109a8e7e",
-          "name": "List supported encounter types",
+          "id": "f15f84eb-908d-4fe0-88db-e1dddde5a979",
+          "name": "Retrieve presigned URLs for the session audio recording",
           "request": {
-            "name": "List supported encounter types",
+            "name": "Retrieve presigned URLs for the session audio recording",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "encounter-types"
+                "ambient",
+                "sessions",
+                ":id",
+                "recording"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "ca53db7f-5bf4-4bc5-8ab6-47be1d25faf7",
-              "name": "List of encounter types",
+              "id": "69e0dff0-f204-4099-81f5-f45073ae1aa3",
+              "name": "Recording URLs",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "encounter-types"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "recording"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -210,40 +270,60 @@
           }
         },
         {
-          "id": "5d8524ce-1a9e-4495-998e-addf3e04f312",
-          "name": "List supported visit types",
+          "id": "321cbbf7-3a92-442c-8a5f-a2e8e37027cd",
+          "name": "Retrieve structured clinical data extracted from the session",
           "request": {
-            "name": "List supported visit types",
+            "name": "Retrieve structured clinical data extracted from the session",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "visit-types"
+                "ambient",
+                "sessions",
+                ":id",
+                "structured-data"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "a1a2eb1d-a6a8-48cc-b327-63789b73b6cb",
-              "name": "List of visit types",
+              "id": "cc5047c0-8b37-43c3-80ea-761bc20c78dc",
+              "name": "Structured clinical data",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "visit-types"
+                    "ambient",
+                    "sessions",
+                    ":id",
+                    "structured-data"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -277,40 +357,147 @@
           }
         },
         {
-          "id": "a874ec3d-f94f-45a1-939e-d661a110b222",
-          "name": "List supported provider roles",
+          "id": "d7f98dc0-29f2-42ca-be53-37962a900844",
+          "name": "Retrieve content for an encounter",
           "request": {
-            "name": "List supported provider roles",
+            "name": "Retrieve content for an encounter",
             "description": {},
             "url": {
               "path": [
-                "info",
-                "provider-roles"
+                "ambient",
+                "encounters",
+                ":id",
+                "content"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": []
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
             },
             "method": "GET",
             "auth": null
           },
           "response": [
             {
-              "id": "b6cdab45-cf10-4147-b4f9-413db496141c",
-              "name": "List of provider roles",
+              "id": "63371877-abea-4395-8b55-4237958905db",
+              "name": "Encounter content",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "info",
-                    "provider-roles"
+                    "ambient",
+                    "encounters",
+                    ":id",
+                    "content"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": []
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4af50632-f024-42ec-9f00-946e491b75b4",
+          "name": "Retrieve structured data for an encounter",
+          "request": {
+            "name": "Retrieve structured data for an encounter",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "encounters",
+                ":id",
+                "structured-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "151251f4-2aed-4a42-8cb5-41cfbcf24350",
+              "name": "Structured encounter data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "encounters",
+                    ":id",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
                 },
                 "header": [
                   {
@@ -365,8 +552,8 @@
     ]
   },
   "info": {
-    "_postman_id": "46e00a77-48dd-417b-bcd1-60b8feffa68c",
-    "name": "Suki Platform Ambient Content Info API",
+    "_postman_id": "17d235b6-73cb-438c-adfa-e6d2abc7b1b3",
+    "name": "Suki Platform Ambient Content API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "The Suki Platform REST API lets healthcare technology partners embed Suki's\nambient clinical documentation, dictation, form-filling, voice command, and\ncoding-assistance capabilities into EHRs, telehealth platforms, care\nmanagement systems, and revenue-cycle tools.\n\nPartner credentials are issued directly by Suki and are not available through\npublic self-service signup. Authentication uses provider registration and\nJWT-based session tokens; JWKS material is served by the platform.\n\nAll endpoints use the `/api/v1/` prefix.\n\n\nContact Support:\n Name: Suki Partnerships",

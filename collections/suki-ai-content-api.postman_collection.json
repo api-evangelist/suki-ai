@@ -1,0 +1,724 @@
+{
+  "item": [
+    {
+      "id": "1a8952ef-6073-4b44-ba64-06de926e91cf",
+      "name": "Content",
+      "description": {
+        "content": "Generated Note And Transcript Retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b343a336-eed3-457c-b1ab-dcc429e97e95",
+          "name": "Get Generated Clinical Note",
+          "request": {
+            "name": "Get Generated Clinical Note",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61ebbb96-a71c-4de1-987b-aac851d477ec",
+              "name": "Generated clinical note",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"06cd3310-8b92-8fa0-b9aa-58a6893bb261\",\n  \"encounterId\": \"string\",\n  \"specialty\": \"string\",\n  \"sections\": [\n    {\n      \"loinc\": \"10164-2\",\n      \"title\": \"History of present illness\",\n      \"text\": \"string\"\n    },\n    {\n      \"loinc\": \"10164-2\",\n      \"title\": \"History of present illness\",\n      \"text\": \"string\"\n    }\n  ],\n  \"generatedAt\": \"1999-09-05T00:01:56.599Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40106412-6a23-4bea-9624-0fbf47d7e606",
+          "name": "Get Session Transcript",
+          "request": {
+            "name": "Get Session Transcript",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "transcript"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e96b665d-c787-42fa-a133-030afa33cd47",
+              "name": "Diarized conversation transcript",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "transcript"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"73bdaf9a-b685-9275-c07e-3b24ed4bf438\",\n  \"turns\": [\n    {\n      \"speaker\": \"patient\",\n      \"startMs\": 7521,\n      \"endMs\": 3976,\n      \"text\": \"string\"\n    },\n    {\n      \"speaker\": \"patient\",\n      \"startMs\": 3976,\n      \"endMs\": 8394,\n      \"text\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6862944-1fba-4393-9c41-39bfe71781dc",
+          "name": "Get Session Recording URL",
+          "request": {
+            "name": "Get Session Recording URL",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "recording"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "188f44ca-90ee-4b2a-9467-a09140d73720",
+              "name": "Presigned URL for the captured audio recording",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "recording"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"http://vbDCsBsJbmiPTRiHbUrdGUfFs.mhtysXjV2TKF8,eiB71pXFS7LiDdDrJxWUabf,OYk2J.rWucg3USFG0I5gcBheV0OqPZ5DJG5sF5O\",\n  \"expiresAt\": \"1973-01-02T04:16:35.784Z\",\n  \"format\": \"audio/wav\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a436b9c8-cebd-4d9c-9536-41950d0c2530",
+          "name": "Get Session Structured Data",
+          "request": {
+            "name": "Get Session Structured Data",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "structured-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67fa87cf-cd52-4425-8098-f6984834640c",
+              "name": "Structured clinical data extracted from the encounter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"problems\": [\n    \"string\",\n    \"string\"\n  ],\n  \"medications\": [\n    \"string\",\n    \"string\"\n  ],\n  \"orders\": [\n    {\n      \"code\": \"string\",\n      \"system\": \"string\",\n      \"dosage\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"system\": \"string\",\n      \"dosage\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff94efb4-6ac0-4874-af3c-8c00caaf09bb",
+          "name": "Get Encounter Generated Note",
+          "request": {
+            "name": "Get Encounter Generated Note",
+            "description": {},
+            "url": {
+              "path": [
+                "encounters",
+                ":encounterId",
+                "content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "encounterId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b6da45c-9393-4423-9d54-26b2f631ebd6",
+              "name": "Aggregated note across all sessions for the encounter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encounters",
+                    ":encounterId",
+                    "content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "encounterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"2be322a1-65a5-de20-323c-386f1e023157\",\n  \"encounterId\": \"string\",\n  \"specialty\": \"string\",\n  \"sections\": [\n    {\n      \"loinc\": \"10164-2\",\n      \"title\": \"History of present illness\",\n      \"text\": \"string\"\n    },\n    {\n      \"loinc\": \"10164-2\",\n      \"title\": \"History of present illness\",\n      \"text\": \"string\"\n    }\n  ],\n  \"generatedAt\": \"1969-01-01T04:35:04.474Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c0d19d0-546b-4db2-a645-b0d03f315ccc",
+          "name": "Get Encounter Structured Data",
+          "request": {
+            "name": "Get Encounter Structured Data",
+            "description": {},
+            "url": {
+              "path": [
+                "encounters",
+                ":encounterId",
+                "structured-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "encounterId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2919073a-465e-4caf-9f73-e47810d6ade8",
+              "name": "Aggregated structured data across all sessions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "encounters",
+                    ":encounterId",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "encounterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"problems\": [\n    \"string\",\n    \"string\"\n  ],\n  \"medications\": [\n    \"string\",\n    \"string\"\n  ],\n  \"orders\": [\n    {\n      \"code\": \"string\",\n      \"system\": \"string\",\n      \"dosage\": \"string\"\n    },\n    {\n      \"code\": \"string\",\n      \"system\": \"string\",\n      \"dosage\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c228573a-eb83-48d1-b1bf-acd063d337e1",
+          "name": "Get Form Structured Data",
+          "request": {
+            "name": "Get Form Structured Data",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions",
+                ":sessionId",
+                "structured-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36582e59-3306-43d7-8b44-da8460eec26b",
+              "name": "Typed structured data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions",
+                    ":sessionId",
+                    "structured-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"eebf3f9a-eaab-8b2b-fdd8-fcc3ad01d674\",\n  \"templateId\": \"string\",\n  \"fields\": [\n    {\n      \"fieldId\": \"string\",\n      \"label\": \"string\",\n      \"type\": \"string\",\n      \"value\": \"\",\n      \"confidence\": 0.8245923249391912\n    },\n    {\n      \"fieldId\": \"string\",\n      \"label\": \"string\",\n      \"type\": \"choice\",\n      \"value\": \"\",\n      \"confidence\": 0.35404894059782543\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sdp.suki-stage.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "sdp_suki_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c4c7ac0-df36-4aa5-97a7-b3c5701c05f8",
+    "name": "Suki Ambient Auth Content API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST endpoints for Suki Speech Service ambient clinical documentation.\nPartners create an ambient session, seed it with patient and encounter\ncontext, stream audio over a separate WebSocket channel, end the session,\nand then retrieve the generated clinical note, transcript, structured data,\nand recording. Pair with the WebSocket audio endpoint\n`wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the\nwebhook callback POSTed to the partner endpoint on session completion.\n\n\nContact Support:\n Name: Suki for Partners",
+      "type": "text/plain"
+    }
+  }
+}

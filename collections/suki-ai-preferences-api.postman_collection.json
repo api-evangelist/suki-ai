@@ -1,23 +1,22 @@
 {
   "item": [
     {
-      "id": "3e49813f-9c8f-4ac1-98c1-37cc40a9c75f",
-      "name": "Dictation",
+      "id": "e0687048-09cf-43ad-9189-241ef581a938",
+      "name": "Preferences",
       "description": {
-        "content": "Dictation Session Lifecycle",
+        "content": "Provider Personalization",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "c2cfea65-947b-4db8-b790-3f026c109db7",
-          "name": "Create Dictation Session",
+          "id": "61749a90-7c7d-4ed6-825c-9d47b15b73a0",
+          "name": "Get User Preferences",
           "request": {
-            "name": "Create Dictation Session",
+            "name": "Get User Preferences",
             "description": {},
             "url": {
               "path": [
-                "dictation",
-                "sessions"
+                "user-preferences"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -27,35 +26,21 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"providerId\": \"<string>\",\n  \"mode\": \"in-field\",\n  \"languageCode\": \"<string>\",\n  \"fieldHint\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "bdbdba03-0f8d-4e0a-8cc8-89e9cf939755",
-              "name": "Dictation session created",
+              "id": "bdbf743e-8c02-4bf7-bf93-221051d0fe88",
+              "name": "Current provider preferences",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "dictation",
-                    "sessions"
+                    "user-preferences"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -77,26 +62,18 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"providerId\": \"<string>\",\n  \"mode\": \"in-field\",\n  \"languageCode\": \"en-US\",\n  \"fieldHint\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
-              "status": "Created",
-              "code": 201,
+              "status": "OK",
+              "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"sessionId\": \"7dc87b89-aa45-138b-a1b4-d346454009f8\",\n  \"providerId\": \"string\",\n  \"mode\": \"string\",\n  \"status\": \"open\",\n  \"audioWebsocketUrl\": \"http://dgtqwusObMPUGDCNFFgiA.bpszzQCgEIdnm3UOk5tPte4KAWi,nyMmjcJyw-gUjnvnG6z\",\n  \"createdAt\": \"2019-05-18T11:57:01.168Z\"\n}",
+              "body": "{\n  \"defaultSpecialty\": \"string\",\n  \"defaultVisitType\": \"string\",\n  \"noteFormat\": \"narrative\",\n  \"loincSections\": [\n    \"string\",\n    \"string\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -107,66 +84,57 @@
           }
         },
         {
-          "id": "dcc5acc7-6939-4e6c-bf0b-26b3b8af5dfc",
-          "name": "End Dictation Session",
+          "id": "a992cd19-953a-4c8e-8feb-0a47f256b503",
+          "name": "Update User Preferences",
           "request": {
-            "name": "End Dictation Session",
+            "name": "Update User Preferences",
             "description": {},
             "url": {
               "path": [
-                "dictation",
-                "sessions",
-                ":sessionId",
-                "end"
+                "user-preferences"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
               "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "sessionId",
-                  "description": "(Required) "
-                }
-              ]
+              "variable": []
             },
             "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"defaultSpecialty\": \"<string>\",\n  \"defaultVisitType\": \"<string>\",\n  \"noteFormat\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
           },
           "response": [
             {
-              "id": "4a7f47d4-1af2-48e7-ab32-52ed34d292e7",
-              "name": "Session ended; final transcript returned",
+              "id": "6f7a844e-8c2b-4cbb-8a97-57b90b9045e7",
+              "name": "Updated provider preferences",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "dictation",
-                    "sessions",
-                    ":sessionId",
-                    "end"
+                    "user-preferences"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
                   "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "sessionId",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "variable": []
                 },
                 "header": [
                   {
@@ -182,8 +150,16 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"defaultSpecialty\": \"<string>\",\n  \"defaultVisitType\": \"<string>\",\n  \"noteFormat\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
               },
               "status": "OK",
               "code": 200,
@@ -193,7 +169,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"sessionId\": \"53f65fe1-7313-58c7-f30f-967a6860743f\",\n  \"transcript\": \"string\",\n  \"durationMs\": 8284,\n  \"confidence\": 0.6722333463636936\n}",
+              "body": "{\n  \"defaultSpecialty\": \"<string>\",\n  \"defaultVisitType\": \"<string>\",\n  \"noteFormat\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -233,8 +209,8 @@
     ]
   },
   "info": {
-    "_postman_id": "31bab162-43e8-4742-bfc6-7831ce9bfb85",
-    "name": "Suki Ambient Auth Dictation API",
+    "_postman_id": "5e6bef17-0c10-41f4-8d90-7ecb824056bb",
+    "name": "Suki Ambient Auth Preferences API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "REST endpoints for Suki Speech Service ambient clinical documentation.\nPartners create an ambient session, seed it with patient and encounter\ncontext, stream audio over a separate WebSocket channel, end the session,\nand then retrieve the generated clinical note, transcript, structured data,\nand recording. Pair with the WebSocket audio endpoint\n`wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the\nwebhook callback POSTed to the partner endpoint on session completion.\n\n\nContact Support:\n Name: Suki for Partners",

@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient Auth Preferences API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preferences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/user-preferences"
+          },
+          "docs": "Get User Preferences"
+        },
+        {
+          "info": {
+            "name": "Update User Preferences",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://sdp.suki-stage.com/api/v1/user-preferences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update User Preferences"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1160 @@
+{
+  "item": [
+    {
+      "id": "4e6a7cfc-f50e-42aa-a6d2-965e2f3e47b3",
+      "name": "Sessions",
+      "description": {
+        "content": "Ambient Session Lifecycle",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c944d8a-27e4-424f-bb1d-29cbfb2b3dff",
+          "name": "Create Ambient Session",
+          "request": {
+            "name": "Create Ambient Session",
+            "description": {
+              "content": "Create a new ambient documentation session for a provider and encounter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ambient",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providerId\": \"<string>\",\n  \"encounterId\": \"<string>\",\n  \"specialty\": \"<string>\",\n  \"encounterType\": \"<string>\",\n  \"visitType\": \"<string>\",\n  \"languageCode\": \"<string>\",\n  \"problemBasedCharting\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8578af5-cabc-4edd-bab6-10915c84fbb1",
+              "name": "Session created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providerId\": \"<string>\",\n  \"encounterId\": \"<string>\",\n  \"specialty\": \"family-medicine\",\n  \"encounterType\": \"office-visit\",\n  \"visitType\": \"new-patient\",\n  \"languageCode\": \"en-US\",\n  \"problemBasedCharting\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"cfcc5353-a8d6-9eff-8f66-26d0afaf356b\",\n  \"providerId\": \"string\",\n  \"encounterId\": \"string\",\n  \"status\": \"ended\",\n  \"createdAt\": \"1979-10-13T00:35:57.195Z\",\n  \"audioWebsocketUrl\": \"http://QWtHvlxWkpVf.iqEuX2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "338ff433-bc36-4e38-b318-a9797b10b84c",
+              "name": "Missing or invalid sdp_suki_token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providerId\": \"<string>\",\n  \"encounterId\": \"<string>\",\n  \"specialty\": \"family-medicine\",\n  \"encounterType\": \"office-visit\",\n  \"visitType\": \"new-patient\",\n  \"languageCode\": \"en-US\",\n  \"problemBasedCharting\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fee9d506-c90c-4fd0-be26-07c3df436b23",
+          "name": "Seed Session Context",
+          "request": {
+            "name": "Seed Session Context",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef63f2c4-2afd-443d-90fb-9760e0d65050",
+              "name": "Context applied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f20263f-575a-453a-9b0c-22343099f4cb",
+          "name": "Update Session Context",
+          "request": {
+            "name": "Update Session Context",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "826e2515-ac30-4917-be1e-b5b2cf560a53",
+              "name": "Context updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\",\n    \"problems\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"priorNote\": \"<string>\",\n  \"loincSections\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dfce335-15ba-4cc0-9d56-fd0f90d33bb8",
+          "name": "End Ambient Session",
+          "request": {
+            "name": "End Ambient Session",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4eaefbad-8f1a-4466-b188-0443b561706c",
+              "name": "Session ended; note generation queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"cfcc5353-a8d6-9eff-8f66-26d0afaf356b\",\n  \"providerId\": \"string\",\n  \"encounterId\": \"string\",\n  \"status\": \"ended\",\n  \"createdAt\": \"1979-10-13T00:35:57.195Z\",\n  \"audioWebsocketUrl\": \"http://QWtHvlxWkpVf.iqEuX2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "baeb4698-633b-42b1-818e-7645dfd428dc",
+          "name": "Get Ambient Session Status",
+          "request": {
+            "name": "Get Ambient Session Status",
+            "description": {},
+            "url": {
+              "path": [
+                "ambient",
+                "sessions",
+                ":sessionId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e95aebad-401d-4a0d-98a9-8ca07fad63b1",
+              "name": "Current session and note generation status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ambient",
+                    "sessions",
+                    ":sessionId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"e69a5619-1c2e-1936-0f0f-066865686474\",\n  \"status\": \"string\",\n  \"progress\": 68,\n  \"eta\": 6728\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "843560f4-c22a-439c-8a61-38b872f7468a",
+          "name": "Create Form Filling Session",
+          "request": {
+            "name": "Create Form Filling Session",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providerId\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"languageCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78eb7d5e-406e-4906-92c7-7a69c5bbf0bf",
+              "name": "Session created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"providerId\": \"<string>\",\n  \"templateId\": \"<string>\",\n  \"languageCode\": \"en-US\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"612dab9d-1c6a-a9ef-567d-59e13c8a026e\",\n  \"templateId\": \"string\",\n  \"status\": \"complete\",\n  \"audioWebsocketUrl\": \"http://LkI.ahmzxsw4Ebut9dC1B280XQhbHbLVzN\",\n  \"createdAt\": \"1972-07-28T11:52:40.904Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98f2e9d0-9b3b-45c1-bbd3-65b9d2c22f64",
+          "name": "Seed Form Filling Context",
+          "request": {
+            "name": "Seed Form Filling Context",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions",
+                ":sessionId",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": true,\n    \"key_1\": \"string\",\n    \"key_2\": 3793\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1a07d16-8270-4dae-8536-41c5b1fa2de6",
+              "name": "Context applied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions",
+                    ":sessionId",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "027dac75-bd5f-4aea-858d-efbe3c1a2796",
+          "name": "Update Form Filling Context",
+          "request": {
+            "name": "Update Form Filling Context",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions",
+                ":sessionId",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": true,\n    \"key_1\": \"string\",\n    \"key_2\": 3793\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95423dd4-79b6-4ed5-85e0-9ce3ee428d6c",
+              "name": "Context updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions",
+                    ":sessionId",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"patient\": {\n    \"mrn\": \"<string>\",\n    \"sex\": \"<string>\",\n    \"birthDate\": \"<date>\"\n  },\n  \"priorAnswers\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf2f54e8-0fe2-4350-beae-a295f93750e5",
+          "name": "End Form Filling Session",
+          "request": {
+            "name": "End Form Filling Session",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions",
+                ":sessionId",
+                "end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f57f1ce3-00fd-46f5-afb0-1ee6071fc6a5",
+              "name": "Session ended; structured data queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions",
+                    ":sessionId",
+                    "end"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"612dab9d-1c6a-a9ef-567d-59e13c8a026e\",\n  \"templateId\": \"string\",\n  \"status\": \"complete\",\n  \"audioWebsocketUrl\": \"http://LkI.ahmzxsw4Ebut9dC1B280XQhbHbLVzN\",\n  \"createdAt\": \"1972-07-28T11:52:40.904Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d286362c-a45f-483a-9385-5ded9b86cbea",
+          "name": "Get Form Filling Status",
+          "request": {
+            "name": "Get Form Filling Status",
+            "description": {},
+            "url": {
+              "path": [
+                "form-filling",
+                "sessions",
+                ":sessionId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8052120e-74a2-47c9-82b7-7140e66e5ca1",
+              "name": "Processing status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "form-filling",
+                    "sessions",
+                    ":sessionId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "sdp_suki_token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"991ba9ad-4b7f-7225-fa25-db5ae4fab815\",\n  \"status\": \"string\",\n  \"progress\": 65\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://sdp.suki-stage.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "sdp_suki_token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0eab9e7e-b4f6-4d86-8810-ad3a9c4f48da",
+    "name": "Suki Ambient Auth Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST endpoints for Suki Speech Service ambient clinical documentation.\nPartners create an ambient session, seed it with patient and encounter\ncontext, stream audio over a separate WebSocket channel, end the session,\nand then retrieve the generated clinical note, transcript, structured data,\nand recording. Pair with the WebSocket audio endpoint\n`wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the\nwebhook callback POSTed to the partner endpoint on session completion.\n\n\nContact Support:\n Name: Suki for Partners",
+      "type": "text/plain"
+    }
+  }
+}

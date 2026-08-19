@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Suki Ambient Auth Templates API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "sdp_suki_token",
+      "value": "{{sdp_suki_token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Form Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sdp.suki-stage.com/api/v1/form-filling/templates"
+          },
+          "docs": "List Form Templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
