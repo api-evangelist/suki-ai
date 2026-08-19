@@ -33,7 +33,7 @@ tags:
 - Dictation
 created: '2026-05-23'
 modified: '2026-08-08'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: suki-ai:suki-platform-api
   name: Suki Platform REST API
