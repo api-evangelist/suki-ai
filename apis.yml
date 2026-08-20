@@ -139,6 +139,8 @@ apis:
   humanURL: https://developer.suki.ai/documentation/overview
   baseURL: https://developer.suki.ai
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
