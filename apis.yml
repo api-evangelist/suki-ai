@@ -37,11 +37,12 @@ specificationVersion: '0.23'
 apis:
 - aid: suki-ai:suki-platform-api
   name: Suki Platform REST API
-  description: The Suki Platform REST API and SDKs let healthcare technology partners embed Suki's ambient
-    clinical documentation, dictation, voice command, and form-filling capabilities into EHRs, telehealth
-    platforms, care management systems, and revenue-cycle tools. Authentication is partner-issued; the
-    platform supports REST APIs, a Web SDK, a Headless Web SDK (React 18+ beta), a native iOS Mobile SDK
-    (Android coming), and an embedded Dictation SDK (iframe beta).
+  description: >-
+    The Suki Platform REST API and SDKs let healthcare technology partners embed Suki's ambient clinical
+    documentation, dictation, voice command, and form-filling capabilities into EHRs, telehealth platforms,
+    care management systems, and revenue-cycle tools. Authentication is partner-issued; the platform supports
+    REST APIs, a Web SDK, a Headless Web SDK (React 18+ beta), a native iOS Mobile SDK (Android coming),
+    and an embedded Dictation SDK (iframe beta).
   humanURL: https://developer.suki.ai/documentation/overview
   baseURL: https://developer.suki.ai
   tags:
@@ -155,6 +156,76 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/suki-ai-user-preferences-api-openapi.yml
+- aid: suki-ai:suki-ai-auth-api
+  name: Suki AI Auth API
+  description: Provider Registration And Token Issuance
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-auth-api-openapi.yml
+- aid: suki-ai:suki-ai-content-api
+  name: Suki AI Content API
+  description: Generated Note And Transcript Retrieval
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-content-api-openapi.yml
+- aid: suki-ai:suki-ai-dictation-api
+  name: Suki AI Dictation API
+  description: Dictation Session Lifecycle
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Dictation
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-dictation-api-openapi.yml
+- aid: suki-ai:suki-ai-medicationorders-api
+  name: Suki AI Medication Orders API
+  description: Medication Ordering Metadata
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - MedicationOrders
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-medicationorders-api-openapi.yml
+- aid: suki-ai:suki-ai-preferences-api
+  name: Suki AI Preferences API
+  description: Provider Personalization
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Preferences
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-preferences-api-openapi.yml
+- aid: suki-ai:suki-ai-sessions-api
+  name: Suki AI Sessions API
+  description: Ambient Session Lifecycle
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-sessions-api-openapi.yml
+- aid: suki-ai:suki-ai-templates-api
+  name: Suki AI Templates API
+  description: Suki Hosted Form Templates
+  humanURL: https://developer.suki.ai/documentation/overview
+  baseURL: https://developer.suki.ai
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/suki-ai-templates-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/suki-ai-agentic-access.yml
