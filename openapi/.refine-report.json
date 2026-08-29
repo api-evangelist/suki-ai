@@ -1,21 +1,19 @@
 {
   "provider": "suki-ai",
   "sources": [
-    "suki-ai-ambient-content-api-openapi.yml",
-    "suki-ai-ambient-sessions-api-openapi.yml",
-    "suki-ai-authentication-api-openapi.yml",
-    "suki-ai-feedback-api-openapi.yml",
-    "suki-ai-form-filling-content-api-openapi.yml",
-    "suki-ai-form-filling-sessions-api-openapi.yml",
-    "suki-ai-info-api-openapi.yml",
-    "suki-ai-notifications-api-openapi.yml",
-    "suki-ai-user-preferences-api-openapi.yml"
+    "_original/suki-ai-ambient-api-openapi.yml",
+    "_original/suki-ai-form-filling-api-openapi.yml",
+    "_original/suki-ai-openapi.yml"
   ],
   "outputs": [
+    "suki-ai-content-api-openapi.yml",
+    "suki-ai-feedback-api-openapi.yml",
+    "suki-ai-preferences-api-openapi.yml",
+    "suki-ai-sessions-api-openapi.yml",
+    "suki-ai-templates-api-openapi.yml",
     "suki-ai-ambient-content-api-openapi.yml",
     "suki-ai-ambient-sessions-api-openapi.yml",
     "suki-ai-authentication-api-openapi.yml",
-    "suki-ai-feedback-api-openapi.yml",
     "suki-ai-form-filling-content-api-openapi.yml",
     "suki-ai-form-filling-sessions-api-openapi.yml",
     "suki-ai-info-api-openapi.yml",
@@ -25,6 +23,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "suki-ai-ambient-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "suki-ai-form-filling-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "suki-ai-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Content' spans 2 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml): per-path servers applied",
+    "tag 'Feedback' spans 3 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml, suki-ai-openapi.yml): per-path servers applied",
+    "tag 'Sessions' spans 2 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "suki-ai-ambient-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-ambient-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-dictation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-feedback-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-form-filling-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-form-filling-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-medicationorders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-preferences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "suki-ai-user-preferences-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

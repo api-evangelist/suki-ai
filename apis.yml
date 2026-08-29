@@ -168,16 +168,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/suki-ai-user-preferences-api-openapi.yml
-- aid: suki-ai:suki-ai-auth-api
-  name: Suki AI Auth API
-  description: Provider Registration And Token Issuance
-  humanURL: https://developer.suki.ai/documentation/overview
-  baseURL: https://developer.suki.ai
-  tags:
-  - Auth
-  properties:
-  - type: OpenAPI
-    url: openapi/suki-ai-auth-api-openapi.yml
 - aid: suki-ai:suki-ai-content-api
   name: Suki AI Content API
   description: Generated Note And Transcript Retrieval
@@ -188,26 +178,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/suki-ai-content-api-openapi.yml
-- aid: suki-ai:suki-ai-dictation-api
-  name: Suki AI Dictation API
-  description: Dictation Session Lifecycle
-  humanURL: https://developer.suki.ai/documentation/overview
-  baseURL: https://developer.suki.ai
-  tags:
-  - Dictation
-  properties:
-  - type: OpenAPI
-    url: openapi/suki-ai-dictation-api-openapi.yml
-- aid: suki-ai:suki-ai-medicationorders-api
-  name: Suki AI Medication Orders API
-  description: Medication Ordering Metadata
-  humanURL: https://developer.suki.ai/documentation/overview
-  baseURL: https://developer.suki.ai
-  tags:
-  - MedicationOrders
-  properties:
-  - type: OpenAPI
-    url: openapi/suki-ai-medicationorders-api-openapi.yml
 - aid: suki-ai:suki-ai-preferences-api
   name: Suki AI Preferences API
   description: Provider Personalization

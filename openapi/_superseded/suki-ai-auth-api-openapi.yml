@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Suki Ambient Auth API
   description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
@@ -82,50 +82,6 @@ paths:
                 $ref: '#/components/schemas/Jwks'
 components:
   schemas:
-    LoginRequest:
-      type: object
-      required:
-      - partnerId
-      - partnerSecret
-      properties:
-        partnerId:
-          type: string
-        partnerSecret:
-          type: string
-        providerId:
-          type: string
-          description: Optional provider to scope token to
-    TokenResponse:
-      type: object
-      properties:
-        sdpSukiToken:
-          type: string
-          description: JWT to send in the sdp_suki_token header
-        tokenType:
-          type: string
-          example: Bearer
-        expiresIn:
-          type: integer
-          description: Seconds until expiry
-    ProviderRegistration:
-      type: object
-      required:
-      - partnerProviderId
-      - name
-      properties:
-        partnerProviderId:
-          type: string
-          description: Partner-owned provider identifier
-        name:
-          type: string
-        npi:
-          type: string
-          description: National Provider Identifier
-        specialty:
-          type: string
-        email:
-          type: string
-          format: email
     Provider:
       type: object
       properties:
@@ -140,6 +96,31 @@ components:
         createdAt:
           type: string
           format: date-time
+    TokenResponse:
+      type: object
+      properties:
+        sdpSukiToken:
+          type: string
+          description: JWT to send in the sdp_suki_token header
+        tokenType:
+          type: string
+          example: Bearer
+        expiresIn:
+          type: integer
+          description: Seconds until expiry
+    LoginRequest:
+      type: object
+      required:
+      - partnerId
+      - partnerSecret
+      properties:
+        partnerId:
+          type: string
+        partnerSecret:
+          type: string
+        providerId:
+          type: string
+          description: Optional provider to scope token to
     Jwks:
       type: object
       properties:
@@ -160,6 +141,25 @@ components:
                 type: string
               e:
                 type: string
+    ProviderRegistration:
+      type: object
+      required:
+      - partnerProviderId
+      - name
+      properties:
+        partnerProviderId:
+          type: string
+          description: Partner-owned provider identifier
+        name:
+          type: string
+        npi:
+          type: string
+          description: National Provider Identifier
+        specialty:
+          type: string
+        email:
+          type: string
+          format: email
   securitySchemes:
     SdpSukiToken:
       type: apiKey

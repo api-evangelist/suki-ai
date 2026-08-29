@@ -1,19 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Suki Ambient Auth Templates API
-  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
+  title: Suki Form Filling Templates API
+  description: 'Turn clinician voice input into structured form output. Partners
 
-    Partners create an ambient session, seed it with patient and encounter
+    create a form-filling session bound to a Suki form template, stream
 
-    context, stream audio over a separate WebSocket channel, end the session,
+    audio over the shared WebSocket
 
-    and then retrieve the generated clinical note, transcript, structured data,
+    (`wss://sdp.suki-stage.com/api/v1/form-filling/sessions/{sessionId}/audio`),
 
-    and recording. Pair with the WebSocket audio endpoint
+    end the session, and retrieve the typed structured data to map into
 
-    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
+    their own intake, screening, or assessment forms. Webhooks notify
 
-    webhook callback POSTed to the partner endpoint on session completion.
+    partner endpoints when structured output is ready.
 
     '
   version: 1.0.0

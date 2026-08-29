@@ -1,25 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Suki Ambient Auth Sessions API
-  description: 'REST endpoints for Suki Speech Service ambient clinical documentation.
-
-    Partners create an ambient session, seed it with patient and encounter
-
-    context, stream audio over a separate WebSocket channel, end the session,
-
-    and then retrieve the generated clinical note, transcript, structured data,
-
-    and recording. Pair with the WebSocket audio endpoint
-
-    `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
-
-    webhook callback POSTed to the partner endpoint on session completion.
-
-    '
+  title: Suki Ai Sessions API
   version: 1.0.0
   contact:
     name: Suki for Partners
     url: https://developer.suki.ai
+  description: 'Operations tagged Sessions across 2 of this provider''s published API definitions: suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://sdp.suki-stage.com/api/v1
   description: Suki Speech Service staging environment
@@ -51,6 +37,9 @@ paths:
                 $ref: '#/components/schemas/AmbientSession'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /ambient/sessions/{sessionId}/context:
     post:
       tags:
@@ -92,6 +81,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SessionContext'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /ambient/sessions/{sessionId}/end:
     post:
       tags:
@@ -107,6 +99,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AmbientSession'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /ambient/sessions/{sessionId}/status:
     get:
       tags:
@@ -122,6 +117,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SessionStatus'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /form-filling/sessions:
     post:
       tags:
@@ -141,6 +139,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FormFillingSession'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /form-filling/sessions/{sessionId}/context:
     post:
       tags:
@@ -182,6 +183,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FormFillingContext'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /form-filling/sessions/{sessionId}/end:
     post:
       tags:
@@ -197,6 +201,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FormFillingSession'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
   /form-filling/sessions/{sessionId}/status:
     get:
       tags:
@@ -212,78 +219,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FormFillingStatus'
+    servers:
+    - url: https://sdp.suki-stage.com/api/v1
+      description: Suki Speech Service staging environment
 components:
   schemas:
-    FormFillingSessionCreate:
-      type: object
-      required:
-      - providerId
-      - templateId
-      properties:
-        providerId:
-          type: string
-        templateId:
-          type: string
-        languageCode:
-          type: string
-          example: en-US
-    FormFillingStatus:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        status:
-          type: string
-        progress:
-          type: integer
-          minimum: 0
-          maximum: 100
-    FormFillingSession:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        templateId:
-          type: string
-        status:
-          type: string
-          enum:
-          - created
-          - recording
-          - ended
-          - processing
-          - complete
-        audioWebsocketUrl:
-          type: string
-          format: uri
-        createdAt:
-          type: string
-          format: date-time
-    SessionContext:
-      type: object
-      properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-            problems:
-              type: array
-              items:
-                type: string
-        priorNote:
-          type: string
-        loincSections:
-          type: array
-          items:
-            type: string
     AmbientSession:
       type: object
       properties:
@@ -309,22 +249,21 @@ components:
         audioWebsocketUrl:
           type: string
           format: uri
-    FormFillingContext:
+    SessionStatus:
       type: object
       properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-        priorAnswers:
-          type: object
-          additionalProperties: true
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        eta:
+          type: integer
+          description: Estimated seconds until note is ready
     AmbientSessionCreate:
       type: object
       required:
@@ -350,7 +289,37 @@ components:
         problemBasedCharting:
           type: boolean
           default: true
-    SessionStatus:
+    SessionContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+            problems:
+              type: array
+              items:
+                type: string
+        priorNote:
+          type: string
+        loincSections:
+          type: array
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    FormFillingStatus:
       type: object
       properties:
         sessionId:
@@ -362,23 +331,57 @@ components:
           type: integer
           minimum: 0
           maximum: 100
-        eta:
-          type: integer
-          description: Estimated seconds until note is ready
-    Error:
+    FormFillingSessionCreate:
+      type: object
+      required:
+      - providerId
+      - templateId
+      properties:
+        providerId:
+          type: string
+        templateId:
+          type: string
+        languageCode:
+          type: string
+          example: en-US
+    FormFillingContext:
       type: object
       properties:
-        code:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+        priorAnswers:
+          type: object
+          additionalProperties: true
+    FormFillingSession:
+      type: object
+      properties:
+        sessionId:
           type: string
-        message:
+          format: uuid
+        templateId:
           type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid sdp_suki_token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        status:
+          type: string
+          enum:
+          - created
+          - recording
+          - ended
+          - processing
+          - complete
+        audioWebsocketUrl:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
   parameters:
     SessionId:
       name: sessionId
@@ -387,8 +390,18 @@ components:
       schema:
         type: string
         format: uuid
+  responses:
+    Unauthorized:
+      description: Missing or invalid sdp_suki_token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     SdpSukiToken:
       type: apiKey
       in: header
       name: sdp_suki_token
+x-refined-from:
+- suki-ai-ambient-api-openapi.yml
+- suki-ai-form-filling-api-openapi.yml
