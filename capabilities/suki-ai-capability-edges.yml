@@ -19,62 +19,58 @@ edges:
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
   confidence: 0.92
-  evidence: GET /ambient/sessions/{id}/content  getAmbientSessionContent  Retrieve generated note content
-    for an ambient session; getAmbientSessionStructuredData  Retrieve structured clinical data extracted
-    from the session
-  reason: Retrieval of ambiently generated clinical notes, transcripts and structured clinical data for
-    encounters is clinician documentation authoring via ambient capture — Clinical Note Documentation.
+  evidence: '''Retrieve generated note content for an ambient session''; ''Retrieve structured clinical
+    data extracted from the session'''
+  reason: Retrieval of AI-generated clinical notes and structured clinical data for an encounter is clinical
+    note documentation via ambient capture.
 - tag: Ambient Sessions
   spec_file: suki-ai-ambient-sessions-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
   confidence: 0.9
-  evidence: POST /ambient/sessions  createAmbientSession  Create a new ambient documentation session;
-    POST /ambient/sessions/{id}/end  endAmbientSession
-  reason: Lifecycle control of ambient clinical documentation sessions (create, seed encounter context,
-    end, check processing) is the capture side of authoring clinical notes using ambient modes.
+  evidence: '''POST /ambient/sessions createAmbientSession  Create a new ambient documentation session'''
+  reason: Lifecycle of ambient clinical documentation sessions — authoring of clinical notes using ambient
+    capture modes.
 - tag: Content
   spec_file: suki-ai-content-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
-  confidence: 0.88
-  evidence: getAmbientSessionContent  Get Generated Clinical Note; schemas ClinicalNote, NoteSection,
-    StructuredClinicalData
-  reason: Aggregated content-retrieval surface returning generated clinical notes, note sections, transcripts
-    and structured clinical data (plus form-filling structured data) — clinician documentation authoring
-    output.
+  confidence: 0.9
+  evidence: '''getAmbientSessionContent  Get Generated Clinical Note''; schemas ''ClinicalNote'', ''StructuredClinicalData'',
+    ''NoteSection'''
+  reason: Operations return generated clinical notes, transcripts and structured clinical data for encounters
+    — clinical note documentation.
 - tag: Sessions
   spec_file: suki-ai-sessions-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
-  confidence: 0.8
-  evidence: 'POST /ambient/sessions ''Create Ambient Session'', ''Seed Session Context'', ''End Ambient
-    Session''; vendor: ''retrieve the generated clinical note, transcript, structured data'''
-  reason: The session lifecycle drives ambient generation of clinical notes from the clinician-patient
-    encounter, which is squarely clinician authoring of clinical notes via ambient/voice capture.
+  confidence: 0.75
+  evidence: POST /ambient/sessions "Create Ambient Session"; "retrieve the generated clinical note, transcript,
+    structured data"
+  reason: Ambient and form-filling session operations drive generation of clinical notes and structured
+    documentation from clinician voice — clinical note documentation using voice/ambient capture.
 - tag: Form Filling Content
   spec_file: suki-ai-form-filling-content-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
-  confidence: 0.72
-  evidence: GET /form-filling/sessions/{id}/structured-data — 'Retrieve structured form data extracted
-    from the session'; vendor embeds 'ambient clinical documentation, dictation, form-filling'
-  reason: Retrieval of structured clinical content generated from clinician voice input serves clinician
-    documentation of the patient record — clinical note documentation via structured/voice/ambient capture
-    modes. Some ambiguity as the form output may feed intake/assessment forms rather than notes, hence
-    moderate confidence.
+  confidence: 0.7
+  evidence: GET /form-filling/sessions/{id}/structured-data — "Retrieve structured form data extracted
+    from the session"; vendor embeds "ambient clinical documentation, dictation, form-filling"
+  reason: Operation returns structured clinical documentation content extracted from a voice/ambient session,
+    i.e. clinician documentation authoring via structured/voice capture modes rather than any technical
+    plumbing.
 - tag: Form Filling Sessions
   spec_file: suki-ai-form-filling-sessions-api-openapi.yml
   capability_id: BC-2830.10
   capability_id_l1: BC-2830
   capability_name: Clinical Note Documentation
   confidence: 0.7
-  evidence: 'POST /form-filling/sessions ''Create a new form-filling session''; ''Seed form context'';
-    vendor: ''Turn clinician voice input into structured form output'''
-  reason: Session lifecycle for voice-driven clinical form completion is clinician documentation capture;
-    maps to clinical documentation with structured/voice capture. Moderate confidence because the surface
-    is session plumbing around the documentation act.
+  evidence: POST /form-filling/sessions "Create a new form-filling session"; "Seed form context"; embed
+    "ambient clinical documentation, dictation, form-filling" into EHRs
+  reason: Session lifecycle for turning clinician voice input into structured clinical form documentation
+    — clinical note/documentation authoring capability. Some ambiguity because sessions are also a technical
+    construct, hence 0.7.
