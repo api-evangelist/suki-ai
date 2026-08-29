@@ -209,6 +209,9 @@ apis:
   - type: OpenAPI
     url: openapi/suki-ai-templates-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/suki-ai-capability-edges.yml
+  name: Suki AI Business Capability Map
 - type: AgenticAccess
   url: agentic-access/suki-ai-agentic-access.yml
 - type: DomainSecurity
