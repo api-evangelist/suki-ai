@@ -7,19 +7,7 @@ info:
 
     coding-assistance capabilities into EHRs, telehealth platforms, care
 
-    management systems, and revenue-cycle tools.
-
-
-    Partner credentials are issued directly by Suki and are not available through
-
-    public self-service signup. Authentication uses provider registration and
-
-    JWT-based session tokens; JWKS material is served by the platform.
-
-
-    All endpoints use the `/api/v1/` prefix.
-
-    '
+    management systems, and revenue-cycle tools.'
   version: 1.0.0
   contact:
     name: Suki Partnerships

@@ -30,20 +30,18 @@
     "suki-ai-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Content' spans 2 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml): per-path servers applied",
     "tag 'Feedback' spans 3 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml, suki-ai-openapi.yml): per-path servers applied",
-    "tag 'Sessions' spans 2 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml): per-path servers applied"
+    "tag 'Sessions' spans 2 source specs (suki-ai-ambient-api-openapi.yml, suki-ai-form-filling-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "suki-ai-ambient-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-ambient-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "suki-ai-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "suki-ai-dictation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-feedback-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-form-filling-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-form-filling-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "suki-ai-medicationorders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-preferences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "suki-ai-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",

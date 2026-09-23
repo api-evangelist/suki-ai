@@ -151,6 +151,17 @@ paths:
       description: Suki Speech Service staging environment
 components:
   schemas:
+    NoteSection:
+      type: object
+      properties:
+        loinc:
+          type: string
+          example: 10164-2
+        title:
+          type: string
+          example: History of present illness
+        text:
+          type: string
     Transcript:
       type: object
       properties:
@@ -174,17 +185,6 @@ components:
                 type: integer
               text:
                 type: string
-    NoteSection:
-      type: object
-      properties:
-        loinc:
-          type: string
-          example: 10164-2
-        title:
-          type: string
-          example: History of present illness
-        text:
-          type: string
     StructuredClinicalData:
       type: object
       properties:
@@ -207,18 +207,6 @@ components:
                 type: string
               dosage:
                 type: string
-    RecordingUrl:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        expiresAt:
-          type: string
-          format: date-time
-        format:
-          type: string
-          example: audio/wav
     ClinicalNote:
       type: object
       properties:
@@ -236,6 +224,18 @@ components:
         generatedAt:
           type: string
           format: date-time
+    RecordingUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiresAt:
+          type: string
+          format: date-time
+        format:
+          type: string
+          example: audio/wav
     FormStructuredData:
       type: object
       properties:

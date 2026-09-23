@@ -13,9 +13,7 @@ info:
 
     their own intake, screening, or assessment forms. Webhooks notify
 
-    partner endpoints when structured output is ready.
-
-    '
+    partner endpoints when structured output is ready.'
   version: 1.0.0
   contact:
     name: Suki for Partners

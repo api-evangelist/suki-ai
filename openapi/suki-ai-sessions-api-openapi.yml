@@ -224,31 +224,29 @@ paths:
       description: Suki Speech Service staging environment
 components:
   schemas:
-    AmbientSession:
+    SessionContext:
       type: object
       properties:
-        sessionId:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+            problems:
+              type: array
+              items:
+                type: string
+        priorNote:
           type: string
-          format: uuid
-        providerId:
-          type: string
-        encounterId:
-          type: string
-        status:
-          type: string
-          enum:
-          - created
-          - recording
-          - ended
-          - processing
-          - complete
-          - failed
-        createdAt:
-          type: string
-          format: date-time
-        audioWebsocketUrl:
-          type: string
-          format: uri
+        loincSections:
+          type: array
+          items:
+            type: string
     SessionStatus:
       type: object
       properties:
@@ -264,6 +262,13 @@ components:
         eta:
           type: integer
           description: Estimated seconds until note is ready
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     AmbientSessionCreate:
       type: object
       required:
@@ -289,36 +294,31 @@ components:
         problemBasedCharting:
           type: boolean
           default: true
-    SessionContext:
+    AmbientSession:
       type: object
       properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-            problems:
-              type: array
-              items:
-                type: string
-        priorNote:
+        sessionId:
           type: string
-        loincSections:
-          type: array
-          items:
-            type: string
-    Error:
-      type: object
-      properties:
-        code:
+          format: uuid
+        providerId:
           type: string
-        message:
+        encounterId:
           type: string
+        status:
+          type: string
+          enum:
+          - created
+          - recording
+          - ended
+          - processing
+          - complete
+          - failed
+        createdAt:
+          type: string
+          format: date-time
+        audioWebsocketUrl:
+          type: string
+          format: uri
     FormFillingStatus:
       type: object
       properties:
@@ -331,19 +331,6 @@ components:
           type: integer
           minimum: 0
           maximum: 100
-    FormFillingSessionCreate:
-      type: object
-      required:
-      - providerId
-      - templateId
-      properties:
-        providerId:
-          type: string
-        templateId:
-          type: string
-        languageCode:
-          type: string
-          example: en-US
     FormFillingContext:
       type: object
       properties:
@@ -360,6 +347,19 @@ components:
         priorAnswers:
           type: object
           additionalProperties: true
+    FormFillingSessionCreate:
+      type: object
+      required:
+      - providerId
+      - templateId
+      properties:
+        providerId:
+          type: string
+        templateId:
+          type: string
+        languageCode:
+          type: string
+          example: en-US
     FormFillingSession:
       type: object
       properties:

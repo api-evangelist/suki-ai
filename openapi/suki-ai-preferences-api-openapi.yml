@@ -13,9 +13,7 @@ info:
 
     `wss://sdp.suki-stage.com/api/v1/ambient/sessions/{sessionId}/audio` and the
 
-    webhook callback POSTed to the partner endpoint on session completion.
-
-    '
+    webhook callback POSTed to the partner endpoint on session completion.'
   version: 1.0.0
   contact:
     name: Suki for Partners
