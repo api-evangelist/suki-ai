@@ -224,6 +224,29 @@ paths:
       description: Suki Speech Service staging environment
 components:
   schemas:
+    SessionContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+            problems:
+              type: array
+              items:
+                type: string
+        priorNote:
+          type: string
+        loincSections:
+          type: array
+          items:
+            type: string
     AmbientSession:
       type: object
       properties:
@@ -249,44 +272,6 @@ components:
         audioWebsocketUrl:
           type: string
           format: uri
-    SessionStatus:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        status:
-          type: string
-        progress:
-          type: integer
-          minimum: 0
-          maximum: 100
-        eta:
-          type: integer
-          description: Estimated seconds until note is ready
-    SessionContext:
-      type: object
-      properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-            problems:
-              type: array
-              items:
-                type: string
-        priorNote:
-          type: string
-        loincSections:
-          type: array
-          items:
-            type: string
     AmbientSessionCreate:
       type: object
       required:
@@ -319,6 +304,62 @@ components:
           type: string
         message:
           type: string
+    SessionStatus:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+        eta:
+          type: integer
+          description: Estimated seconds until note is ready
+    FormFillingContext:
+      type: object
+      properties:
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+        priorAnswers:
+          type: object
+          additionalProperties: true
+    FormFillingStatus:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        status:
+          type: string
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+    FormFillingSessionCreate:
+      type: object
+      required:
+      - providerId
+      - templateId
+      properties:
+        providerId:
+          type: string
+        templateId:
+          type: string
+        languageCode:
+          type: string
+          example: en-US
     FormFillingSession:
       type: object
       properties:
@@ -341,54 +382,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    FormFillingSessionCreate:
-      type: object
-      required:
-      - providerId
-      - templateId
-      properties:
-        providerId:
-          type: string
-        templateId:
-          type: string
-        languageCode:
-          type: string
-          example: en-US
-    FormFillingStatus:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        status:
-          type: string
-        progress:
-          type: integer
-          minimum: 0
-          maximum: 100
-    FormFillingContext:
-      type: object
-      properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-        priorAnswers:
-          type: object
-          additionalProperties: true
-  responses:
-    Unauthorized:
-      description: Missing or invalid sdp_suki_token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     SessionId:
       name: sessionId
@@ -397,6 +390,13 @@ components:
       schema:
         type: string
         format: uuid
+  responses:
+    Unauthorized:
+      description: Missing or invalid sdp_suki_token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     SdpSukiToken:
       type: apiKey

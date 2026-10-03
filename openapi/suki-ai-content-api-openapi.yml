@@ -151,6 +151,56 @@ paths:
       description: Suki Speech Service staging environment
 components:
   schemas:
+    NoteSection:
+      type: object
+      properties:
+        loinc:
+          type: string
+          example: 10164-2
+        title:
+          type: string
+          example: History of present illness
+        text:
+          type: string
+    ClinicalNote:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          format: uuid
+        encounterId:
+          type: string
+        specialty:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteSection'
+        generatedAt:
+          type: string
+          format: date-time
+    StructuredClinicalData:
+      type: object
+      properties:
+        problems:
+          type: array
+          items:
+            type: string
+        medications:
+          type: array
+          items:
+            type: string
+        orders:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              system:
+                type: string
+              dosage:
+                type: string
     Transcript:
       type: object
       properties:
@@ -186,56 +236,6 @@ components:
         format:
           type: string
           example: audio/wav
-    NoteSection:
-      type: object
-      properties:
-        loinc:
-          type: string
-          example: 10164-2
-        title:
-          type: string
-          example: History of present illness
-        text:
-          type: string
-    StructuredClinicalData:
-      type: object
-      properties:
-        problems:
-          type: array
-          items:
-            type: string
-        medications:
-          type: array
-          items:
-            type: string
-        orders:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              system:
-                type: string
-              dosage:
-                type: string
-    ClinicalNote:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        encounterId:
-          type: string
-        specialty:
-          type: string
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/NoteSection'
-        generatedAt:
-          type: string
-          format: date-time
     FormStructuredData:
       type: object
       properties:
