@@ -224,31 +224,6 @@ paths:
       description: Suki Speech Service staging environment
 components:
   schemas:
-    AmbientSession:
-      type: object
-      properties:
-        sessionId:
-          type: string
-          format: uuid
-        providerId:
-          type: string
-        encounterId:
-          type: string
-        status:
-          type: string
-          enum:
-          - created
-          - recording
-          - ended
-          - processing
-          - complete
-          - failed
-        createdAt:
-          type: string
-          format: date-time
-        audioWebsocketUrl:
-          type: string
-          format: uri
     SessionStatus:
       type: object
       properties:
@@ -264,6 +239,13 @@ components:
         eta:
           type: integer
           description: Estimated seconds until note is ready
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     SessionContext:
       type: object
       properties:
@@ -287,13 +269,6 @@ components:
           type: array
           items:
             type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     AmbientSessionCreate:
       type: object
       required:
@@ -319,22 +294,44 @@ components:
         problemBasedCharting:
           type: boolean
           default: true
-    FormFillingContext:
+    AmbientSession:
       type: object
       properties:
-        patient:
-          type: object
-          properties:
-            mrn:
-              type: string
-            sex:
-              type: string
-            birthDate:
-              type: string
-              format: date
-        priorAnswers:
-          type: object
-          additionalProperties: true
+        sessionId:
+          type: string
+          format: uuid
+        providerId:
+          type: string
+        encounterId:
+          type: string
+        status:
+          type: string
+          enum:
+          - created
+          - recording
+          - ended
+          - processing
+          - complete
+          - failed
+        createdAt:
+          type: string
+          format: date-time
+        audioWebsocketUrl:
+          type: string
+          format: uri
+    FormFillingSessionCreate:
+      type: object
+      required:
+      - providerId
+      - templateId
+      properties:
+        providerId:
+          type: string
+        templateId:
+          type: string
+        languageCode:
+          type: string
+          example: en-US
     FormFillingStatus:
       type: object
       properties:
@@ -369,19 +366,22 @@ components:
         createdAt:
           type: string
           format: date-time
-    FormFillingSessionCreate:
+    FormFillingContext:
       type: object
-      required:
-      - providerId
-      - templateId
       properties:
-        providerId:
-          type: string
-        templateId:
-          type: string
-        languageCode:
-          type: string
-          example: en-US
+        patient:
+          type: object
+          properties:
+            mrn:
+              type: string
+            sex:
+              type: string
+            birthDate:
+              type: string
+              format: date
+        priorAnswers:
+          type: object
+          additionalProperties: true
   responses:
     Unauthorized:
       description: Missing or invalid sdp_suki_token
